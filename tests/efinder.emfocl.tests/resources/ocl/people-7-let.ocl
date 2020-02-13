@@ -1,0 +1,15 @@
+import 'platform:/resource/efinder.core.tests/resources/metamodels/people.ecore'
+
+package people
+
+
+context Model inv setUp:
+	Person.allInstances()->exists(isJohn())
+
+context Person
+def : isJohn() : Boolean = 
+	let actual = self.name in
+	let expected = 'John' in
+	actual = expected
+
+endpackage

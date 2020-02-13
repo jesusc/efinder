@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="ASCII"?>
+<relschema:RelModel
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:relschema="http://efinder/relschema"
+    xsi:schemaLocation="http://efinder/relschema RelSchema.ecore">
+  <schemas name="ChillyRel"
+      rows="//@rows.0">
+    <attributes
+        name="Black"/>
+    <attributes
+        name="White"/>
+  </schemas>
+  <schemas name=""
+      rows="//@rows.1"/>
+  <rows typing="//@schemas.0">
+    <columns
+        attribute="//@schemas.0/@attributes.0">
+      <value
+          content="A"/>
+    </columns>
+  </rows>
+  <rows typing="//@schemas.1"/>
+  <datatypes
+      name="CoolType"/>
+</relschema:RelModel>
