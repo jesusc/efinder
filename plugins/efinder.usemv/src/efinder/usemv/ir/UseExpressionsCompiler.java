@@ -31,6 +31,7 @@ import efinder.ir.ocl.OperatorCallExp;
 import efinder.ir.ocl.OperatorKind;
 import efinder.ir.ocl.OrderedSetLiteralExp;
 import efinder.ir.ocl.PropertyCallExp;
+import efinder.ir.ocl.RealLiteralExp;
 import efinder.ir.ocl.SequenceLiteralExp;
 import efinder.ir.ocl.SetLiteralExp;
 import efinder.ir.ocl.StringLiteralExp;
@@ -93,6 +94,12 @@ public class UseExpressionsCompiler extends AbstractIRVisitor<Void, StringContex
 	
 	@Override
 	public Void visitIntegerLiteralExp(IntegerLiteralExp self, StringContext input) {
+		input.append(self.getValue());
+		return null;
+	}
+	
+	@Override
+	public Void visitRealLiteralExp(RealLiteralExp self, StringContext input) {
 		input.append(self.getValue());
 		return null;
 	}

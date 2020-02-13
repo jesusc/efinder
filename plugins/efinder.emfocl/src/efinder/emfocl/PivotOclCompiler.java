@@ -46,6 +46,7 @@ import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
+import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StringLiteralExp;
@@ -646,6 +647,11 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@Override
 		public OclExpression visitIntegerLiteralExp(@NonNull IntegerLiteralExp object) {
 			return IRBuilder.newIntegerExp(object.getIntegerSymbol());
+		}
+		
+		@Override
+		public OclExpression visitRealLiteralExp(@NonNull RealLiteralExp object) {
+			return IRBuilder.newRealExp(object.getRealSymbol());
 		}
 		
 		@Override

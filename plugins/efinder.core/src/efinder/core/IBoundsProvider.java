@@ -2,12 +2,45 @@ package efinder.core;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.jdt.annotation.NonNull;
+
+import com.google.common.base.Preconditions;
 
 public interface IBoundsProvider {
 
 	Interval getScope(EClass klass);
 	Interval getScope(EReference feature);
 	int getDefaultMaxScope();
+	
+	@NonNull
+	default RealInterval getRealInterval() {
+		return new RealInterval(-1.0, 1.0, 0.1);
+	}
+	
+	public static class RealInterval {
+		private double min;
+		private double max;
+		private double step;
+
+		public RealInterval(double min, double max, double step) {
+			Preconditions.checkArgument(min < max);
+			this.min = min;
+			this.max = max;
+			this.step = step;
+		}
+		
+		public double getMin() {
+			return min;
+		}
+		
+		public double getMax() {
+			return max;
+		}
+		
+		public double getStep() {
+			return step;
+		}		
+	}
 	
 	public static class Interval {
 		private int min;

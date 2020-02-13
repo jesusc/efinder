@@ -27,6 +27,10 @@ public class StringContext {
 		return this;		
 	}
 
+	public void append(double value) {
+		builder.append(value);
+	}
+
 	@NonNull
 	public StringContext indent() {
 		// TODO: Unindent properly

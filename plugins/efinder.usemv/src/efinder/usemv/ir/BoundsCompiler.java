@@ -15,6 +15,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import efinder.core.EFinderModel;
 import efinder.core.IBoundsProvider;
 import efinder.core.IBoundsProvider.Interval;
+import efinder.core.IBoundsProvider.RealInterval;
 import efinder.ir.EFMetamodel;
 import efinder.ir.EFPackage;
 
@@ -42,13 +43,15 @@ public class BoundsCompiler {
 		return writer.toString();
 	}
 	
-	private void genDataTypes(@NonNull IBoundsProvider scopeProvider, @NonNull StringWriter writer) {		
+	private void genDataTypes(@NonNull IBoundsProvider boundsProvider, @NonNull StringWriter writer) {		
 	// Bound of datatypes -----------------------------------------------------------
 		int stringMax = Math.max(boundsInformation.getStringCount(), 10);
+				
+		RealInterval realInterval = boundsProvider.getRealInterval();		
 		
-		writer.write("Real_min = -2\n");
-		writer.write("Real_max = 2\n");
-		writer.write("Real_step = 0.5\n");
+		writer.write("Real_min = " + realInterval.getMin() + "\n");
+		writer.write("Real_max = " + realInterval.getMax() + "\n");
+		writer.write("Real_step = " + realInterval.getStep() + "\n");
 		writer.write("String_min = 1\n");
 		writer.write("String_max = " + stringMax + "\n");
 				// TODO: Compute this using some strategy and/or from the Backend
@@ -57,7 +60,7 @@ public class BoundsCompiler {
 		writer.write("Integer_max = 10\n");
 	}
 
-	protected void customGenPropertiesFiles(IBoundsProvider scopeProvider, EPackage metamodel, StringWriter writer) {		
+	protected void customGenPropertiesFiles(IBoundsProvider boundsProvider, EPackage metamodel, StringWriter writer) {		
 		try {
 			List<EReference> references = new ArrayList<EReference>();
 			int index      = 0;
@@ -67,7 +70,7 @@ public class BoundsCompiler {
 			for (EClassifier classifier : metamodel.getEClassifiers()) {
 				// Bounds for non-abstract classes
 				if ( classifier instanceof EClass && ! ((EClass) classifier).isAbstract() ) {
-					Interval interval = scopeProvider.getScope((EClass) classifier);
+					Interval interval = boundsProvider.getScope((EClass) classifier);
 					if ( interval == null ) {
 						throw new IllegalStateException();
 						//lowerBound = classifier.getName().equals(rootClassName)? 1 : 0; 
@@ -85,8 +88,19 @@ public class BoundsCompiler {
 				if (classifier instanceof EClass) {
 					for (EAttribute feature : ((EClass)classifier).getEAttributes()) {
 						// writer.write(classifier.getName() + "_" + feature.getName() + "_min = 0\n");   // 0 (value changed 03-01-2016, before it was -1)
-						writer.write(classifier.getName() + "_" + feature.getName() + "_min = -1\n");   // 0 (value changed 03-01-2016, before it was -1)
-						writer.write(classifier.getName() + "_" + feature.getName() + "_max = -1\n");  // unbound
+						
+						if (feature.getEAttributeType().getName().toLowerCase().contains("double")) {
+							RealInterval realInterval = boundsProvider.getRealInterval();		
+							double min = realInterval.getMin();
+							double max = realInterval.getMax();
+							writer.write(classifier.getName() + "_" + feature.getName() + "_min = " + -1 + "\n");   // 0 (value changed 03-01-2016, before it was -1)
+							writer.write(classifier.getName() + "_" + feature.getName() + "_max = " + 1 + "\n");  // unbound
+						} else {
+							writer.write(classifier.getName() + "_" + feature.getName() + "_min = -1\n");   // 0 (value changed 03-01-2016, before it was -1)
+							writer.write(classifier.getName() + "_" + feature.getName() + "_max = -1\n");  // unbound
+						}
+						
+						
 					}
 					for (EReference ref : ((EClass)classifier).getEReferences()) 
 						if (!references.contains(ref.getEOpposite()))
@@ -98,7 +112,7 @@ public class BoundsCompiler {
 			
 			// Bound of references ----------------------------------------------------------	
 			for (EReference ref : references) {
-				Interval interval = scopeProvider.getScope(ref);
+				Interval interval = boundsProvider.getScope(ref);
 				if ( interval == null ) {
 					throw new IllegalStateException();
 					//lowerBound = 0;

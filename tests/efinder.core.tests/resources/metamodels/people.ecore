@@ -14,6 +14,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="alive" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="luckyNumbers" upperBound="-1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lotteryChances" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDoubleObject"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="bestFriend" eType="#//Person"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pets" upperBound="-1" eType="#//Pet"/>
   </eClassifiers>

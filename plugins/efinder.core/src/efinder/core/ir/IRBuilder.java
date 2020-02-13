@@ -50,6 +50,7 @@ import efinder.ir.ocl.OperatorCallExp;
 import efinder.ir.ocl.OperatorKind;
 import efinder.ir.ocl.OrderedSetLiteralExp;
 import efinder.ir.ocl.PropertyCallExp;
+import efinder.ir.ocl.RealLiteralExp;
 import efinder.ir.ocl.SequenceLiteralExp;
 import efinder.ir.ocl.SetLiteralExp;
 import efinder.ir.ocl.StringLiteralExp;
@@ -246,6 +247,13 @@ public class IRBuilder {
 	public static OclExpression newIntegerExp(@NonNull Number integerSymbol) {
 		IntegerLiteralExp lit = OclFactory.eINSTANCE.createIntegerLiteralExp();
 		lit.setValue(integerSymbol.intValue());
+		return lit;
+	}
+	
+	@NonNull
+	public static OclExpression newRealExp(Number realSymbol) {
+		RealLiteralExp lit = OclFactory.eINSTANCE.createRealLiteralExp();
+		lit.setValue(realSymbol.doubleValue());
 		return lit;
 	}
 
