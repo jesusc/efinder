@@ -11,7 +11,9 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.BagType;
@@ -105,11 +107,23 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	private final Model ocl;
 	@NonNull
 	private final Report report = new Report();
+	@Nullable
+	private Registry registry = Registry.INSTANCE;
 	
 	public PivotOclCompiler(Model ocl) {
 		this.ocl = ocl;
 	}
 	
+	/**
+	 * @param ocl
+	 * @param rs ResourceSet used to load the model. 
+	 *           If it contains registered packages, they are looked up
+	 */
+	public PivotOclCompiler(@NonNull Model ocl, @NonNull ResourceSet rs) {
+		this(ocl);
+		this.registry = rs.getPackageRegistry();		
+	}
+
 	@NonNull 
 	public EFinderModel compile() {
 		MetamodelContext metamodelContext = precomputeMetamodel();
@@ -138,7 +152,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	 */
 	@NonNull
 	private MetamodelContext precomputeMetamodel() {
-		MetamodelContext metamodelContext = new MetamodelContext();
+		MetamodelContext metamodelContext = new MetamodelContext(registry);
 		ModelImporter importer = new ModelImporter(metamodelContext);
 		for (Import import_ : ocl.getOwnedImports()) {			
 			Namespace ns = import_.getImportedNamespace();
@@ -159,7 +173,13 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		private final Map<EEnum, EFEnum> enums = new HashMap<>();
 		@NonNull
 		private final Map<String, EFPrimitiveType> primitiveTypes = new HashMap<>();
+		@NonNull 
+		private final Registry registry;
 				
+		public MetamodelContext(@NonNull Registry registry) {
+			this.registry = registry;
+		}
+		
 		@Nullable
 		public EFPackage getEFPackage(@NonNull Package pkg) {
 			PackageId id = IdManager.getPackageId(pkg);
@@ -258,12 +278,19 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			if (packages.containsKey(id))
 				return;
 			
+			EPackage epkg;
 			if (pkg.getEPackage() == null) {
-				// Maybe ignore? Or try lookup the URI in the registry?
+				String uri = pkg.getURI();
+				epkg = registry.getEPackage(uri);
+			} else {
+				epkg = pkg.getEPackage();
+			}
+			
+			if (epkg == null) {
+				System.out.println("No package " + pkg.getName());
 				return;
 			}
 			
-			EPackage epkg = pkg.getEPackage();
 			EFPackage efp = IRBuilder.newPackage(epkg);
 			packages.put(id, efp);
 			
