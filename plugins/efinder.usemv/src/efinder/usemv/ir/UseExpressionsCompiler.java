@@ -276,7 +276,7 @@ public class UseExpressionsCompiler extends AbstractIRVisitor<Void, StringContex
 	private String toClassName(@NonNull EFType type) {
 		// TODO: Use the normalizer for this
 		if (type instanceof EFClass) {
-			return ((EFClass) type).getKlass().getName();
+			return mapping.toUseTypeName((EFClass) type);
 		}
 		throw new UnsupportedOperationException();
 	}

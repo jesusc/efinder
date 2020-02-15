@@ -1,19 +1,28 @@
 package efinder.usemv.ir;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
 import efinder.ir.EFEnumLiteral;
+import efinder.ir.EFMetamodel;
 import efinder.ir.EFPackage;
 
 /**
@@ -30,10 +39,39 @@ public class UseMapping {
 	@NonNull
 	private final Map<String, String> strings2new = new HashMap<String, String>();
 	@NonNull
-	private final Map<String, String> new2Strings = new HashMap<String, String>();
+	private final Map<String, String> new2Strings = new HashMap<String, String>();	
 	@NonNull
-	private final Map<String, String> useToEcoreTypeNames = new HashMap<String, String>();
-	
+	private final BiMap<EClassifier, String> eclassifier2use = HashBiMap.create();
+	@NonNull
+	private final Map<String, String> useToEcoreLiteralName = new HashMap<String, String>();
+	@NonNull
+	private final String modelName;	
+
+	public UseMapping(@NonNull List<? extends EFMetamodel> metamodels) {
+		mapMetamodels(metamodels);
+		this.modelName = UseReservedWords.toUseName(metamodels.get(0).getRoots().get(0).getPkg().getName());
+	}
+
+	private void mapMetamodels(@NonNull List<? extends EFMetamodel> metamodels) {
+		Function<EClassifier, String> nameMapper = metamodels.size() > 1 ?
+				(c) -> UseReservedWords.toUseName(c.getEPackage().getName() + "_" + c.getName()) :
+				(c) -> UseReservedWords.toUseName(c.getName());
+		
+		for (EFMetamodel m : metamodels) {
+			for(EFPackage pkg : m.getRoots()) {
+				for(EFClass c : pkg.getClasses()) {
+					String name = nameMapper.apply(c.getKlass());
+					eclassifier2use.put(c.getKlass(), name);
+				}
+				
+				for(EFEnum e : pkg.getEnumerations()) {
+					String name = nameMapper.apply(e.getEnum_());
+					eclassifier2use.put(e.getEnum_(), name);
+				}				
+			}
+		}
+	}
+
 	public String addStringConstant(@NonNull String string) {
 		String newString = strings2new.get(string);
 		if (newString == null) {
@@ -54,34 +92,31 @@ public class UseMapping {
 	
 	@NonNull
 	public String toUseTypeName(@NonNull EFClass klass) {		
-		return toUseClass(klass.getKlass());
+		return toUseTypeName(klass.getKlass());
 	}
 
 	@NonNull
 	public String toUseLiteralName(@NonNull EFEnumLiteral literal) {
 		String original = literal.getName();
 		String name = UseReservedWords.toUseName(original);
-		useToEcoreTypeNames.put(name, original);
+		useToEcoreLiteralName.put(name, original);
 		return name;
 	}
 	
 	@NonNull
 	public String toUseTypeName(@NonNull EFEnum enum_) {
-		String original = enum_.getEnum_().getName();
-		String name = UseReservedWords.toUseName(original);
-		useToEcoreTypeNames.put(name, original);
-		return name;
+		return toUseTypeName(enum_.getEnum_());
+	}
+	
+	@NonNull
+	public String toModelName() {
+		return this.modelName;
 	}
 
 	@NonNull
-	public String toModelName(@NonNull EFPackage pkg) {
-		return pkg.getPkg().getName();
-	}
-
-	@NonNull
-	public String toUseClass(@NonNull EClass klass) {
-		String name = UseReservedWords.toUseName(klass.getName());
-		useToEcoreTypeNames.put(name, klass.getName());
+	public String toUseTypeName(@NonNull EClassifier c) {
+		String name = eclassifier2use.get(c);
+		Preconditions.checkNotNull(name, "No mapping for " + c.getName());
 		return name;
 	}
 
@@ -110,13 +145,13 @@ public class UseMapping {
 			
 			associationName = reference0.getEContainingClass().getName() + "_" + reference0.getName() + "_" +
 							  reference.getEContainingClass().getName() + "_" + reference.getName();
-			String end1_type = toUseClass(reference0.getEReferenceType());
+			String end1_type = toUseTypeName(reference0.getEReferenceType());
 			String end1_name = toUsePropertyName(reference0);
 			String end1_cardinality = cardinalityToString(reference0);
 			end1 = new AssociationEndData(end1_name, end1_type, end1_cardinality);			
 		} else {
 			associationName = reference.getEContainingClass().getName() + "_" + reference.getName();
-			String end1_type = toUseClass(reference.getEContainingClass());
+			String end1_type = toUseTypeName(reference.getEContainingClass());
 			String end1_name = associationName + "_source";
 			String end1_cardinality = reference.isContainment()? "[0..1]" : "[*]";
 			end1 = new AssociationEndData(end1_name, end1_type, end1_cardinality);			
@@ -125,7 +160,7 @@ public class UseMapping {
 		if (associations.containsKey(associationName))
 			return associations.get(associationName);
 		
-		String end2_type = toUseClass(reference.getEReferenceType());
+		String end2_type = toUseTypeName(reference.getEReferenceType());
 		String end2_name = toUsePropertyName(reference);
 		String end2_cardinality = cardinalityToString(reference);
 		AssociationEndData end2 = new AssociationEndData(end2_name, end2_type, end2_cardinality, reference);
@@ -214,13 +249,15 @@ public class UseMapping {
 	 * Undo the name modification
 	 */
 	@NonNull 
-	public String getInverseTypeName(@NonNull String name) {
-		return useToEcoreTypeNames.getOrDefault(name, name);
+	public EClassifier getInverseType(@NonNull String name) {
+		EClassifier c = eclassifier2use.inverse().get(name);
+		Preconditions.checkNotNull(c);
+		return c;
 	}
 
 	@NonNull 
 	public String getInverseLiteralName(@NonNull String name) {
 		// This is currently using the same map for everything, but this is only an implementation detail right now
-		return useToEcoreTypeNames.getOrDefault(name, name);
+		return useToEcoreLiteralName.getOrDefault(name, name);
 	}
 }

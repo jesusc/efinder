@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
 import org.eclipse.ocl.pivot.LetExp;
@@ -50,6 +51,8 @@ import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.StringLiteralExp;
+import org.eclipse.ocl.pivot.TupleLiteralExp;
+import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -66,6 +69,7 @@ import com.google.common.collect.ImmutableMap;
 
 import efinder.core.DialectToIRCompiler;
 import efinder.core.EFinderModel;
+import efinder.core.errors.Report;
 import efinder.core.ir.IRBuilder;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
@@ -82,10 +86,12 @@ import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.Iterator;
 import efinder.ir.ocl.OclDerivedProperty;
 import efinder.ir.ocl.OclExpression;
+import efinder.ir.ocl.OclFactory;
 import efinder.ir.ocl.OclInvariant;
 import efinder.ir.ocl.OclOperation;
 import efinder.ir.ocl.OclPackage;
 import efinder.ir.ocl.OperatorKind;
+import efinder.ir.ocl.TuplePart;
 
 /**
  * Transforms a pivot AST into the IR representation.
@@ -615,6 +621,19 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		}
 		
 		@Override
+		public OclExpression visitIterateExp(@NonNull IterateExp object) {
+			Variable oclVar = object.getOwnedResult();
+
+			OclExpression source = toExpression(object.getOwnedSource());
+			VariableDeclaration resultVar = context.toVariableDeclaration(oclVar, (eft) -> IRBuilder.newVariableDeclaration(oclVar.getName(), eft));
+			OclExpression initResultVar = toExpression(object.getOwnedResult().getOwnedInit());
+			List<Iterator> iterators = toIterator(object.getOwnedIterators());
+			OclExpression body = toExpression(object.getOwnedBody());
+			
+			return IRBuilder.newIterateExp(source, resultVar, initResultVar, iterators, body);
+		}
+		
+		@Override
 		public OclExpression visitIfExp(@NonNull IfExp object) {
 			OclExpression condition = toExpression(object.getOwnedCondition());
 			OclExpression then_ = toExpression(object.getOwnedThen());
@@ -710,6 +729,20 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			}
 
 			throw new UnsupportedOperationException("Collection type not supported: " + object);
+		}
+		
+		@Override
+		public OclExpression visitTupleLiteralExp(@NonNull TupleLiteralExp object) {
+			// object.getType() ==> TupleType
+			efinder.ir.ocl.TupleLiteralExp tuple = IRBuilder.newTupleLiteral();
+			for (TupleLiteralPart tupleLiteralPart : object.getOwnedParts()) {
+				TuplePart part = OclFactory.eINSTANCE.createTuplePart();
+				part.setName(tupleLiteralPart.getName());
+				part.setValue(toExpression(tupleLiteralPart.getOwnedInit()));
+				tuple.getParts().add(part);
+			}
+			
+			return tuple;
 		}
 		
 		// Utilities

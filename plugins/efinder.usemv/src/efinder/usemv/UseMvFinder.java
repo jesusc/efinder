@@ -1,7 +1,9 @@
 package efinder.usemv;
 
+import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.PipedWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
@@ -36,8 +38,10 @@ import com.google.common.annotations.VisibleForTesting;
 import efinder.core.EFinderModel;
 import efinder.core.IBoundsProvider;
 import efinder.core.IModelFinder;
+import efinder.core.errors.Report;
 import efinder.core.management.EMFModel;
 import efinder.usemv.ir.BoundsCompiler;
+import efinder.usemv.ir.UseFeatureChecker;
 import efinder.usemv.ir.UseMvBackendCompiler;
 import kodkod.engine.Solution;
 import kodkod.engine.Solution.Outcome;
@@ -69,6 +73,11 @@ public class UseMvFinder implements IModelFinder {
 	
 	@Override
 	public @NonNull Result find(@NonNull EFinderModel ir) {
+		Report report = new UseFeatureChecker().check(ir);
+		if (report.isUnsupported()) {
+			return new UseMvResult.Unsupported(report);
+		}
+		
 		UseMvBackendCompiler compiler = new UseMvBackendCompiler(ir);
 		
 		UseModel model = compiler.compile();
@@ -153,7 +162,12 @@ public class UseMvFinder implements IModelFinder {
 	/* pp */ UseMvResult doFind(@NonNull EFinderModel ir, UseModel useModel, @NonNull StringReader metamodelBounds) {
 		ByteArrayInputStream inputUseSpecification = new ByteArrayInputStream(useModel.getText().getBytes());
 
-		KodkodResult kodkod = doFind(inputUseSpecification, metamodelBounds);
+		KodkodResult kodkod;
+		try {
+			kodkod = doFind(inputUseSpecification, metamodelBounds);
+		} catch (InvalidTranslation e) {
+			return e.getResult();
+		}
 
 		UseMvResult r;
 		if (kodkod != null && kodkod.isSatisfiable()) {			
@@ -168,8 +182,9 @@ public class UseMvFinder implements IModelFinder {
 
 	
 	@Nullable
-	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) {
-		PrintWriter fLogWriter = new PrintWriter(System.out);		
+	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidTranslation {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		PrintWriter fLogWriter = new PrintWriter(output);		
 		MModel model = USECompiler.compileSpecification(inputUseSpecification, "<generated>", fLogWriter, new ModelFactory());       
         
         MSystem system;
@@ -177,10 +192,13 @@ public class UseMvFinder implements IModelFinder {
             // fLogWriter.println(model.getStats());
             // create system
             system = new MSystem(model);
+            // Possibly only if some kind of debug flag is active
+            System.out.println(output.toString());
         } else {
             system = null;
-            throw new IllegalStateException("USE file contains errors...");
-            // throw new transException(ERROR.EXECUTION_ERROR, "USE file contains errors...");
+            // Log always
+            System.out.println(output.toString());
+            throw new InvalidTranslation(new UseMvResult.InvalidTranslation(output.toString()));
         }
                 
         fSession.setSystem(system);
@@ -357,5 +375,17 @@ public class UseMvFinder implements IModelFinder {
 			return hierarchicalINIConfiguration.getSection(section);
 		}
 	}
-	
+
+	private static class InvalidTranslation extends Exception {		
+		private static final long serialVersionUID = 6690365179442013481L;
+		private efinder.usemv.UseMvResult.InvalidTranslation result;
+		
+		public InvalidTranslation(efinder.usemv.UseMvResult.InvalidTranslation invalidTranslation) {
+			this.result = invalidTranslation;
+		}
+		
+		public efinder.usemv.UseMvResult.InvalidTranslation getResult() {
+			return result;
+		}
+	}
 }

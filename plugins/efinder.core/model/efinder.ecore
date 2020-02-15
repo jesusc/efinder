@@ -120,12 +120,20 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//ocl/CallExp">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
-          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eClassifiers xsi:type="ecore:EClass" name="LoopExp" abstract="true" eSuperTypes="#//ocl/CallExp">
       <eStructuralFeatures xsi:type="ecore:EReference" name="iterators" lowerBound="1"
           upperBound="-1" eType="#//ocl/Iterator" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1"
+          eType="#//ocl/OclExpression" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IteratorExp" eSuperTypes="#//ocl/LoopExp">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="IterateExp" eSuperTypes="#//ocl/LoopExp">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="result" lowerBound="1"
+          eType="#//VariableDeclaration" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="init" lowerBound="1"
           eType="#//ocl/OclExpression" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Iterator" eSuperTypes="#//VariableDeclaration"/>
@@ -191,6 +199,16 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OclUndefined" eSuperTypes="#//ocl/LiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclInvalid" eSuperTypes="#//ocl/LiteralExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExp" eSuperTypes="#//ocl/LiteralExp">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
+          eType="#//ocl/TuplePart" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TuplePart">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="value" lowerBound="1"
+          eType="#//ocl/OclExpression" containment="true"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="EnumLiteralExp" eSuperTypes="#//ocl/LiteralExp">
       <eStructuralFeatures xsi:type="ecore:EReference" name="enum_" lowerBound="1"
           eType="#//MetaTypeRef" containment="true"/>

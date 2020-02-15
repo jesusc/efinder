@@ -169,11 +169,29 @@ public class OclSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OclPackage.LOOP_EXP: {
+				LoopExp loopExp = (LoopExp)theEObject;
+				T result = caseLoopExp(loopExp);
+				if (result == null) result = caseCallExp(loopExp);
+				if (result == null) result = caseOclExpression(loopExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OclPackage.ITERATOR_EXP: {
 				IteratorExp iteratorExp = (IteratorExp)theEObject;
 				T result = caseIteratorExp(iteratorExp);
+				if (result == null) result = caseLoopExp(iteratorExp);
 				if (result == null) result = caseCallExp(iteratorExp);
 				if (result == null) result = caseOclExpression(iteratorExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OclPackage.ITERATE_EXP: {
+				IterateExp iterateExp = (IterateExp)theEObject;
+				T result = caseIterateExp(iterateExp);
+				if (result == null) result = caseLoopExp(iterateExp);
+				if (result == null) result = caseCallExp(iterateExp);
+				if (result == null) result = caseOclExpression(iterateExp);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -265,6 +283,20 @@ public class OclSwitch<T> extends Switch<T> {
 				T result = caseOclInvalid(oclInvalid);
 				if (result == null) result = caseLiteralExp(oclInvalid);
 				if (result == null) result = caseOclExpression(oclInvalid);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OclPackage.TUPLE_LITERAL_EXP: {
+				TupleLiteralExp tupleLiteralExp = (TupleLiteralExp)theEObject;
+				T result = caseTupleLiteralExp(tupleLiteralExp);
+				if (result == null) result = caseLiteralExp(tupleLiteralExp);
+				if (result == null) result = caseOclExpression(tupleLiteralExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case OclPackage.TUPLE_PART: {
+				TuplePart tuplePart = (TuplePart)theEObject;
+				T result = caseTuplePart(tuplePart);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -511,6 +543,21 @@ public class OclSwitch<T> extends Switch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Loop Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Loop Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseLoopExp(LoopExp object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Iterator Exp</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -522,6 +569,21 @@ public class OclSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseIteratorExp(IteratorExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Iterate Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseIterateExp(IterateExp object) {
 		return null;
 	}
 
@@ -702,6 +764,36 @@ public class OclSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOclInvalid(OclInvalid object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple Literal Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTupleLiteralExp(TupleLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple Part</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTuplePart(TuplePart object) {
 		return null;
 	}
 

@@ -148,11 +148,20 @@ package ocl {
 		attr String[1] name;
 	}	
 	
-	class IteratorExp extends CallExp {
-		attr String[1] name;
+	abstract class LoopExp extends CallExp {
 		val Iterator[+] iterators;
 		val OclExpression[1] body;
+		
 	}
+	
+	class IteratorExp extends LoopExp {
+		attr String[1] name;
+	}
+	
+    class IterateExp extends LoopExp {
+    	val VariableDeclaration[1] result;
+    	val OclExpression[1] init;
+    }
 	
 	class Iterator extends VariableDeclaration {
 		
@@ -225,6 +234,15 @@ package ocl {
 	
 	class OclInvalid extends LiteralExp {
 		
+	}
+	
+	class TupleLiteralExp extends LiteralExp {
+		val TuplePart[*] parts;
+	}
+	
+	class TuplePart {
+		attr String[1] name;
+		val OclExpression[1] value;
 	}
 	
 	class EnumLiteralExp extends LiteralExp {

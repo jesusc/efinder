@@ -4,7 +4,9 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import efinder.core.IModelFinder.Result;
 import efinder.core.IModelFinder.Status;
+import efinder.core.errors.Report;
 import efinder.core.management.EMFModel;
+import efinder.usemv.UseMvFinder.KodkodResult;
 
 public abstract class UseMvResult implements Result {
 
@@ -43,7 +45,55 @@ public abstract class UseMvResult implements Result {
 		}
 
 	}
+	
+	public static class Unsupported extends UseMvResult {
 
+		private Report report;
+
+		public Unsupported(@NonNull Report report) {
+			this.report = report;
+		}
+		
+		@Override
+		public @NonNull Status getStatus() {
+			return Status.UNSUPPORTED_FEATURE;
+		}
+
+		@Override
+		public @NonNull EMFModel getWitness() {
+			throw new IllegalStateException();
+		}
+		
+		@NonNull
+		public Report getReport() {
+			return report;
+		}
+	}
+
+	public static class InvalidTranslation extends UseMvResult {
+
+		private @NonNull String useErrors;
+
+		public InvalidTranslation(@NonNull String useErrors) {
+			this.useErrors = useErrors;
+		}
+		
+		@Override
+		public @NonNull Status getStatus() {
+			return Status.INVALID_TRANSLATION;
+		}
+
+		@Override
+		public @NonNull EMFModel getWitness() {
+			throw new IllegalStateException();
+		}
+
+		@NonNull
+		public String getUseErrors() {
+			return useErrors;
+		}
+		
+	}
 	
 	
 }

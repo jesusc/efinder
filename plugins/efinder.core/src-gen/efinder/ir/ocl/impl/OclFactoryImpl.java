@@ -66,6 +66,7 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 			case OclPackage.PROPERTY_CALL_EXP: return createPropertyCallExp();
 			case OclPackage.COLLECTION_CALL_EXP: return createCollectionCallExp();
 			case OclPackage.ITERATOR_EXP: return createIteratorExp();
+			case OclPackage.ITERATE_EXP: return createIterateExp();
 			case OclPackage.ITERATOR: return createIterator();
 			case OclPackage.IF_EXP: return createIfExp();
 			case OclPackage.LET_EXP: return createLetExp();
@@ -77,6 +78,8 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 			case OclPackage.REAL_LITERAL_EXP: return createRealLiteralExp();
 			case OclPackage.OCL_UNDEFINED: return createOclUndefined();
 			case OclPackage.OCL_INVALID: return createOclInvalid();
+			case OclPackage.TUPLE_LITERAL_EXP: return createTupleLiteralExp();
+			case OclPackage.TUPLE_PART: return createTuplePart();
 			case OclPackage.ENUM_LITERAL_EXP: return createEnumLiteralExp();
 			case OclPackage.SET_LITERAL_EXP: return createSetLiteralExp();
 			case OclPackage.ORDERED_SET_LITERAL_EXP: return createOrderedSetLiteralExp();
@@ -223,6 +226,17 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 	 * @generated
 	 */
 	@Override
+	public IterateExp createIterateExp() {
+		IterateExpImpl iterateExp = new IterateExpImpl();
+		return iterateExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public Iterator createIterator() {
 		IteratorImpl iterator = new IteratorImpl();
 		return iterator;
@@ -336,6 +350,28 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 	public OclInvalid createOclInvalid() {
 		OclInvalidImpl oclInvalid = new OclInvalidImpl();
 		return oclInvalid;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TupleLiteralExp createTupleLiteralExp() {
+		TupleLiteralExpImpl tupleLiteralExp = new TupleLiteralExpImpl();
+		return tupleLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TuplePart createTuplePart() {
+		TuplePartImpl tuplePart = new TuplePartImpl();
+		return tuplePart;
 	}
 
 	/**

@@ -123,8 +123,16 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 				return createCollectionCallExpAdapter();
 			}
 			@Override
+			public Adapter caseLoopExp(LoopExp object) {
+				return createLoopExpAdapter();
+			}
+			@Override
 			public Adapter caseIteratorExp(IteratorExp object) {
 				return createIteratorExpAdapter();
+			}
+			@Override
+			public Adapter caseIterateExp(IterateExp object) {
+				return createIterateExpAdapter();
 			}
 			@Override
 			public Adapter caseIterator(Iterator object) {
@@ -173,6 +181,14 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 			@Override
 			public Adapter caseOclInvalid(OclInvalid object) {
 				return createOclInvalidAdapter();
+			}
+			@Override
+			public Adapter caseTupleLiteralExp(TupleLiteralExp object) {
+				return createTupleLiteralExpAdapter();
+			}
+			@Override
+			public Adapter caseTuplePart(TuplePart object) {
+				return createTuplePartAdapter();
 			}
 			@Override
 			public Adapter caseEnumLiteralExp(EnumLiteralExp object) {
@@ -415,6 +431,20 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.ocl.LoopExp <em>Loop Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.ocl.LoopExp
+	 * @generated
+	 */
+	public Adapter createLoopExpAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for an object of class '{@link efinder.ir.ocl.IteratorExp <em>Iterator Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
@@ -425,6 +455,20 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createIteratorExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.ocl.IterateExp <em>Iterate Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.ocl.IterateExp
+	 * @generated
+	 */
+	public Adapter createIterateExpAdapter() {
 		return null;
 	}
 
@@ -593,6 +637,34 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOclInvalidAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.ocl.TupleLiteralExp <em>Tuple Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.ocl.TupleLiteralExp
+	 * @generated
+	 */
+	public Adapter createTupleLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.ocl.TuplePart <em>Tuple Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.ocl.TuplePart
+	 * @generated
+	 */
+	public Adapter createTuplePartAdapter() {
 		return null;
 	}
 

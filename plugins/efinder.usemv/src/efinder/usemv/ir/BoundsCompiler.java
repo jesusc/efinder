@@ -23,11 +23,11 @@ import efinder.ir.EFPackage;
 public class BoundsCompiler {
 
 	private @NonNull EFinderModel model;
-	private @NonNull UseMapping boundsInformation;
+	private @NonNull UseMapping mapping;
 
-	public BoundsCompiler(@NonNull EFinderModel model, @NonNull UseMapping boundsInformation) {
+	public BoundsCompiler(@NonNull EFinderModel model, @NonNull UseMapping mapping) {
 		this.model = model;
-		this.boundsInformation = boundsInformation;
+		this.mapping = mapping;
 	}
 	
 	public String toProperties(@NonNull IBoundsProvider scopeProvider) {
@@ -45,7 +45,7 @@ public class BoundsCompiler {
 	
 	private void genDataTypes(@NonNull IBoundsProvider boundsProvider, @NonNull StringWriter writer) {		
 	// Bound of datatypes -----------------------------------------------------------
-		int stringMax = Math.max(boundsInformation.getStringCount(), 10);
+		int stringMax = Math.max(mapping.getStringCount(), 10);
 				
 		RealInterval realInterval = boundsProvider.getRealInterval();		
 		
@@ -80,8 +80,8 @@ public class BoundsCompiler {
 						upperBound = interval.getMax();
 					}
 					
-					writer.write(classifier.getName() + "_min = " + lowerBound + "\n"); 
-					writer.write(classifier.getName() + "_max = " + upperBound + "\n");                                					
+					writer.write(mapping.toUseTypeName(classifier) + "_min = " + lowerBound + "\n"); 
+					writer.write(mapping.toUseTypeName(classifier) + "_max = " + upperBound + "\n");                                					
 				}
 
 				// Bound of attributes, including abstract classes
@@ -93,11 +93,11 @@ public class BoundsCompiler {
 							RealInterval realInterval = boundsProvider.getRealInterval();		
 							double min = realInterval.getMin();
 							double max = realInterval.getMax();
-							writer.write(classifier.getName() + "_" + feature.getName() + "_min = " + -1 + "\n");   // 0 (value changed 03-01-2016, before it was -1)
-							writer.write(classifier.getName() + "_" + feature.getName() + "_max = " + 1 + "\n");  // unbound
+							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_min = " + -1 + "\n");   // 0 (value changed 03-01-2016, before it was -1)
+							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_max = " + 1 + "\n");  // unbound
 						} else {
-							writer.write(classifier.getName() + "_" + feature.getName() + "_min = -1\n");   // 0 (value changed 03-01-2016, before it was -1)
-							writer.write(classifier.getName() + "_" + feature.getName() + "_max = -1\n");  // unbound
+							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_min = -1\n");   // 0 (value changed 03-01-2016, before it was -1)
+							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_max = -1\n");  // unbound
 						}
 						
 						
@@ -134,7 +134,7 @@ public class BoundsCompiler {
 
 	@NonNull
 	private String getAssociationName(@NonNull EReference ref) {
-		return boundsInformation.getAssociation(ref).getName();
+		return mapping.getAssociation(ref).getName();
 	}
 
 }

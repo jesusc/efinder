@@ -120,10 +120,16 @@
       <genClasses ecoreClass="efinder.ecore#//ocl/CollectionCallExp">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//ocl/CollectionCallExp/name"/>
       </genClasses>
+      <genClasses image="false" ecoreClass="efinder.ecore#//ocl/LoopExp">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/LoopExp/iterators"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/LoopExp/body"/>
+      </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/IteratorExp">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//ocl/IteratorExp/name"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/IteratorExp/iterators"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/IteratorExp/body"/>
+      </genClasses>
+      <genClasses ecoreClass="efinder.ecore#//ocl/IterateExp">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/IterateExp/result"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/IterateExp/init"/>
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/Iterator"/>
       <genClasses ecoreClass="efinder.ecore#//ocl/IfExp">
@@ -159,6 +165,13 @@
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/OclUndefined"/>
       <genClasses ecoreClass="efinder.ecore#//ocl/OclInvalid"/>
+      <genClasses ecoreClass="efinder.ecore#//ocl/TupleLiteralExp">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/TupleLiteralExp/parts"/>
+      </genClasses>
+      <genClasses ecoreClass="efinder.ecore#//ocl/TuplePart">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//ocl/TuplePart/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/TuplePart/value"/>
+      </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/EnumLiteralExp">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/EnumLiteralExp/enum_"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EReference efinder.ecore#//ocl/EnumLiteralExp/literal"/>

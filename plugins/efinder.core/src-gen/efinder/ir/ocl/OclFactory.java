@@ -103,6 +103,15 @@ public interface OclFactory extends EFactory {
 	IteratorExp createIteratorExp();
 
 	/**
+	 * Returns a new object of class '<em>Iterate Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Iterate Exp</em>'.
+	 * @generated
+	 */
+	IterateExp createIterateExp();
+
+	/**
 	 * Returns a new object of class '<em>Iterator</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -200,6 +209,24 @@ public interface OclFactory extends EFactory {
 	 * @generated
 	 */
 	OclInvalid createOclInvalid();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Literal Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Literal Exp</em>'.
+	 * @generated
+	 */
+	TupleLiteralExp createTupleLiteralExp();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Part</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Part</em>'.
+	 * @generated
+	 */
+	TuplePart createTuplePart();
 
 	/**
 	 * Returns a new object of class '<em>Enum Literal Exp</em>'.

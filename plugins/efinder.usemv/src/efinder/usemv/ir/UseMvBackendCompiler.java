@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -53,14 +54,16 @@ public class UseMvBackendCompiler {
 	@NonNull 
 	private final EFinderModel ir;
 	@NonNull
-	private final UseMapping mapping = new UseMapping();
+	private final UseMapping mapping;
 	@NonNull
-	private UseTypeCompiler typeCompiler = new UseTypeCompiler(mapping);
+	private UseTypeCompiler typeCompiler;
 	@NonNull
 	private final UseExpressionsCompiler compiler;  
 	
 	public UseMvBackendCompiler(@NonNull EFinderModel ir) {
 		this.ir = ir;
+		this.mapping = new UseMapping(ir.getSpecification().getMetamodels());
+		this.typeCompiler = new UseTypeCompiler(mapping);
 		this.compiler = new UseExpressionsCompiler(mapping);
 	}
 	
@@ -76,11 +79,9 @@ public class UseMvBackendCompiler {
 	
 	private UseModel doCompile() {
 		Specification spec = ir.getSpecification();
-		if ( spec.getMetamodels().size() != 1)
-			throw new UnsupportedOperationException("Only one meta-model supported so far");
 		
-		EFMetamodel metamodel = spec.getMetamodels().get(0);
-		EFPackage pkg = toFlattened(metamodel.getRoots());
+		List<? extends EFClass> allClasses = getAllClasses(spec);
+		List<? extends EFEnum> allEnumerations = getAllEnumerations(spec);
 		
 		Map<EFType, Collection<OclDerivedProperty>> properties = IRUtils.getDerivedPropertiesAsMap(spec);
 		Map<EFType, Collection<OclOperation>> operations = IRUtils.getOperationsAsMap(spec);		
@@ -89,10 +90,10 @@ public class UseMvBackendCompiler {
 		
 		StringBuilder text = new StringBuilder();
 		
-		text.append("model " + mapping.toModelName(pkg));
+		text.append("model " + mapping.toModelName());
 		text.append("\n\n");
 		
-		for (EFClass efc : pkg.getClasses()) {
+		for (EFClass efc : allClasses) {
 			EClass c = efc.getKlass();
 			Collection<OclDerivedProperty> classDerived = properties.getOrDefault(efc, Collections.emptyList());
 			Collection<OclOperation> classOperations = operations.getOrDefault(efc, Collections.emptyList());
@@ -101,13 +102,13 @@ public class UseMvBackendCompiler {
 				text.append("abstract ");
 			}
 			
-			text.append("class ").append(mapping.toUseClass(c));
+			text.append("class ").append(mapping.toUseTypeName(c));
 			
 			if (! c.getESuperTypes().isEmpty()) {
 				text.append(" < ");
 				String separator = "";
 				for (EClass sc : c.getESuperTypes()) {
-					text.append(separator).append(sc.getName());
+					text.append(separator).append(mapping.toUseTypeName(sc));
 					separator = ", ";
 			    }						
 			}
@@ -158,7 +159,7 @@ public class UseMvBackendCompiler {
 			text.append("end").append("\n\n");
 		}
 
-		for (EFEnum efe : pkg.getEnumerations()) {
+		for (EFEnum efe : allEnumerations) {
 			text.append("enum ").append(mapping.toUseTypeName(efe)).append(" { ");
 			String separator = "";
 			for (EFEnumLiteral literal : efe.getLiterals()) {
@@ -173,7 +174,7 @@ public class UseMvBackendCompiler {
 		
 		// References
 		Set<AssociationData> alreadyCreated = new HashSet<>();
-		for (EFClass efc : pkg.getClasses()) {
+		for (EFClass efc : allClasses) {
 			EClass c = efc.getKlass();
 			for (EReference ref : c.getEReferences()) {
 				String associationType = ref.isContainment() ? "composition" : "association";
@@ -198,14 +199,28 @@ public class UseMvBackendCompiler {
 		return new UseModel(text.toString(), mapping, mm);
 	}
 		
+	private List<? extends EFClass> getAllClasses(Specification spec) {
+		return spec.getMetamodels().stream()
+				.flatMap(m -> m.getRoots().stream())
+				.flatMap(p -> p.getClasses().stream())
+				.collect(Collectors.toList());
+	}
+	
+	private List<? extends EFEnum> getAllEnumerations(Specification spec) {
+		return spec.getMetamodels().stream()
+				.flatMap(m -> m.getRoots().stream())
+				.flatMap(p -> p.getEnumerations().stream())
+				.collect(Collectors.toList());
+	}
+	
 	private void addNullableConstraints(StringBuilder text, Collection<? extends EAttribute> nonUndefined) {
 		for (EAttribute att : nonUndefined) {
-			String className = mapping.toUseClass(att.getEContainingClass());
+			String className = mapping.toUseTypeName(att.getEContainingClass());
 			text.append("context ").append("self").append(" : ").append(className)
 				.append(" inv ").append("nonNull_" + className + "_" + att.getName()).append(":\n")
 				.append(indent(1));
 			if (att.isMany()) {
-				text.append("self." + mapping.toUsePropertyName(att) + "->forAll(v | not v.isUndefined())")
+				text.append("self." + mapping.toUsePropertyName(att) + "<>" + "Undefined implies " + mapping.toUsePropertyName(att) + "->forAll(v | not v.isUndefined())")
 					.append("\n");	
 			} else {
 				text.append("not self." + mapping.toUsePropertyName(att) + ".isUndefined()")
@@ -321,7 +336,7 @@ public class UseMvBackendCompiler {
         	return "Real";
         
 		if (dt instanceof EEnum)               
-			return dt.getName();
+			return mapping.toUseTypeName(dt);
 
 		// TODO: Indicate this as part of compilation errors/limitations
 		System.out.println("Datatype " + dt + " not supported");

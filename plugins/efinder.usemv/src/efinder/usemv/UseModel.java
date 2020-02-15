@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -71,17 +72,19 @@ public class UseModel {
 		int i = 0;
 		HashMap<String,EObject> eobjects  = new HashMap<String,EObject>();
 
-		if (metamodel.getPackages().size() != 1)
-			throw new UnsupportedOperationException("TODO: Multiple packages");
-		EPackage pkg = metamodel.getPackages().get(0);
+//		if (metamodel.getPackages().size() != 1)
+//			throw new UnsupportedOperationException("TODO: Multiple packages");
+//		EPackage pkg = metamodel.getPackages().get(0);
 		
 		Set<MObject> useObjects = state.allObjects();
 		List<EObject> emfObjects = new ArrayList<>(useObjects.size());
 		
 		// parse objects
 		for (MObject useObject : useObjects) {
-			String className = mapping.getInverseTypeName(useObject.cls().name());
-			EObject object = createEObject(pkg, className);
+			EClassifier classifier = mapping.getInverseType(useObject.cls().name());
+			// EObject object = createEObject(pkg, className);
+			EPackage pkg = classifier.getEPackage();
+			EObject object = createEObject(pkg, classifier.getName());
 			// TODO: asignar id
 			eobjects.put(useObject.name(), object);
 			emfObjects.add(object);
@@ -102,6 +105,9 @@ public class UseModel {
 					
 					if  (EMFUtils.hasAttribute(object, field))
 						for (String v : values) {
+							if (v.equals("null"))
+								continue;
+							
 							if (attribute.type() instanceof StringType)
 								v = mapping.undoStringConstant(v);
 								
@@ -119,13 +125,15 @@ public class UseModel {
 					}
 				}
 				// we assign a random string value
-				else EMFUtils.setAttribute(pkg, object, field, /*"s"+*/""+(i++));
+				// else EMFUtils.setAttribute(pkg, object, field, /*"s"+*/""+(i++));
 			}
 		}
 					
 		for (MLink useLink : state.allLinks()) {
 			EObject object1 = eobjects.get(useLink.linkedObjects().get(0).name()); // TODO: check whether this works in general
 			EObject object2 = eobjects.get(useLink.linkedObjects().get(1).name());
+			
+			EPackage pkg = object1.eClass().getEPackage();
 			
 			AssociationData association = mapping.getAssociationByName(useLink.association().name());
 			AssociationEndData targetEnd = association.getEnd2();

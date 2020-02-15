@@ -15,10 +15,12 @@ import efinder.ir.ocl.CollectionLiteralExp;
 import efinder.ir.ocl.EnumLiteralExp;
 import efinder.ir.ocl.IfExp;
 import efinder.ir.ocl.IntegerLiteralExp;
+import efinder.ir.ocl.IterateExp;
 import efinder.ir.ocl.Iterator;
 import efinder.ir.ocl.IteratorExp;
 import efinder.ir.ocl.LetExp;
 import efinder.ir.ocl.LiteralExp;
+import efinder.ir.ocl.LoopExp;
 import efinder.ir.ocl.ModelElement;
 import efinder.ir.ocl.OclAnyLibElement;
 import efinder.ir.ocl.OclConstraint;
@@ -39,6 +41,8 @@ import efinder.ir.ocl.RealLiteralExp;
 import efinder.ir.ocl.SequenceLiteralExp;
 import efinder.ir.ocl.SetLiteralExp;
 import efinder.ir.ocl.StringLiteralExp;
+import efinder.ir.ocl.TupleLiteralExp;
+import efinder.ir.ocl.TuplePart;
 import efinder.ir.ocl.VarExp;
 import efinder.ir.ocl.WithContextVariable;
 
@@ -146,7 +150,21 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass loopExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass iteratorExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass iterateExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -231,6 +249,20 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	private EClass oclInvalidEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tuplePartEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -601,6 +633,36 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getLoopExp() {
+		return loopExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLoopExp_Iterators() {
+		return (EReference)loopExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getLoopExp_Body() {
+		return (EReference)loopExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getIteratorExp() {
 		return iteratorExpEClass;
 	}
@@ -621,8 +683,8 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getIteratorExp_Iterators() {
-		return (EReference)iteratorExpEClass.getEStructuralFeatures().get(1);
+	public EClass getIterateExp() {
+		return iterateExpEClass;
 	}
 
 	/**
@@ -631,8 +693,18 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getIteratorExp_Body() {
-		return (EReference)iteratorExpEClass.getEStructuralFeatures().get(2);
+	public EReference getIterateExp_Result() {
+		return (EReference)iterateExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getIterateExp_Init() {
+		return (EReference)iterateExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -891,6 +963,56 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getTupleLiteralExp() {
+		return tupleLiteralExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTupleLiteralExp_Parts() {
+		return (EReference)tupleLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTuplePart() {
+		return tuplePartEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTuplePart_Name() {
+		return (EAttribute)tuplePartEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTuplePart_Value() {
+		return (EReference)tuplePartEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getEnumLiteralExp() {
 		return enumLiteralExpEClass;
 	}
@@ -1060,10 +1182,16 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		collectionCallExpEClass = createEClass(COLLECTION_CALL_EXP);
 		createEAttribute(collectionCallExpEClass, COLLECTION_CALL_EXP__NAME);
 
+		loopExpEClass = createEClass(LOOP_EXP);
+		createEReference(loopExpEClass, LOOP_EXP__ITERATORS);
+		createEReference(loopExpEClass, LOOP_EXP__BODY);
+
 		iteratorExpEClass = createEClass(ITERATOR_EXP);
 		createEAttribute(iteratorExpEClass, ITERATOR_EXP__NAME);
-		createEReference(iteratorExpEClass, ITERATOR_EXP__ITERATORS);
-		createEReference(iteratorExpEClass, ITERATOR_EXP__BODY);
+
+		iterateExpEClass = createEClass(ITERATE_EXP);
+		createEReference(iterateExpEClass, ITERATE_EXP__RESULT);
+		createEReference(iterateExpEClass, ITERATE_EXP__INIT);
 
 		iteratorEClass = createEClass(ITERATOR);
 
@@ -1101,6 +1229,13 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		oclUndefinedEClass = createEClass(OCL_UNDEFINED);
 
 		oclInvalidEClass = createEClass(OCL_INVALID);
+
+		tupleLiteralExpEClass = createEClass(TUPLE_LITERAL_EXP);
+		createEReference(tupleLiteralExpEClass, TUPLE_LITERAL_EXP__PARTS);
+
+		tuplePartEClass = createEClass(TUPLE_PART);
+		createEAttribute(tuplePartEClass, TUPLE_PART__NAME);
+		createEReference(tuplePartEClass, TUPLE_PART__VALUE);
 
 		enumLiteralExpEClass = createEClass(ENUM_LITERAL_EXP);
 		createEReference(enumLiteralExpEClass, ENUM_LITERAL_EXP__ENUM_);
@@ -1167,7 +1302,9 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		operationCallExpEClass.getESuperTypes().add(this.getAbstractOperationCallExp());
 		propertyCallExpEClass.getESuperTypes().add(this.getCallExp());
 		collectionCallExpEClass.getESuperTypes().add(this.getAbstractOperationCallExp());
-		iteratorExpEClass.getESuperTypes().add(this.getCallExp());
+		loopExpEClass.getESuperTypes().add(this.getCallExp());
+		iteratorExpEClass.getESuperTypes().add(this.getLoopExp());
+		iterateExpEClass.getESuperTypes().add(this.getLoopExp());
 		iteratorEClass.getESuperTypes().add(theEfinderPackage.getVariableDeclaration());
 		ifExpEClass.getESuperTypes().add(this.getOclExpression());
 		letExpEClass.getESuperTypes().add(this.getOclExpression());
@@ -1180,6 +1317,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		realLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		oclUndefinedEClass.getESuperTypes().add(this.getLiteralExp());
 		oclInvalidEClass.getESuperTypes().add(this.getLiteralExp());
+		tupleLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		enumLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		collectionLiteralExpEClass.getESuperTypes().add(this.getLiteralExp());
 		setLiteralExpEClass.getESuperTypes().add(this.getCollectionLiteralExp());
@@ -1224,10 +1362,16 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		initEClass(collectionCallExpEClass, CollectionCallExp.class, "CollectionCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCollectionCallExp_Name(), ecorePackage.getEString(), "name", null, 1, 1, CollectionCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+		initEClass(loopExpEClass, LoopExp.class, "LoopExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getLoopExp_Iterators(), this.getIterator(), null, "iterators", null, 1, -1, LoopExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLoopExp_Body(), this.getOclExpression(), null, "body", null, 1, 1, LoopExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
 		initEClass(iteratorExpEClass, IteratorExp.class, "IteratorExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getIteratorExp_Name(), ecorePackage.getEString(), "name", null, 1, 1, IteratorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIteratorExp_Iterators(), this.getIterator(), null, "iterators", null, 1, -1, IteratorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getIteratorExp_Body(), this.getOclExpression(), null, "body", null, 1, 1, IteratorExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(iterateExpEClass, IterateExp.class, "IterateExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getIterateExp_Result(), theEfinderPackage.getVariableDeclaration(), null, "result", null, 1, 1, IterateExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getIterateExp_Init(), this.getOclExpression(), null, "init", null, 1, 1, IterateExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(iteratorEClass, Iterator.class, "Iterator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
@@ -1265,6 +1409,13 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		initEClass(oclUndefinedEClass, OclUndefined.class, "OclUndefined", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(oclInvalidEClass, OclInvalid.class, "OclInvalid", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tupleLiteralExpEClass, TupleLiteralExp.class, "TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTupleLiteralExp_Parts(), this.getTuplePart(), null, "parts", null, 0, -1, TupleLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tuplePartEClass, TuplePart.class, "TuplePart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTuplePart_Name(), ecorePackage.getEString(), "name", null, 1, 1, TuplePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTuplePart_Value(), this.getOclExpression(), null, "value", null, 1, 1, TuplePart.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(enumLiteralExpEClass, EnumLiteralExp.class, "EnumLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getEnumLiteralExp_Enum_(), theEfinderPackage.getMetaTypeRef(), null, "enum_", null, 1, 1, EnumLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

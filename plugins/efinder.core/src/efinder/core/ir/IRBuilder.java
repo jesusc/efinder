@@ -34,6 +34,7 @@ import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.EnumLiteralExp;
 import efinder.ir.ocl.IfExp;
 import efinder.ir.ocl.IntegerLiteralExp;
+import efinder.ir.ocl.IterateExp;
 import efinder.ir.ocl.Iterator;
 import efinder.ir.ocl.IteratorExp;
 import efinder.ir.ocl.LetExp;
@@ -54,6 +55,7 @@ import efinder.ir.ocl.RealLiteralExp;
 import efinder.ir.ocl.SequenceLiteralExp;
 import efinder.ir.ocl.SetLiteralExp;
 import efinder.ir.ocl.StringLiteralExp;
+import efinder.ir.ocl.TupleLiteralExp;
 import efinder.ir.ocl.VarExp;
 import efinder.ir.VariableDeclaration;
 
@@ -202,6 +204,18 @@ public class IRBuilder {
 		call.getIterators().addAll(iterators);
 		return call;
 	}
+	
+	public static OclExpression newIterateExp(@NonNull OclExpression source, @NonNull VariableDeclaration resultVar,
+			@NonNull OclExpression initResultVar, @NonNull List<? extends Iterator> iterators, @NonNull OclExpression body) {
+		IterateExp call = OclFactory.eINSTANCE.createIterateExp();
+		call.setSource(source);
+		call.setResult(resultVar);
+		call.setInit(initResultVar);
+		call.setBody(body);
+		call.getIterators().addAll(iterators);
+		return call;
+	}
+
 
 	public static efinder.ir.ocl.@NonNull OperationCallExp newOperationCallExp(@NonNull String name, @NonNull OclExpression source, List<? extends OclExpression> args) {
 		efinder.ir.ocl.OperationCallExp call = OclFactory.eINSTANCE.createOperationCallExp();
@@ -257,6 +271,11 @@ public class IRBuilder {
 		return lit;
 	}
 
+	public static TupleLiteralExp newTupleLiteral() {
+		TupleLiteralExp exp = OclFactory.eINSTANCE.createTupleLiteralExp();
+		return exp;
+	}
+	
 	@NonNull
 	public static OclDerivedProperty newOclDerivedProperty(@NonNull EFType ctx, @NonNull String name, @NonNull TypeRef type, @NonNull OclExpression body) {
 		OclDerivedProperty p = OclFactory.eINSTANCE.createOclDerivedProperty();

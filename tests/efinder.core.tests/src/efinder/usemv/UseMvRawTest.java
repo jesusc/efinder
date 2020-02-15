@@ -85,7 +85,7 @@ public class UseMvRawTest {
 	}
 	
 	@Test
-	public void testCompletionWorking() {
+	public void testCompletionWorking() throws Exception {
 		model += " context p : Person inv age:\n"
 				+ "		p.age = 15";
 				//+ "		p.age = 18 implies p.alive = true";

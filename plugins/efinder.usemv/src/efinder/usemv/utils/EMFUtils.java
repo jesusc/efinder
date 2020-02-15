@@ -133,12 +133,14 @@ public class EMFUtils {
 		if (!feature.isChangeable())
 			return;
 		
-		if (isInteger(dt)) {
-			int v = Integer.parseInt(useValue);
-			dynamicSet(object, feature, v);
-		} else if ( isBigInteger(dt) ) {
+		if ( isBigInteger(dt) ) {
+			// isInteger would also return true if isBigInteger(dt) => so this needs to be checked before because it is more specific
 			BigInteger bi = new BigInteger(useValue);
 			dynamicSet(object, feature, bi);
+		} else if (isInteger(dt)) {
+			
+			int v = Integer.parseInt(useValue);
+			dynamicSet(object, feature, v);		
 		} else if ( isString(dt) ) {
 			String str = (useValue.startsWith("\"") && useValue.endsWith("\"")) || (useValue.startsWith("'")  && useValue.endsWith("'")) ? 
 					 useValue.substring(1, useValue.length()-1) : useValue;

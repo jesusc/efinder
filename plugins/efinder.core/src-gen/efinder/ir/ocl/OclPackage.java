@@ -657,14 +657,14 @@ public interface OclPackage extends EPackage {
 	int COLLECTION_CALL_EXP_OPERATION_COUNT = ABSTRACT_OPERATION_CALL_EXP_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link efinder.ir.ocl.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
+	 * The meta object id for the '{@link efinder.ir.ocl.impl.LoopExpImpl <em>Loop Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see efinder.ir.ocl.impl.IteratorExpImpl
-	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIteratorExp()
+	 * @see efinder.ir.ocl.impl.LoopExpImpl
+	 * @see efinder.ir.ocl.impl.OclPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 12;
+	int LOOP_EXP = 12;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -673,16 +673,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP__SOURCE = CALL_EXP__SOURCE;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ITERATOR_EXP__NAME = CALL_EXP_FEATURE_COUNT + 0;
+	int LOOP_EXP__SOURCE = CALL_EXP__SOURCE;
 
 	/**
 	 * The feature id for the '<em><b>Iterators</b></em>' containment reference list.
@@ -691,7 +682,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP__ITERATORS = CALL_EXP_FEATURE_COUNT + 1;
+	int LOOP_EXP__ITERATORS = CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Body</b></em>' containment reference.
@@ -700,7 +691,71 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP__BODY = CALL_EXP_FEATURE_COUNT + 2;
+	int LOOP_EXP__BODY = CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Loop Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Loop Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP_OPERATION_COUNT = CALL_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.ocl.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.ocl.impl.IteratorExpImpl
+	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIteratorExp()
+	 * @generated
+	 */
+	int ITERATOR_EXP = 13;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__SOURCE = LOOP_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Iterators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__ITERATORS = LOOP_EXP__ITERATORS;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__BODY = LOOP_EXP__BODY;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__NAME = LOOP_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Iterator Exp</em>' class.
@@ -709,7 +764,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP_FEATURE_COUNT = CALL_EXP_FEATURE_COUNT + 3;
+	int ITERATOR_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Iterator Exp</em>' class.
@@ -718,7 +773,80 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ITERATOR_EXP_OPERATION_COUNT = CALL_EXP_OPERATION_COUNT + 0;
+	int ITERATOR_EXP_OPERATION_COUNT = LOOP_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.ocl.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.ocl.impl.IterateExpImpl
+	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIterateExp()
+	 * @generated
+	 */
+	int ITERATE_EXP = 14;
+
+	/**
+	 * The feature id for the '<em><b>Source</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__SOURCE = LOOP_EXP__SOURCE;
+
+	/**
+	 * The feature id for the '<em><b>Iterators</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__ITERATORS = LOOP_EXP__ITERATORS;
+
+	/**
+	 * The feature id for the '<em><b>Body</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__BODY = LOOP_EXP__BODY;
+
+	/**
+	 * The feature id for the '<em><b>Result</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__RESULT = LOOP_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Init</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__INIT = LOOP_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Iterate Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP_FEATURE_COUNT = LOOP_EXP_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Iterate Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP_OPERATION_COUNT = LOOP_EXP_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link efinder.ir.ocl.impl.IteratorImpl <em>Iterator</em>}' class.
@@ -728,7 +856,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIterator()
 	 * @generated
 	 */
-	int ITERATOR = 13;
+	int ITERATOR = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -774,7 +902,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 14;
+	int IF_EXP = 16;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -829,7 +957,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 15;
+	int LET_EXP = 17;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -884,7 +1012,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOperatorCallExp()
 	 * @generated
 	 */
-	int OPERATOR_CALL_EXP = 16;
+	int OPERATOR_CALL_EXP = 18;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -939,7 +1067,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getVarExp()
 	 * @generated
 	 */
-	int VAR_EXP = 17;
+	int VAR_EXP = 19;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -976,7 +1104,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 18;
+	int LITERAL_EXP = 20;
 
 	/**
 	 * The number of structural features of the '<em>Literal Exp</em>' class.
@@ -1004,7 +1132,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getBooleanLiteralExp()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXP = 19;
+	int BOOLEAN_LITERAL_EXP = 21;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1041,7 +1169,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 20;
+	int STRING_LITERAL_EXP = 22;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1078,7 +1206,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 21;
+	int INTEGER_LITERAL_EXP = 23;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1115,7 +1243,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 22;
+	int REAL_LITERAL_EXP = 24;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1152,7 +1280,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclUndefined()
 	 * @generated
 	 */
-	int OCL_UNDEFINED = 23;
+	int OCL_UNDEFINED = 25;
 
 	/**
 	 * The number of structural features of the '<em>Undefined</em>' class.
@@ -1180,7 +1308,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclInvalid()
 	 * @generated
 	 */
-	int OCL_INVALID = 24;
+	int OCL_INVALID = 26;
 
 	/**
 	 * The number of structural features of the '<em>Invalid</em>' class.
@@ -1201,6 +1329,89 @@ public interface OclPackage extends EPackage {
 	int OCL_INVALID_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.ocl.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.ocl.impl.TupleLiteralExpImpl
+	 * @see efinder.ir.ocl.impl.OclPackageImpl#getTupleLiteralExp()
+	 * @generated
+	 */
+	int TUPLE_LITERAL_EXP = 27;
+
+	/**
+	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__PARTS = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Tuple Literal Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP_OPERATION_COUNT = LITERAL_EXP_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.ocl.impl.TuplePartImpl <em>Tuple Part</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.ocl.impl.TuplePartImpl
+	 * @see efinder.ir.ocl.impl.OclPackageImpl#getTuplePart()
+	 * @generated
+	 */
+	int TUPLE_PART = 28;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Tuple Part</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_PART_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.ocl.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1208,7 +1419,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 25;
+	int ENUM_LITERAL_EXP = 29;
 
 	/**
 	 * The feature id for the '<em><b>Enum </b></em>' containment reference.
@@ -1254,7 +1465,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getCollectionLiteralExp()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_EXP = 26;
+	int COLLECTION_LITERAL_EXP = 30;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1291,7 +1502,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getSetLiteralExp()
 	 * @generated
 	 */
-	int SET_LITERAL_EXP = 27;
+	int SET_LITERAL_EXP = 31;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1328,7 +1539,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOrderedSetLiteralExp()
 	 * @generated
 	 */
-	int ORDERED_SET_LITERAL_EXP = 28;
+	int ORDERED_SET_LITERAL_EXP = 32;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1365,7 +1576,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getSequenceLiteralExp()
 	 * @generated
 	 */
-	int SEQUENCE_LITERAL_EXP = 29;
+	int SEQUENCE_LITERAL_EXP = 33;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1402,7 +1613,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getBagLiteralExp()
 	 * @generated
 	 */
-	int BAG_LITERAL_EXP = 30;
+	int BAG_LITERAL_EXP = 34;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1439,7 +1650,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclAnyLibElement()
 	 * @generated
 	 */
-	int OCL_ANY_LIB_ELEMENT = 31;
+	int OCL_ANY_LIB_ELEMENT = 35;
 
 	/**
 	 * The number of structural features of the '<em>Any Lib Element</em>' class.
@@ -1467,7 +1678,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 32;
+	int OPERATOR_KIND = 36;
 
 
 	/**
@@ -1723,6 +1934,38 @@ public interface OclPackage extends EPackage {
 	EAttribute getCollectionCallExp_Name();
 
 	/**
+	 * Returns the meta object for class '{@link efinder.ir.ocl.LoopExp <em>Loop Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Loop Exp</em>'.
+	 * @see efinder.ir.ocl.LoopExp
+	 * @generated
+	 */
+	EClass getLoopExp();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.ocl.LoopExp#getIterators <em>Iterators</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Iterators</em>'.
+	 * @see efinder.ir.ocl.LoopExp#getIterators()
+	 * @see #getLoopExp()
+	 * @generated
+	 */
+	EReference getLoopExp_Iterators();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.LoopExp#getBody <em>Body</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Body</em>'.
+	 * @see efinder.ir.ocl.LoopExp#getBody()
+	 * @see #getLoopExp()
+	 * @generated
+	 */
+	EReference getLoopExp_Body();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.IteratorExp <em>Iterator Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1744,26 +1987,36 @@ public interface OclPackage extends EPackage {
 	EAttribute getIteratorExp_Name();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link efinder.ir.ocl.IteratorExp#getIterators <em>Iterators</em>}'.
+	 * Returns the meta object for class '{@link efinder.ir.ocl.IterateExp <em>Iterate Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Iterators</em>'.
-	 * @see efinder.ir.ocl.IteratorExp#getIterators()
-	 * @see #getIteratorExp()
+	 * @return the meta object for class '<em>Iterate Exp</em>'.
+	 * @see efinder.ir.ocl.IterateExp
 	 * @generated
 	 */
-	EReference getIteratorExp_Iterators();
+	EClass getIterateExp();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.IteratorExp#getBody <em>Body</em>}'.
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.IterateExp#getResult <em>Result</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Body</em>'.
-	 * @see efinder.ir.ocl.IteratorExp#getBody()
-	 * @see #getIteratorExp()
+	 * @return the meta object for the containment reference '<em>Result</em>'.
+	 * @see efinder.ir.ocl.IterateExp#getResult()
+	 * @see #getIterateExp()
 	 * @generated
 	 */
-	EReference getIteratorExp_Body();
+	EReference getIterateExp_Result();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.IterateExp#getInit <em>Init</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Init</em>'.
+	 * @see efinder.ir.ocl.IterateExp#getInit()
+	 * @see #getIterateExp()
+	 * @generated
+	 */
+	EReference getIterateExp_Init();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.Iterator <em>Iterator</em>}'.
@@ -2027,6 +2280,59 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getOclInvalid();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.ocl.TupleLiteralExp <em>Tuple Literal Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tuple Literal Exp</em>'.
+	 * @see efinder.ir.ocl.TupleLiteralExp
+	 * @generated
+	 */
+	EClass getTupleLiteralExp();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.ocl.TupleLiteralExp#getParts <em>Parts</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Parts</em>'.
+	 * @see efinder.ir.ocl.TupleLiteralExp#getParts()
+	 * @see #getTupleLiteralExp()
+	 * @generated
+	 */
+	EReference getTupleLiteralExp_Parts();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.ocl.TuplePart <em>Tuple Part</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tuple Part</em>'.
+	 * @see efinder.ir.ocl.TuplePart
+	 * @generated
+	 */
+	EClass getTuplePart();
+
+	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.ocl.TuplePart#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see efinder.ir.ocl.TuplePart#getName()
+	 * @see #getTuplePart()
+	 * @generated
+	 */
+	EAttribute getTuplePart_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.TuplePart#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Value</em>'.
+	 * @see efinder.ir.ocl.TuplePart#getValue()
+	 * @see #getTuplePart()
+	 * @generated
+	 */
+	EReference getTuplePart_Value();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.EnumLiteralExp <em>Enum Literal Exp</em>}'.
@@ -2381,6 +2687,32 @@ public interface OclPackage extends EPackage {
 		EAttribute COLLECTION_CALL_EXP__NAME = eINSTANCE.getCollectionCallExp_Name();
 
 		/**
+		 * The meta object literal for the '{@link efinder.ir.ocl.impl.LoopExpImpl <em>Loop Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.ocl.impl.LoopExpImpl
+		 * @see efinder.ir.ocl.impl.OclPackageImpl#getLoopExp()
+		 * @generated
+		 */
+		EClass LOOP_EXP = eINSTANCE.getLoopExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Iterators</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_EXP__ITERATORS = eINSTANCE.getLoopExp_Iterators();
+
+		/**
+		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOOP_EXP__BODY = eINSTANCE.getLoopExp_Body();
+
+		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.IteratorExpImpl <em>Iterator Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2399,20 +2731,30 @@ public interface OclPackage extends EPackage {
 		EAttribute ITERATOR_EXP__NAME = eINSTANCE.getIteratorExp_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Iterators</b></em>' containment reference list feature.
+		 * The meta object literal for the '{@link efinder.ir.ocl.impl.IterateExpImpl <em>Iterate Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
+		 * @see efinder.ir.ocl.impl.IterateExpImpl
+		 * @see efinder.ir.ocl.impl.OclPackageImpl#getIterateExp()
 		 * @generated
 		 */
-		EReference ITERATOR_EXP__ITERATORS = eINSTANCE.getIteratorExp_Iterators();
+		EClass ITERATE_EXP = eINSTANCE.getIterateExp();
 
 		/**
-		 * The meta object literal for the '<em><b>Body</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Result</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ITERATOR_EXP__BODY = eINSTANCE.getIteratorExp_Body();
+		EReference ITERATE_EXP__RESULT = eINSTANCE.getIterateExp_Result();
+
+		/**
+		 * The meta object literal for the '<em><b>Init</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ITERATE_EXP__INIT = eINSTANCE.getIterateExp_Init();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.IteratorImpl <em>Iterator</em>}' class.
@@ -2637,6 +2979,50 @@ public interface OclPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OCL_INVALID = eINSTANCE.getOclInvalid();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.ocl.impl.TupleLiteralExpImpl <em>Tuple Literal Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.ocl.impl.TupleLiteralExpImpl
+		 * @see efinder.ir.ocl.impl.OclPackageImpl#getTupleLiteralExp()
+		 * @generated
+		 */
+		EClass TUPLE_LITERAL_EXP = eINSTANCE.getTupleLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_LITERAL_EXP__PARTS = eINSTANCE.getTupleLiteralExp_Parts();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.ocl.impl.TuplePartImpl <em>Tuple Part</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.ocl.impl.TuplePartImpl
+		 * @see efinder.ir.ocl.impl.OclPackageImpl#getTuplePart()
+		 * @generated
+		 */
+		EClass TUPLE_PART = eINSTANCE.getTuplePart();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TUPLE_PART__NAME = eINSTANCE.getTuplePart_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_PART__VALUE = eINSTANCE.getTuplePart_Value();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.EnumLiteralExpImpl <em>Enum Literal Exp</em>}' class.
