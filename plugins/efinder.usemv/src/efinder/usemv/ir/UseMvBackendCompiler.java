@@ -117,13 +117,22 @@ public class UseMvBackendCompiler {
 			
 			if (!c.getEAttributes().isEmpty() || !classDerived.isEmpty()) {
 				text.append("attributes\n");
+				
+				ATTR:
 				for (EAttribute att : c.getEAttributes()) {
 					if (! EMFUtils.isNullable(att)) {
 						nonUndefined.add(att);
 					}
 					
-					//if ( implementedDerivedProperties.contains(att.getName()) )
-					//	continue;
+					if (att.isDerived()) {
+						// If this is already implemented somehow, we don't put it
+						for (OclDerivedProperty p : classDerived) {
+							if (isAttributeProperty(p) && p.getName().equals(att.getName())) {
+								continue ATTR;
+							}
+						}
+					}
+					
 					String type = toUseDataType(att);					
 					text.append("  " + mapping.toUsePropertyName(att) + " : " + type + "\n");
 				}

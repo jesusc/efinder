@@ -11,7 +11,10 @@ import efinder.core.EFinderModel;
 import efinder.core.IDialectAdaptation;
 import efinder.core.IModelFinder;
 import efinder.core.IModelFinder.Result;
+import efinder.core.IModelFinder.Status;
+import efinder.core.management.EMFModel;
 import efinder.emfocl.PivotOclCompiler;
+import efinder.emfocl.UnsupportedTranslation;
 import efinder.emfocl.use.EMFOCL2UseFixer;
 
 public class EFinderRunner {
@@ -40,8 +43,14 @@ public class EFinderRunner {
 
 	@NonNull 
 	public Result find() {
-		PivotOclCompiler compiler = new PivotOclCompiler(pivot);
-		EFinderModel ir = compiler.compile();	
+		EFinderModel ir;
+		try {
+			PivotOclCompiler compiler = new PivotOclCompiler(pivot);
+			ir = compiler.compile();	
+		} catch (UnsupportedTranslation e) {
+			return new UnsupportedTranslationResult(e.getReason());
+		}
+		
 		// TODO: Set the bounds and different configuration options in Finder
 		Preconditions.checkState(this.finder != null);
 		
@@ -53,5 +62,30 @@ public class EFinderRunner {
 		return finder.find(ir);
 	}
 	
+	public static class UnsupportedTranslationResult implements Result {
+
+		@NonNull
+		private String reason;
+
+		public UnsupportedTranslationResult(@NonNull String reason) {
+			this.reason = reason;
+		}
+		
+		@NonNull
+		public String getReason() {
+			return reason;
+		}
+
+		@Override
+		public @NonNull Status getStatus() {
+			return Status.UNSUPPORTED_FEATURE;
+		}
+
+		@Override
+		public @NonNull EMFModel getWitness() {
+			throw new UnsupportedOperationException();
+		}
+		
+	}
 	
 }

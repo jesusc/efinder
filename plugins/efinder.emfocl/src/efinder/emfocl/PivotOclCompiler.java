@@ -1,6 +1,7 @@
 package efinder.emfocl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.eclipse.ocl.pivot.BagType;
@@ -46,6 +48,7 @@ import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
+import org.eclipse.ocl.pivot.PivotFactory;
 import org.eclipse.ocl.pivot.PrimitiveType;
 import org.eclipse.ocl.pivot.Property;
 import org.eclipse.ocl.pivot.PropertyCallExp;
@@ -65,6 +68,7 @@ import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.values.IntegerValue;
 
 import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
@@ -208,7 +212,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		public EFEnum getEnum(@NonNull Enumeration e) {
 			EEnum eenum = (EEnum) e.getESObject();
 			if (! enums.containsKey(eenum))
-				throw new IllegalStateException("Can't find" + eenum);
+				throw new IllegalStateException("Can't find " + eenum);
 			return enums.get(eenum);
 		}
 		
@@ -740,7 +744,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 					parts.add(toExpression(item.getOwnedItem()));
 				} else {
 					CollectionRange range = (CollectionRange) part;
-					throw new UnsupportedOperationException("Ranges not supported yet");
+					List<OclExpression> elements = tryTransformRange(range);
+					parts.addAll(elements);
 				}
 			}
 	
@@ -758,6 +763,51 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			throw new UnsupportedOperationException("Collection type not supported: " + object);
 		}
 		
+		private static int RANGE_LIMIT = 100;
+		
+		private List<OclExpression> tryTransformRange(@NonNull CollectionRange range) {
+			OCLExpression first = range.getOwnedFirst();
+			OCLExpression last = range.getOwnedLast();
+
+			List<OclExpression> unfoldedElements = new ArrayList<OclExpression>();
+			try {
+				int i1 = evaluateOclExpression(first);
+				int i2 = evaluateOclExpression(last);
+				if ( i2 > RANGE_LIMIT )
+					throw new UnsupportedTranslation("Collection range is to high:" + range + ". ", "range");
+				
+				if ( i1 <= i2 ) {
+					for(int i = i1; i <= i2; i++) {
+						OclExpression value = IRBuilder.newIntegerExp(i);
+						unfoldedElements.add(value);
+					}
+				
+					return unfoldedElements;
+				}			
+				// I guess this means that unfolding is empty
+				return Collections.emptyList();
+			} catch ( Exception e ) {
+				throw new UnsupportedTranslation("Collection range cannot be flattened:" + range + ". " + e.getMessage(), "range");
+			}			
+		}
+
+		private int evaluateOclExpression(OCLExpression first) {
+			try {
+	            OCL ocl = OCL.newInstance();
+		        //@NonNull
+				//OCLHelper helper = ocl.createOCLHelper(first);
+		        @NonNull
+				ExpressionInOCL query = PivotFactory.eINSTANCE.createExpressionInOCL();
+		        query.setOwnedBody(EcoreUtil.copy(first));
+		        //@NonNull
+				//ExpressionInOCL query = helper.createQuery(first.toString());        
+		        Object result = ocl.evaluate(null, query);
+		        return ((IntegerValue) result).intValue();
+	        } catch (Exception e) {
+	        	throw e;
+	        }			
+		}
+
 		@Override
 		public OclExpression visitTupleLiteralExp(@NonNull TupleLiteralExp object) {
 			// object.getType() ==> TupleType
