@@ -12,9 +12,9 @@ import efinder.core.IDialectAdaptation;
 import efinder.core.IModelFinder;
 import efinder.core.IModelFinder.Result;
 import efinder.core.IModelFinder.Status;
+import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.management.EMFModel;
 import efinder.emfocl.PivotOclCompiler;
-import efinder.emfocl.UnsupportedTranslation;
 import efinder.emfocl.use.EMFOCL2UseFixer;
 
 public class EFinderRunner {
@@ -47,7 +47,7 @@ public class EFinderRunner {
 		try {
 			PivotOclCompiler compiler = new PivotOclCompiler(pivot);
 			ir = compiler.compile();	
-		} catch (UnsupportedTranslation e) {
+		} catch (UnsupportedTranslationException e) {
 			return new UnsupportedTranslationResult(e.getReason());
 		}
 		

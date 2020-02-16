@@ -70,11 +70,11 @@ public abstract class UseMvResult implements Result {
 		}
 	}
 
-	public static class InvalidTranslation extends UseMvResult {
+	public static class UnsupportedTranslation extends UseMvResult {
 
 		private @NonNull String useErrors;
 
-		public InvalidTranslation(@NonNull String useErrors) {
+		public UnsupportedTranslation(@NonNull String useErrors) {
 			this.useErrors = useErrors;
 		}
 		

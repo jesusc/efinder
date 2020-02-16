@@ -20,6 +20,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import com.google.common.base.Preconditions;
 
 import efinder.core.EFinderModel;
+import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.management.EcoreMetamodel;
 import efinder.core.utils.IRUtils;
 import efinder.ir.Constraint;
@@ -348,8 +349,8 @@ public class UseMvBackendCompiler {
 			return mapping.toUseTypeName(dt);
 
 		// TODO: Indicate this as part of compilation errors/limitations
-		System.out.println("Datatype " + dt + " not supported");
-		return "String";
+		
+		throw new UnsupportedTranslationException("DataType not suported: " + dt.getName(), dt.getName());
 	}
 		
 	/**

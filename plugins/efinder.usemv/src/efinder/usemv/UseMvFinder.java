@@ -1,9 +1,7 @@
 package efinder.usemv;
 
-import java.io.BufferedWriter;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.PipedWriter;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
@@ -39,7 +37,9 @@ import efinder.core.EFinderModel;
 import efinder.core.IBoundsProvider;
 import efinder.core.IModelFinder;
 import efinder.core.errors.Report;
+import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.management.EMFModel;
+import efinder.usemv.UseMvResult.UnsupportedTranslation;
 import efinder.usemv.ir.BoundsCompiler;
 import efinder.usemv.ir.UseFeatureChecker;
 import efinder.usemv.ir.UseMvBackendCompiler;
@@ -79,10 +79,16 @@ public class UseMvFinder implements IModelFinder {
 			return new UseMvResult.Unsupported(report);
 		}
 		
-		UseMvBackendCompiler compiler = new UseMvBackendCompiler(ir);
-		
-		UseModel model = compiler.compile();
-		System.out.println(model.getText());
+		UseMvBackendCompiler compiler;
+		UseModel model;
+		try {
+			compiler = new UseMvBackendCompiler(ir);		
+			model = compiler.compile();
+			System.out.println(model.getText());
+		} catch (UnsupportedTranslationException e) {
+			report.addUnsupported(e.getMessage(), null, Report.Action.STOP, e.getReason());
+			return new UseMvResult.Unsupported(report);
+		}
 		
 		BoundsCompiler bounds = new BoundsCompiler(ir, compiler.getMapping());
 		System.out.println(bounds.toProperties(scopeProvider));
@@ -172,7 +178,7 @@ public class UseMvFinder implements IModelFinder {
 		KodkodResult kodkod;
 		try {
 			kodkod = doFind(inputUseSpecification, metamodelBounds);
-		} catch (InvalidTranslation e) {
+		} catch (InvalidUseTranslation e) {
 			return e.getResult();
 		}
 
@@ -189,7 +195,7 @@ public class UseMvFinder implements IModelFinder {
 
 	
 	@Nullable
-	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidTranslation {
+	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidUseTranslation {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		PrintWriter fLogWriter = new PrintWriter(output);		
 		MModel model = USECompiler.compileSpecification(inputUseSpecification, "<generated>", fLogWriter, new ModelFactory());       
@@ -205,7 +211,7 @@ public class UseMvFinder implements IModelFinder {
             system = null;
             // Log always
             System.out.println(output.toString());
-            throw new InvalidTranslation(new UseMvResult.InvalidTranslation(output.toString()));
+            throw new InvalidUseTranslation(new UseMvResult.UnsupportedTranslation(output.toString()));
         }
                 
         fSession.setSystem(system);
@@ -383,15 +389,15 @@ public class UseMvFinder implements IModelFinder {
 		}
 	}
 
-	private static class InvalidTranslation extends Exception {		
+	private static class InvalidUseTranslation extends Exception {		
 		private static final long serialVersionUID = 6690365179442013481L;
-		private efinder.usemv.UseMvResult.InvalidTranslation result;
+		private efinder.usemv.UseMvResult.UnsupportedTranslation result;
 		
-		public InvalidTranslation(efinder.usemv.UseMvResult.InvalidTranslation invalidTranslation) {
+		public InvalidUseTranslation(efinder.usemv.UseMvResult.UnsupportedTranslation invalidTranslation) {
 			this.result = invalidTranslation;
 		}
 		
-		public efinder.usemv.UseMvResult.InvalidTranslation getResult() {
+		public efinder.usemv.UseMvResult.UnsupportedTranslation getResult() {
 			return result;
 		}
 	}

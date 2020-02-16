@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import efinder.ir.ocl.CollectionCallExp;
 
@@ -25,7 +26,7 @@ public class Report {
 		addUnsupported(message, object, action, message);
 	}
 
-	public void addUnsupported(@NonNull String message, @NonNull Object object, @NonNull Action action, @NonNull String reason) {
+	public void addUnsupported(@NonNull String message, @Nullable Object object, @NonNull Action action, @NonNull String reason) {
 		System.out.println(message + "\n   - " + object + "\n   - " + action);
 		unsupported.add(new Item(reason, object, action));		
 	}

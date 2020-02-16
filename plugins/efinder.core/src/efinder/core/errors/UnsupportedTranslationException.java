@@ -1,13 +1,13 @@
-package efinder.emfocl;
+package efinder.core.errors;
 
 import org.eclipse.jdt.annotation.NonNull;
 
-public class UnsupportedTranslation extends RuntimeException{
+public class UnsupportedTranslationException extends RuntimeException{
 
 	private static final long serialVersionUID = -7954708684972509879L;
 	private @NonNull String reason;
 
-	public UnsupportedTranslation(@NonNull String message, @NonNull String reason) {
+	public UnsupportedTranslationException(@NonNull String message, @NonNull String reason) {
 		super(message);
 		this.reason = reason;
 	}

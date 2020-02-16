@@ -3,12 +3,15 @@ package efinder.emfocl;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import javax.transaction.InvalidTransactionException;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -16,6 +19,7 @@ import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
@@ -80,6 +84,7 @@ import com.google.common.collect.ImmutableMap;
 import efinder.core.DialectToIRCompiler;
 import efinder.core.EFinderModel;
 import efinder.core.errors.Report;
+import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.ir.IRBuilder;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
@@ -117,6 +122,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	private final Report report = new Report();
 	@Nullable
 	private Registry registry = Registry.INSTANCE;
+	@NonNull
+	private Set<EPackage> packages = Collections.emptySet();
 	
 	public PivotOclCompiler(Model ocl) {
 		this.ocl = ocl;
@@ -129,9 +136,21 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	 */
 	public PivotOclCompiler(@NonNull Model ocl, @NonNull ResourceSet rs) {
 		this(ocl);
-		this.registry = rs.getPackageRegistry();		
+		this.registry = rs.getPackageRegistry();
 	}
 
+	public PivotOclCompiler withPackages(List<? extends Resource> resources) {
+		this.packages = new HashSet<EPackage>();
+		for (Resource r : resources) {
+			r.getAllContents().forEachRemaining(o -> {
+				if (o instanceof EPackage) {
+					packages.add((EPackage) o);
+				}
+			});
+		}
+		return this;
+	}
+	
 	@NonNull 
 	public EFinderModel compile() {
 		MetamodelContext metamodelContext = precomputeMetamodel();
@@ -161,6 +180,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	@NonNull
 	private MetamodelContext precomputeMetamodel() {
 		MetamodelContext metamodelContext = new MetamodelContext(registry);
+		for(EPackage pkg : packages) {
+			metamodelContext.createPackage(pkg);
+		}
+		
 		ModelImporter importer = new ModelImporter(metamodelContext);
 		for (Import import_ : ocl.getOwnedImports()) {			
 			Namespace ns = import_.getImportedNamespace();
@@ -174,7 +197,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	
 	private static class MetamodelContext {
 		@NonNull
-		private final Map<PackageId, EFPackage> packages = new HashMap<>();
+		private final Map<String, EFPackage> packages = new HashMap<>();
 		@NonNull
 		private final Map<EClass, EFClass> classes = new HashMap<>();
 		@NonNull
@@ -281,28 +304,24 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			return primitiveTypes.computeIfAbsent(name, n -> IRBuilder.newPrimitiveType(normalizedDataType));
 		}
 
-		public void createPackage(@NonNull Package pkg) {
-			PackageId id = getId(pkg);
-			if (packages.containsKey(id))
-				return;
-			
-			EPackage epkg;
-			if (pkg.getEPackage() == null) {
-				String uri = pkg.getURI();
-				epkg = registry.getEPackage(uri);
-			} else {
-				epkg = pkg.getEPackage();
-			}
-			
+		public void createPackage(@NonNull Package pkg) {		
+			EPackage epkg = getEPackage(pkg);			
 			if (epkg == null) {
 				System.out.println("No package " + pkg.getName());
 				return;
-			}
+			}			
 			
+			createPackage(epkg);
+		}
+
+		protected void createPackage(@NonNull EPackage epkg) {
+			String id = epkg.getNsURI();
+			if (packages.containsKey(id))
+				return;
+
 			EFPackage efp = IRBuilder.newPackage(epkg);
 			packages.put(id, efp);
-			
-			// TODO: Also fill subpackages? not sure
+
 			for (EClassifier eClassifier : epkg.getEClassifiers()) {
 				if (eClassifier instanceof EClass) {
 					createClass(efp, (EClass) eClassifier);					
@@ -310,6 +329,21 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 					createEnum(efp, (EEnum) eClassifier);
 				}
 			}
+
+			for (EPackage ePackage : epkg.getESubpackages()) {
+				createPackage(ePackage);
+			}
+		}
+
+		private EPackage getEPackage(@NonNull Package pkg) {
+			EPackage epkg;
+			if (pkg.getEPackage() == null) {
+				String uri = pkg.getURI();
+				epkg = registry.getEPackage(uri);
+			} else {
+				epkg = pkg.getEPackage();
+			}
+			return epkg;
 		}
 
 		public void createClass(@NonNull EFPackage pkg, @NonNull EClass eclass) {
@@ -332,13 +366,6 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			pkg.getEnumerations().add(r);
 			enums.put((EEnum) enum_, r);
 		}
-		
-		@NonNull
-		private PackageId getId(@NonNull Package pkg) {
-			return IdManager.getPackageId(pkg);
-		}
-		
-
 	}
 
 	private static class ModelImporter extends AbstractExtendingVisitor<Void, MetamodelContext> {
@@ -550,7 +577,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		        try {
 					ocl.parseSpecification(exp);
 		        } catch (ParserException e) {
-		        	throw new UnsupportedTranslation(e.getMessage(), "parse-error");
+		        	throw new UnsupportedTranslationException(e.getMessage(), "parse-error");
 		        }
 			}
 			return exp;
@@ -603,7 +630,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				throw new UnsupportedOperationException("Only class references allowed: " + object);				
 			}
 			if (type instanceof Enumeration) {
-				throw new UnsupportedTranslation("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
+				throw new UnsupportedTranslationException("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
 			}
 			EFType t = context.metamodels.getClass((Class) type);
 			return IRBuilder.newModelElement(t);
@@ -621,12 +648,12 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		
 		@Override
 		public OclExpression visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp object) {
-			throw new UnsupportedTranslation("Opposite properties not supported: " + object, "opposite-property");
+			throw new UnsupportedTranslationException("Opposite properties not supported: " + object, "opposite-property");
 		}
 		
 		@Override
 		public OclExpression visitShadowExp(@NonNull ShadowExp object) {
-			throw new UnsupportedTranslation("ShadowExp not supported: " + object, "shadow-exp");
+			throw new UnsupportedTranslationException("ShadowExp not supported: " + object, "shadow-exp");
 		}
 		
 		@Override
@@ -802,7 +829,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				int i1 = evaluateOclExpression(first);
 				int i2 = evaluateOclExpression(last);
 				if ( i2 > RANGE_LIMIT )
-					throw new UnsupportedTranslation("Collection range is to high:" + range + ". ", "range");
+					throw new UnsupportedTranslationException("Collection range is to high:" + range + ". ", "range");
 				
 				if ( i1 <= i2 ) {
 					for(int i = i1; i <= i2; i++) {
@@ -815,7 +842,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				// I guess this means that unfolding is empty
 				return Collections.emptyList();
 			} catch ( Exception e ) {
-				throw new UnsupportedTranslation("Collection range cannot be flattened:" + range + ". " + e.getMessage(), "range");
+				throw new UnsupportedTranslationException("Collection range cannot be flattened:" + range + ". " + e.getMessage(), "range");
 			}			
 		}
 
