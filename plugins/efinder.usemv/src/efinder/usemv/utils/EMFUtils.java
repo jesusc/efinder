@@ -1,5 +1,6 @@
 package efinder.usemv.utils;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -137,8 +138,7 @@ public class EMFUtils {
 			// isInteger would also return true if isBigInteger(dt) => so this needs to be checked before because it is more specific
 			BigInteger bi = new BigInteger(useValue);
 			dynamicSet(object, feature, bi);
-		} else if (isInteger(dt)) {
-			
+		} else if (isInteger(dt)) {			
 			int v = Integer.parseInt(useValue);
 			dynamicSet(object, feature, v);		
 		} else if ( isString(dt) ) {
@@ -151,6 +151,9 @@ public class EMFUtils {
 		} else if (isFloating(dt)) {
 			double d = Double.parseDouble(useValue);
 			dynamicSet(object, feature, d);
+		} else if (isBigDecimal(dt)) {
+			BigDecimal d = new BigDecimal(useValue);
+			dynamicSet(object, feature, d);
 		} else if (feature.getEType() instanceof EEnum) {
 			EEnum enumerate = (EEnum)feature.getEType();
             EEnumLiteral literal = enumerate.getEEnumLiteral(useValue.substring(useValue.indexOf("::")+2));
@@ -160,6 +163,11 @@ public class EMFUtils {
 		}
 	}	
 	
+	private static boolean isBigDecimal(EDataType dt) {
+		String type = dt.getName();
+		return type.equals("EBigDecimal") || type.equals("BigDecimal");
+	}
+
 	private static boolean isInteger(EDataType dt) {
 		return isInteger(dt.getName()); // || isInteger(dt.getInstanceTypeName());
 	}
