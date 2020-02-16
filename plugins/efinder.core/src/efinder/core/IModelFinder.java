@@ -5,7 +5,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import efinder.core.management.EMFModel;
 
 public interface IModelFinder {
-
+	
 	@NonNull
 	public Result find(@NonNull EFinderModel spec);
 	
@@ -16,8 +16,12 @@ public interface IModelFinder {
 	public String backendId();
 	
 	/** Configuration options */
+	@NonNull
 	public IModelFinder withBoundsProvider(@NonNull IBoundsProvider provider);
-	
+
+	@NonNull
+	public IModelFinder withTimeOut(int millis);
+
 	public static interface Result {		
 		
 		@NonNull

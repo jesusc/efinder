@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import javax.transaction.InvalidTransactionException;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -46,6 +48,7 @@ import org.eclipse.ocl.pivot.NullLiteralExp;
 import org.eclipse.ocl.pivot.OCLExpression;
 import org.eclipse.ocl.pivot.Operation;
 import org.eclipse.ocl.pivot.OperationCallExp;
+import org.eclipse.ocl.pivot.OppositePropertyCallExp;
 import org.eclipse.ocl.pivot.OrderedSetType;
 import org.eclipse.ocl.pivot.Package;
 import org.eclipse.ocl.pivot.PivotFactory;
@@ -55,6 +58,7 @@ import org.eclipse.ocl.pivot.PropertyCallExp;
 import org.eclipse.ocl.pivot.RealLiteralExp;
 import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
+import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
@@ -546,9 +550,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		        try {
 					ocl.parseSpecification(exp);
 		        } catch (ParserException e) {
-					e.printStackTrace();
-					throw new RuntimeException(e);
-				}
+		        	throw new UnsupportedTranslation(e.getMessage(), "parse-error");
+		        }
 			}
 			return exp;
 		}
@@ -599,6 +602,9 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			if (!(type instanceof Class)) {
 				throw new UnsupportedOperationException("Only class references allowed: " + object);				
 			}
+			if (type instanceof Enumeration) {
+				throw new UnsupportedTranslation("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
+			}
 			EFType t = context.metamodels.getClass((Class) type);
 			return IRBuilder.newModelElement(t);
 		}
@@ -614,6 +620,16 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		}
 		
 		@Override
+		public OclExpression visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp object) {
+			throw new UnsupportedTranslation("Opposite properties not supported: " + object, "opposite-property");
+		}
+		
+		@Override
+		public OclExpression visitShadowExp(@NonNull ShadowExp object) {
+			throw new UnsupportedTranslation("ShadowExp not supported: " + object, "shadow-exp");
+		}
+		
+		@Override
 		public OclExpression visitOperationCallExp(@NonNull OperationCallExp op) {
 			Type sourceType = op.getOwnedSource().getType();
 			String name = op.getReferredOperation().getName();		
@@ -621,7 +637,19 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			List<OclExpression> args = toExpression(op.getOwnedArguments());
 			
 			if ( isOperator(op) ) {
-				OperatorKind operator = operators.get(name);				
+				OperatorKind operator = operators.get(name);	
+				// It seems that -1 is parsed as op(-), 1 which is very weird and needs some normalization
+				if (operator == OperatorKind.MINUS && args.isEmpty()) {
+					if (source instanceof efinder.ir.ocl.IntegerLiteralExp) {
+						efinder.ir.ocl.IntegerLiteralExp lit = (efinder.ir.ocl.IntegerLiteralExp) source;
+						lit.setValue(-1 * lit.getValue());
+						return lit;
+					} else {
+						return IRBuilder.newOperatorCallExp(OperatorKind.MUL, 
+								IRBuilder.newIntegerExp(-1), 
+								Collections.singletonList(source));
+					}
+				}
 				return IRBuilder.newOperatorCallExp(operator, source, args); 						
 			} else {
 				if ( sourceType instanceof CollectionType ) {

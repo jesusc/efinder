@@ -60,6 +60,7 @@ public class UseMvFinder implements IModelFinder {
 	private FindingMode mode = FindingMode.NORMAL;	
 	protected Session fSession;
 	private IUseInputPartialModel partialModel;
+	private int timeOutMillis = -1;
 	
 	public UseMvFinder() {
 		// Can I have several sessions in parallel?
@@ -96,6 +97,12 @@ public class UseMvFinder implements IModelFinder {
 	@NonNull
 	public UseMvFinder withMode(@NonNull FindingMode mode) {
 		this.mode = mode;
+		return this;
+	}
+	
+	@Override
+	public UseMvFinder withTimeOut(int millis) {
+		this.timeOutMillis  = millis;
 		return this;
 	}
 	
