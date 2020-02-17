@@ -9,9 +9,6 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
-import javax.transaction.InvalidTransactionException;
-
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
@@ -72,8 +69,7 @@ import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
-import org.eclipse.ocl.pivot.ids.IdManager;
-import org.eclipse.ocl.pivot.ids.PackageId;
+import org.eclipse.ocl.pivot.VoidType;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -85,6 +81,7 @@ import com.google.common.collect.ImmutableMap;
 
 import efinder.core.DialectToIRCompiler;
 import efinder.core.EFinderModel;
+import efinder.core.errors.InvalidModelException;
 import efinder.core.errors.Report;
 import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.ir.IRBuilder;
@@ -93,7 +90,6 @@ import efinder.ir.EFEnum;
 import efinder.ir.EFEnumLiteral;
 import efinder.ir.EFPackage;
 import efinder.ir.EFPrimitiveType;
-import efinder.ir.EFType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.MetaTypeRef;
 import efinder.ir.Specification;
@@ -373,6 +369,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				literals.add(IRBuilder.newEnumLiteral(lit.getName()));
 			}
 			
+			if (literals.isEmpty()) {
+				throw new InvalidModelException("Enum " + enum_.getName() + " without literals");
+			}
+			
 			EFEnum r = IRBuilder.newEnum((EEnum) enum_, literals);
 			pkg.getEnumerations().add(r);
 			enums.put((EEnum) enum_, r);
@@ -478,8 +478,11 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			Type type = expr.getOwnedContext().getType();
 			if (type instanceof Enumeration) {
 				// This is supported in EMF/OCL but not our IR, besides is of little utility
-				context.report.addUnsupported("Constraint with enumeration context", object, Report.Action.IGNORE);
+				context.report.addUnsupported("Constraint with enumeration context", object, Report.Action.IGNORE, "datatype-context");
 				return null;
+			} else if (type instanceof DataType) {
+				context.report.addUnsupported("Constraint with datatype context", object, Report.Action.IGNORE, "datatype-context");
+				return null;				
 			}
 			
 			if (ctx instanceof Class) {
@@ -555,6 +558,15 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			}
 							
 			Class pivotCtx = (Class) expr.getOwnedContext().getType();
+			if (pivotCtx instanceof Enumeration) {
+				// This is supported in EMF/OCL but not our IR, besides is of little utility
+				context.report.addUnsupported("Operation with enumeration context", o, Report.Action.IGNORE, "datatype-context");
+				return null;
+			} else if (pivotCtx instanceof DataType) {
+				context.report.addUnsupported("Operation with datatype context", o, Report.Action.IGNORE, "datatype-context");
+				return null;				
+			}
+
 			EFClass ctx = metamodels.getClass(pivotCtx);
 			TypeRef type = metamodels.getType(o.getType());
 			
@@ -651,6 +663,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			}
 			if (type instanceof Enumeration) {
 				throw new UnsupportedTranslationException("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
+			}
+			if (type instanceof VoidType) {
+				// Tentatively use undefined to represent the same. Example: org.eclipse.ocl.examples.xtext.tests/src/org/eclipse/ocl/examples/test/xtext/models/Bug441620.oc 
+				return IRBuilder.newOclUndefined();
 			}
 			TypeRef t = context.metamodels.getType(type);
 			return IRBuilder.newModelElement(t);
