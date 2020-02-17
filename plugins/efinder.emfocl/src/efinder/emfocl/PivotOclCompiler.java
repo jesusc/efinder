@@ -64,6 +64,7 @@ import org.eclipse.ocl.pivot.SequenceType;
 import org.eclipse.ocl.pivot.SetType;
 import org.eclipse.ocl.pivot.ShadowExp;
 import org.eclipse.ocl.pivot.StringLiteralExp;
+import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.Type;
@@ -213,8 +214,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		
 		@Nullable
 		public EFPackage getEFPackage(@NonNull Package pkg) {
-			PackageId id = IdManager.getPackageId(pkg);
-			return packages.get(id);
+			return packages.get(pkg.getURI());
 		}
 
 		@NonNull
@@ -257,6 +257,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 
 		@Nullable
 		public TypeRef getType(@NonNull Type t) {
+			if (t instanceof TemplateParameter) {
+				throw new UnsupportedTranslationException("Template parameters are not supported", "template-parameter");
+			}
+			
 			// In EMF/OCL we have that PrimitiveType < Class < Type
 			//                         CollectionType < DataType
 			if (t instanceof CollectionType) {
@@ -307,7 +311,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		public void createPackage(@NonNull Package pkg) {		
 			EPackage epkg = getEPackage(pkg);			
 			if (epkg == null) {
-				System.out.println("No package " + pkg.getName());
+				if (! packages.containsKey(pkg.getURI()))
+					System.out.println("Cannot load package " + pkg.getName());
 				return;
 			}			
 			
@@ -381,7 +386,16 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 
 		@Override
 		public Void visitModel(@NonNull Model object) {
+			object.getOwnedImports().forEach(i -> i.accept(this));
 			object.getOwnedPackages().forEach(p -> p.accept(this));
+			return null;
+		}
+		
+		@Override
+		public Void visitImport(@NonNull Import object) {
+			Namespace ns = object.getImportedNamespace();
+			if (ns != null)
+				ns.accept(this);
 			return null;
 		}
 		
