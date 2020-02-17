@@ -2,7 +2,7 @@
  */
 package efinder.ir.ocl;
 
-import efinder.ir.EFType;
+import efinder.ir.TypeRef;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,25 +22,25 @@ import efinder.ir.EFType;
  */
 public interface ModelElement extends OclExpression {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(EFType)
+	 * @return the value of the '<em>Type</em>' containment reference.
+	 * @see #setType(TypeRef)
 	 * @see efinder.ir.ocl.OclPackage#getModelElement_Type()
-	 * @model required="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EFType getType();
+	TypeRef getType();
 
 	/**
-	 * Sets the value of the '{@link efinder.ir.ocl.ModelElement#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link efinder.ir.ocl.ModelElement#getType <em>Type</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
+	 * @param value the new value of the '<em>Type</em>' containment reference.
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(EFType value);
+	void setType(TypeRef value);
 
 } // ModelElement

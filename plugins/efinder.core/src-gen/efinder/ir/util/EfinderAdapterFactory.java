@@ -136,6 +136,10 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 				return createMetaTypeRefAdapter();
 			}
 			@Override
+			public Adapter caseInvalidTypeRef(InvalidTypeRef object) {
+				return createInvalidTypeRefAdapter();
+			}
+			@Override
 			public Adapter caseCollectionTypeRef(CollectionTypeRef object) {
 				return createCollectionTypeRefAdapter();
 			}
@@ -410,6 +414,20 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createMetaTypeRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.InvalidTypeRef <em>Invalid Type Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.InvalidTypeRef
+	 * @generated
+	 */
+	public Adapter createInvalidTypeRefAdapter() {
 		return null;
 	}
 

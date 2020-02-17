@@ -112,6 +112,15 @@ public interface EfinderFactory extends EFactory {
 	MetaTypeRef createMetaTypeRef();
 
 	/**
+	 * Returns a new object of class '<em>Invalid Type Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Invalid Type Ref</em>'.
+	 * @generated
+	 */
+	InvalidTypeRef createInvalidTypeRef();
+
+	/**
 	 * Returns a new object of class '<em>Set Type Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

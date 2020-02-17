@@ -57,6 +57,7 @@
     <genClasses ecoreClass="efinder.ecore#//MetaTypeRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//MetaTypeRef/type"/>
     </genClasses>
+    <genClasses ecoreClass="efinder.ecore#//InvalidTypeRef"/>
     <genClasses image="false" ecoreClass="efinder.ecore#//CollectionTypeRef">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//CollectionTypeRef/containedType"/>
     </genClasses>

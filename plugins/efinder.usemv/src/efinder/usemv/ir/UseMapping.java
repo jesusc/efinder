@@ -5,12 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
@@ -129,6 +125,17 @@ public class UseMapping {
 		return UseReservedWords.toUseName(feature.getName());
 	}
 
+	public String toUseVarName(String name) {
+		// This is because self is a reserved word but always allowed as variable name
+		if (name.equals("self"))
+			return name;
+		
+		// This possibly broader than needed, but this way we are on the safe side
+		if (! Character.isAlphabetic(name.charAt(0))) {
+			return "v_" + name;
+		}
+		return UseReservedWords.toUseName(name);
+	}
 
 	@NonNull
 	public AssociationData getAssociation(@NonNull EReference reference) {
@@ -260,4 +267,5 @@ public class UseMapping {
 		// This is currently using the same map for everything, but this is only an implementation detail right now
 		return useToEcoreLiteralName.getOrDefault(name, name);
 	}
+
 }

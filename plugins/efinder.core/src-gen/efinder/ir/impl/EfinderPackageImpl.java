@@ -16,6 +16,7 @@ import efinder.ir.EFPrimitiveType;
 import efinder.ir.EFType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.EfinderPackage;
+import efinder.ir.InvalidTypeRef;
 import efinder.ir.MetaTypeRef;
 import efinder.ir.Operation;
 import efinder.ir.OrderedSetTypeRef;
@@ -163,6 +164,13 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	private EClass metaTypeRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass invalidTypeRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -652,6 +660,16 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getInvalidTypeRef() {
+		return invalidTypeRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getCollectionTypeRef() {
 		return collectionTypeRefEClass;
 	}
@@ -790,6 +808,8 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		metaTypeRefEClass = createEClass(META_TYPE_REF);
 		createEReference(metaTypeRefEClass, META_TYPE_REF__TYPE);
 
+		invalidTypeRefEClass = createEClass(INVALID_TYPE_REF);
+
 		collectionTypeRefEClass = createEClass(COLLECTION_TYPE_REF);
 		createEReference(collectionTypeRefEClass, COLLECTION_TYPE_REF__CONTAINED_TYPE);
 
@@ -844,6 +864,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		efPrimitiveTypeEClass.getESuperTypes().add(this.getEFType());
 		efEnumEClass.getESuperTypes().add(this.getEFType());
 		metaTypeRefEClass.getESuperTypes().add(this.getTypeRef());
+		invalidTypeRefEClass.getESuperTypes().add(this.getTypeRef());
 		collectionTypeRefEClass.getESuperTypes().add(this.getTypeRef());
 		setTypeRefEClass.getESuperTypes().add(this.getCollectionTypeRef());
 		sequenceTypeRefEClass.getESuperTypes().add(this.getCollectionTypeRef());
@@ -905,6 +926,8 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 
 		initEClass(metaTypeRefEClass, MetaTypeRef.class, "MetaTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetaTypeRef_Type(), this.getEFType(), null, "type", null, 1, 1, MetaTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(invalidTypeRefEClass, InvalidTypeRef.class, "InvalidTypeRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(collectionTypeRefEClass, CollectionTypeRef.class, "CollectionTypeRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCollectionTypeRef_ContainedType(), this.getTypeRef(), null, "containedType", null, 1, 1, CollectionTypeRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -133,7 +133,7 @@ public class IRBuilder {
 	}
 
 	@NonNull
-	public static OclExpression newModelElement(@NonNull EFType t) {
+	public static OclExpression newModelElement(TypeRef t) {
 		ModelElement me = OclFactory.eINSTANCE.createModelElement();
 		me.setType(t);
 		return me;
@@ -325,6 +325,11 @@ public class IRBuilder {
 		return ref;
 	}
 
+	@NonNull
+	public static TypeRef newInvalidTypeRef() {
+		return EfinderFactory.eINSTANCE.createInvalidTypeRef();
+	}
+	
 	@NonNull 
 	public static TypeRef newSequenceTypeRef(@NonNull TypeRef elementType) {
 		SequenceTypeRef ref = EfinderFactory.eINSTANCE.createSequenceTypeRef();

@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.IfExp;
 import org.eclipse.ocl.pivot.Import;
 import org.eclipse.ocl.pivot.IntegerLiteralExp;
 import org.eclipse.ocl.pivot.InvalidLiteralExp;
+import org.eclipse.ocl.pivot.InvalidType;
 import org.eclipse.ocl.pivot.IterateExp;
 import org.eclipse.ocl.pivot.IteratorExp;
 import org.eclipse.ocl.pivot.LanguageExpression;
@@ -271,6 +272,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				return IRBuilder.newMetaTypeRef(getOrCreatePrimitiveType(pt.getName()));
 			} else if (t instanceof Enumeration) {
 				return IRBuilder.newMetaTypeRef(getEnum((Enumeration) t));
+			} else if (t instanceof InvalidType) {
+				return IRBuilder.newInvalidTypeRef();
 			} else if (t instanceof Class) {
 				return IRBuilder.newMetaTypeRef(getClass((Class) t));		
 			}
@@ -289,6 +292,9 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				return IRBuilder.newOrderedSetTypeRef(elementType);
 			} else if (ct instanceof BagType) {
 				return IRBuilder.newBagTypeRef(elementType);
+			} else if (ct.getName().equals("Collection")) {
+				System.out.println("Asumming a sequence");
+				return IRBuilder.newSequenceTypeRef(elementType);
 			}
 			throw new IllegalStateException();
 		}
@@ -646,7 +652,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			if (type instanceof Enumeration) {
 				throw new UnsupportedTranslationException("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
 			}
-			EFType t = context.metamodels.getClass((Class) type);
+			TypeRef t = context.metamodels.getType(type);
 			return IRBuilder.newModelElement(t);
 		}
 		

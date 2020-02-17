@@ -65,7 +65,7 @@ public class UseMvBackendCompiler {
 		this.ir = ir;
 		this.mapping = new UseMapping(ir.getSpecification().getMetamodels());
 		this.typeCompiler = new UseTypeCompiler(mapping);
-		this.compiler = new UseExpressionsCompiler(mapping);
+		this.compiler = new UseExpressionsCompiler(mapping, typeCompiler);
 	}
 	
 	@NonNull
@@ -156,7 +156,7 @@ public class UseMvBackendCompiler {
 					
 					String separator = "";
 					for (Parameter p : op.getParameters()) {
-						text.append(separator).append(p.getName()).append(" : ").append(toUseType(p.getType()));
+						text.append(separator).append(mapping.toUseVarName(p.getName())).append(" : ").append(toUseType(p.getType()));
 						separator = ", ";
 				    }	
 					

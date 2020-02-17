@@ -178,6 +178,13 @@ public class EfinderSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EfinderPackage.INVALID_TYPE_REF: {
+				InvalidTypeRef invalidTypeRef = (InvalidTypeRef)theEObject;
+				T result = caseInvalidTypeRef(invalidTypeRef);
+				if (result == null) result = caseTypeRef(invalidTypeRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EfinderPackage.COLLECTION_TYPE_REF: {
 				CollectionTypeRef collectionTypeRef = (CollectionTypeRef)theEObject;
 				T result = caseCollectionTypeRef(collectionTypeRef);
@@ -473,6 +480,21 @@ public class EfinderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseMetaTypeRef(MetaTypeRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Invalid Type Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Invalid Type Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseInvalidTypeRef(InvalidTypeRef object) {
 		return null;
 	}
 

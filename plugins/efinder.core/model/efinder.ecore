@@ -63,6 +63,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="MetaTypeRef" eSuperTypes="#//TypeRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//EFType"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvalidTypeRef" eSuperTypes="#//TypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="CollectionTypeRef" abstract="true" eSuperTypes="#//TypeRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="containedType" lowerBound="1"
         eType="#//TypeRef" containment="true"/>
@@ -95,7 +96,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="OclExpression" abstract="true"/>
     <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//ocl/OclExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
-          eType="#//EFType"/>
+          eType="#//TypeRef" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true" eSuperTypes="#//ocl/OclExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"

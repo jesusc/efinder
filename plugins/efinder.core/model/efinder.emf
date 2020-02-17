@@ -82,6 +82,10 @@ class MetaTypeRef extends TypeRef {
 	ref EFType[1] type;
 }
 
+class InvalidTypeRef extends TypeRef {
+	
+}
+
 abstract class CollectionTypeRef extends TypeRef {
 	val TypeRef[1] containedType;	
 }
@@ -123,7 +127,7 @@ package ocl {
 	}
 	
 	class ModelElement extends OclExpression {
-		ref EFType[1] type;		
+		val TypeRef[1] type;		
 	}
 	
 	abstract class CallExp extends OclExpression {

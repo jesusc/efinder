@@ -10,9 +10,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import com.google.common.collect.ImmutableMap;
 
 import efinder.core.visitor.AbstractIRVisitor;
-import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
-import efinder.ir.EFType;
 import efinder.ir.ocl.BagLiteralExp;
 import efinder.ir.ocl.BooleanLiteralExp;
 import efinder.ir.ocl.CollectionCallExp;
@@ -39,10 +37,12 @@ import efinder.ir.ocl.VarExp;
 
 public class UseExpressionsCompiler extends AbstractIRVisitor<Void, StringContext> {
 
-	private @NonNull UseMapping mapping;
+	private final @NonNull UseMapping mapping;
+	private final @NonNull UseTypeCompiler typeCompiler;
 
-	public UseExpressionsCompiler(@NonNull UseMapping mapping) {
+	public UseExpressionsCompiler(@NonNull UseMapping mapping, @NonNull UseTypeCompiler typeCompiler) {
 		this.mapping = mapping;
+		this.typeCompiler = typeCompiler;
 	}
 
 	/* pp */ void compile(@NonNull OclExpression expr, @NonNull StringBuilder text) {
@@ -239,11 +239,7 @@ public class UseExpressionsCompiler extends AbstractIRVisitor<Void, StringContex
 	}
 
 	private String toVariableName(String name) {
-		// This possibly broader than needed, but this way we are on the safe side
-		if (! Character.isAlphabetic(name.charAt(0))) {
-			return "v_" + name;
-		}
-		return name;
+		return mapping.toUseVarName(name);
 	}
 
 	@Override
@@ -268,16 +264,9 @@ public class UseExpressionsCompiler extends AbstractIRVisitor<Void, StringContex
 
 	@Override
 	public Void visitModelElement(ModelElement self, StringContext input) {
-		input.append(toClassName(self.getType()));
+		String type = typeCompiler.toTypeText(self.getType());		
+		input.append(type);
 		return null;
 	}
 
-	@NonNull
-	private String toClassName(@NonNull EFType type) {
-		// TODO: Use the normalizer for this
-		if (type instanceof EFClass) {
-			return mapping.toUseTypeName((EFClass) type);
-		}
-		throw new UnsupportedOperationException();
-	}
 }

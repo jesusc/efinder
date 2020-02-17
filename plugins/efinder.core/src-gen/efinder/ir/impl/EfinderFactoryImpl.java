@@ -66,6 +66,7 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 			case EfinderPackage.EF_ENUM: return createEFEnum();
 			case EfinderPackage.EF_ENUM_LITERAL: return createEFEnumLiteral();
 			case EfinderPackage.META_TYPE_REF: return createMetaTypeRef();
+			case EfinderPackage.INVALID_TYPE_REF: return createInvalidTypeRef();
 			case EfinderPackage.SET_TYPE_REF: return createSetTypeRef();
 			case EfinderPackage.SEQUENCE_TYPE_REF: return createSequenceTypeRef();
 			case EfinderPackage.BAG_TYPE_REF: return createBagTypeRef();
@@ -183,6 +184,17 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public MetaTypeRef createMetaTypeRef() {
 		MetaTypeRefImpl metaTypeRef = new MetaTypeRefImpl();
 		return metaTypeRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public InvalidTypeRef createInvalidTypeRef() {
+		InvalidTypeRefImpl invalidTypeRef = new InvalidTypeRefImpl();
+		return invalidTypeRef;
 	}
 
 	/**

@@ -48,6 +48,9 @@ public class EMFOCL2UseFixer extends AbstractIRVisitor<Void, Void> implements ID
 			EcoreUtil.replace(self, set);			
 			set.getParts().add(self.getSource());
 			return;
+		} else if (self.getName().equals("oclIsInvalid")) {
+			// TODO: Report => This is probably what you mean:
+			self.setName("oclIsUndefined");
 		}
 	}
 	

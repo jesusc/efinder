@@ -45,8 +45,6 @@ public class UseTypeCompiler extends AbstractIRVisitor<String, Void> {
 		return "Bag(" + visit(self.getContainedType(), input) + ")";
 	}
 
-
-
 	@Override
 	public String visitMetaTypeRef(MetaTypeRef self, Void input) {
 		return visit(self.getType(), input);

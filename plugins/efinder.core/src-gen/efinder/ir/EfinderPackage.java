@@ -803,6 +803,34 @@ public interface EfinderPackage extends EPackage {
 	int META_TYPE_REF_OPERATION_COUNT = TYPE_REF_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.impl.InvalidTypeRefImpl <em>Invalid Type Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.InvalidTypeRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
+	 * @generated
+	 */
+	int INVALID_TYPE_REF = 17;
+
+	/**
+	 * The number of structural features of the '<em>Invalid Type Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE_REF_FEATURE_COUNT = TYPE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Invalid Type Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVALID_TYPE_REF_OPERATION_COUNT = TYPE_REF_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.impl.CollectionTypeRefImpl <em>Collection Type Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -810,7 +838,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getCollectionTypeRef()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF = 17;
+	int COLLECTION_TYPE_REF = 18;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -847,7 +875,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSetTypeRef()
 	 * @generated
 	 */
-	int SET_TYPE_REF = 18;
+	int SET_TYPE_REF = 19;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -884,7 +912,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSequenceTypeRef()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE_REF = 19;
+	int SEQUENCE_TYPE_REF = 20;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -921,7 +949,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBagTypeRef()
 	 * @generated
 	 */
-	int BAG_TYPE_REF = 20;
+	int BAG_TYPE_REF = 21;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -958,7 +986,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOrderedSetTypeRef()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE_REF = 21;
+	int ORDERED_SET_TYPE_REF = 22;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1390,6 +1418,16 @@ public interface EfinderPackage extends EPackage {
 	EReference getMetaTypeRef_Type();
 
 	/**
+	 * Returns the meta object for class '{@link efinder.ir.InvalidTypeRef <em>Invalid Type Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Invalid Type Ref</em>'.
+	 * @see efinder.ir.InvalidTypeRef
+	 * @generated
+	 */
+	EClass getInvalidTypeRef();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.CollectionTypeRef <em>Collection Type Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1810,6 +1848,16 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EReference META_TYPE_REF__TYPE = eINSTANCE.getMetaTypeRef_Type();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.InvalidTypeRefImpl <em>Invalid Type Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.InvalidTypeRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
+		 * @generated
+		 */
+		EClass INVALID_TYPE_REF = eINSTANCE.getInvalidTypeRef();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.CollectionTypeRefImpl <em>Collection Type Ref</em>}' class.
