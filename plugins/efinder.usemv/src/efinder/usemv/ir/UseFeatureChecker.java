@@ -48,21 +48,23 @@ public class UseFeatureChecker {
 
 	private static ImmutableMap<String, String> unsupportedOperations = ImmutableMap.<String, String>builder()
 			.put("String", "matches")
+			.put("OclAny", "oclType")
 			.build();
 	
 	// TODO: Use the type of the expression... which is something that we don't check yet, or normalize the operations
-	// in a previous phase
+	// in a previous phase. Actually, the operation names are disjunct across types so, this is not very bad
 	private static Set<String> unsupportedOperationsSet = new HashSet<>(unsupportedOperations.values());			
 			
 	private void outOperationCallExp(OperationCallExp obj, Report input) {		
 		String name = obj.getName();
 		if (unsupportedOperationsSet.contains(name)) {
 			input.addUnsupported("Unsupported operation " + name, obj, Report.Action.STOP, name);
-		}		
+		}
 	}
 
 	private static ImmutableSet<String> unsupportedCollectionOperations = ImmutableSet.<String>builder()
 			.add("indexOf")
+			.add("at")
 			.build();
 	
 	private void outCollectionCallExp(@NonNull CollectionCallExp obj, @NonNull Report input) {

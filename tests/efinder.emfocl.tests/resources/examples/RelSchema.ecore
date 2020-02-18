@@ -36,11 +36,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Row">
-    <eOperations name="applyAttr" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+    <eOperations name="attrValue" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.columns->select(am|am.attribute=anAttr)->any(true).value.content"/>
+        <details key="body" value="self.columns->select(am|am.attribute=a)->any(true).value.content"/>
       </eAnnotations>
-      <eParameters name="anAttr" eType="#//Attribute"/>
+      <eParameters name="a" eType="#//Attribute"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="typing" lowerBound="1"
         eType="#//RelSchema" eOpposite="#//RelSchema/rows"/>
@@ -56,6 +56,6 @@
   <eClassifiers xsi:type="ecore:EClass" name="Value">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="dt" eType="#//DataType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dt" lowerBound="1" eType="#//DataType"/>
   </eClassifiers>
 </ecore:EPackage>

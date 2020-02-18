@@ -91,6 +91,10 @@ public class UseMvFinder implements IModelFinder {
 		}
 		
 		BoundsCompiler bounds = new BoundsCompiler(ir, compiler.getMapping());
+		if (partialModel != null) {
+			// partialModel.getAdaptedBounds(scopeProvider);
+		}
+		
 		System.out.println(bounds.toProperties(scopeProvider));
 		
 		StringReader inputScopeProperties = new StringReader(bounds.toProperties(scopeProvider));

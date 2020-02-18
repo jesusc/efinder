@@ -29,8 +29,8 @@ class DataType {
 
 class Row {
 
-  @"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(body="self.columns->select(am|am.attribute=anAttr)->any(true).value.content")
-  op String[1] applyAttr(Attribute anAttr);
+  @"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"(body="self.columns->select(am|am.attribute=a)->any(true).value.content")
+  op String[1] attrValue(Attribute a);
   ref RelSchema[1]#rows typing;
   val AttrMap[*] columns;
 }
@@ -42,6 +42,6 @@ class AttrMap {
 
 class Value {
   attr String[1] content;
-  ref DataType dt;
+  ref DataType[1] dt;
 }
 

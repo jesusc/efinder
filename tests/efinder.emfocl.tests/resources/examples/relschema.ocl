@@ -12,7 +12,7 @@ context Row inv keyMapUnique:
   Row.allInstances()->forAll(self2 |
     self<>self2 and self.typing=self2.typing implies
     self.typing.key()->exists(ka |
-      self.applyAttr(ka)<>self2.applyAttr(ka)))
+      self.attrValue(ka)<>self2.attrValue(ka)))
      
 context Row inv hasAttrMapForAllAttr:
   self.typing.attributes->forAll(aRS| self.columns.attribute->one(aAM| aRS.name=aAM.name)) and
@@ -27,6 +27,10 @@ context RelModel inv oneModel:
   	RelSchema.allInstances()->forAll(r | m.schemas->includes(r)) and
   	DataType.allInstances()->forAll(d | m.datatypes->includes(d))	
   )
+  
+context AttrMap inv oneModel:
+	Row.allInstances()->exists(r | r.columns->includes(self))
+  
 
 --context RelModel
 --def: example() :  Set(Tuple (rel : String, keyName : String))
