@@ -6,9 +6,10 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ 
-	EmfOclTranslationTest.class, 
 	ValidationTest.class,
-	RelSchemaExampleTest.class})
+	ValidateEcoreTest.class, 
+	RelSchemaExampleTest.class,
+	FootprintTest.class})
 public class AllTests {
 
 }
