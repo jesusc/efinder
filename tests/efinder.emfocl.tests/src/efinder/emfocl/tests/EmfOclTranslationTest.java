@@ -19,7 +19,7 @@ public class EmfOclTranslationTest extends AbstractEmfOclTest {
 	
 	@Test
 	public void testTranslation() throws IOException {		
-		Model pivot = loadOclDocument("people.ocl");
+		Model pivot = loadOclDocument("ocl/people.ocl");
 		
 		PivotOclCompiler compiler = new PivotOclCompiler(pivot);
 		EFinderModel model = compiler.compile();

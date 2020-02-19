@@ -57,6 +57,10 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case EfinderPackage.SPECIFICATION: return createSpecification();
+			case EfinderPackage.BUILTIN_OPERATION_REF: return createBuiltinOperationRef();
+			case EfinderPackage.DEFINED_OPERATION_REF: return createDefinedOperationRef();
+			case EfinderPackage.DERIVED_PROPERTY_REF: return createDerivedPropertyRef();
+			case EfinderPackage.METAMODEL_FEATURE_REF: return createMetamodelFeatureRef();
 			case EfinderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
 			case EfinderPackage.PARAMETER: return createParameter();
 			case EfinderPackage.EF_METAMODEL: return createEFMetamodel();
@@ -85,6 +89,50 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
 		return specification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BuiltinOperationRef createBuiltinOperationRef() {
+		BuiltinOperationRefImpl builtinOperationRef = new BuiltinOperationRefImpl();
+		return builtinOperationRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DefinedOperationRef createDefinedOperationRef() {
+		DefinedOperationRefImpl definedOperationRef = new DefinedOperationRefImpl();
+		return definedOperationRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public DerivedPropertyRef createDerivedPropertyRef() {
+		DerivedPropertyRefImpl derivedPropertyRef = new DerivedPropertyRefImpl();
+		return derivedPropertyRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public MetamodelFeatureRef createMetamodelFeatureRef() {
+		MetamodelFeatureRefImpl metamodelFeatureRef = new MetamodelFeatureRefImpl();
+		return metamodelFeatureRef;
 	}
 
 	/**

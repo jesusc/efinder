@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EClass;
@@ -70,6 +71,7 @@ import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
+import org.eclipse.ocl.pivot.internal.ecore.EObjectOperation;
 import org.eclipse.ocl.pivot.util.AbstractExtendingVisitor;
 import org.eclipse.ocl.pivot.util.Visitable;
 import org.eclipse.ocl.pivot.utilities.OCL;
@@ -85,6 +87,9 @@ import efinder.core.errors.InvalidModelException;
 import efinder.core.errors.Report;
 import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.ir.IRBuilder;
+import efinder.ir.AbstractFunction;
+import efinder.ir.DefinedOperationRef;
+import efinder.ir.DerivedPropertyRef;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
 import efinder.ir.EFEnumLiteral;
@@ -163,6 +168,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		}
 		
 		visitor.specification.getPrimitiveTypes().addAll(metamodelContext.primitiveTypes.values());
+
+		ctx.applyPending();
 		
 		return new EFinderModel(visitor.specification);
 	}
@@ -536,6 +543,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				OclDerivedProperty irProperty = IRBuilder.newOclDerivedProperty(ctx, p.getName(), type, body);
 				irProperty.setContextVariable(varDcl);
 				specification.getProperties().add(irProperty);
+				context.mapProperty(p, irProperty);
 			} else {
 				// This has already been handled in preComputeMetamodel()
 			}
@@ -594,6 +602,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			OclOperation irOperation = IRBuilder.newOclOperation(ctx, o.getName(), parameters, type, body);
 			irOperation.setContextVariable(varDcl);
 			specification.getOperations().add(irOperation);
+			context.mapOperation(o, irOperation);
 			return null;
 
 		}
@@ -678,8 +687,17 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		public OclExpression visitPropertyCallExp(@NonNull PropertyCallExp p) {
 			String name = p.getReferredProperty().getName();		
 			OclExpression source = toExpression(p.getOwnedSource());
-			EStructuralFeature f = (EStructuralFeature) p.getReferredProperty().getESObject();
-			return IRBuilder.newProperyCallExp(name, f, source);
+			
+			Property definition = p.getReferredProperty();
+			if (definition.getESObject() == null) {
+				// This is likely defined in the OCL text, so we resolve against it
+				efinder.ir.ocl.@NonNull PropertyCallExp call = IRBuilder.newProperyCallExp(name, null, source);
+				context.addPendingResolution(new ResolveProperty(definition, call));
+				return call;
+			} else {			
+				EStructuralFeature f = (EStructuralFeature) p.getReferredProperty().getESObject();
+				return IRBuilder.newProperyCallExp(name, f, source);
+			}
 		}
 		
 		@Override
@@ -719,7 +737,13 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 					CollectionCallExp call = IRBuilder.newCollectionCallExp(name, source, args);
 					return call;
 				} else {
-					efinder.ir.ocl.@NonNull OperationCallExp call = IRBuilder.newOperationCallExp(name, source, args); 
+					efinder.ir.ocl.@NonNull OperationCallExp call = IRBuilder.newOperationCallExp(name, source, args);
+					Operation refOp = op.getReferredOperation();
+					if (refOp.getImplementation() instanceof EObjectOperation) {
+						context.addPendingResolution(new ResolveOperation(refOp, call));
+					} else {
+						// TODO: Register built-in
+					}
 					return call;
 				}
 			}
@@ -945,13 +969,42 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@NonNull 
 		private final Report report;
 		@NonNull 
-		private MetamodelContext metamodels;
+		private final MetamodelContext metamodels;
 		@NonNull 
-		private Map<org.eclipse.ocl.pivot.VariableDeclaration, VariableDeclaration> variables = new HashMap<>();
+		private final Map<org.eclipse.ocl.pivot.VariableDeclaration, VariableDeclaration> variables = new HashMap<>();
+		@NonNull 
+		private final Map<org.eclipse.ocl.pivot.Feature, AbstractFunction> functions = new HashMap<>();		
+		@NonNull
+		private final List<Consumer<CompilerContext>> pendingOperations = new ArrayList<Consumer<CompilerContext>>();
 		
 		public CompilerContext(@NonNull MetamodelContext metamodels, @NonNull Report report) {
 			this.metamodels = metamodels;
 			this.report = report;
+		}
+		
+		public void addPendingResolution(@NonNull Consumer<CompilerContext> pending) {
+			pendingOperations.add(pending);
+		}
+		
+		public void applyPending() {
+			pendingOperations.forEach(o -> o.accept(this));
+		}
+
+		public efinder.ir.@Nullable Operation getOperation(Operation operation) {
+			return (efinder.ir.Operation) functions.get(operation);
+		}
+
+		@Nullable
+		public OclDerivedProperty getProperty(Property p) {
+			return (OclDerivedProperty) functions.get(p);
+		}
+
+		public void mapOperation(@NonNull Operation o, @NonNull OclOperation irOperation) {
+			functions.put(o, irOperation);
+		}
+
+		public void mapProperty(@NonNull Property p, @NonNull OclDerivedProperty irProperty) {
+			functions.put(p, irProperty);			
 		}
 
 		@NonNull
@@ -970,5 +1023,43 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			return v;
 		}
 
+	}
+	
+	private static class ResolveOperation implements Consumer<CompilerContext> {
+
+		private Operation operation;
+		private efinder.ir.ocl.@NonNull OperationCallExp call;
+
+		public ResolveOperation(Operation operation, efinder.ir.ocl.@NonNull OperationCallExp call) {
+			this.operation = operation;
+			this.call = call;
+		}
+		
+		@Override
+		public void accept(CompilerContext c) {
+			efinder.ir.Operation irOperation = c.getOperation(operation);
+			DefinedOperationRef ref = EfinderFactory.eINSTANCE.createDefinedOperationRef();
+			ref.setOperation(irOperation);
+			call.setFeature(ref);
+		}		
+	}
+
+	private static class ResolveProperty implements Consumer<CompilerContext> {
+
+		private Property property;
+		private efinder.ir.ocl.@NonNull PropertyCallExp call;
+
+		public ResolveProperty(@NonNull Property property, efinder.ir.ocl.@NonNull PropertyCallExp call) {
+			this.property = property;
+			this.call = call;
+		}
+		
+		@Override
+		public void accept(CompilerContext c) {
+			@Nullable OclDerivedProperty irProperty = c.getProperty(property);
+			DerivedPropertyRef ref = EfinderFactory.eINSTANCE.createDerivedPropertyRef();
+			ref.setProperty(irProperty);
+			call.setFeature(ref);
+		}		
 	}
 }

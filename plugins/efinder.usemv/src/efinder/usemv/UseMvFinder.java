@@ -38,6 +38,8 @@ import efinder.core.IBoundsProvider;
 import efinder.core.IModelFinder;
 import efinder.core.errors.Report;
 import efinder.core.errors.UnsupportedTranslationException;
+import efinder.core.footprint.IFootprint;
+import efinder.core.footprint.IRFootprintedModel;
 import efinder.core.management.EMFModel;
 import efinder.usemv.UseMvResult.UnsupportedTranslation;
 import efinder.usemv.ir.BoundsCompiler;
@@ -73,7 +75,7 @@ public class UseMvFinder implements IModelFinder {
 	}
 	
 	@Override
-	public @NonNull Result find(@NonNull EFinderModel ir) {
+	public @NonNull Result find(@NonNull EFinderModel ir, @NonNull IFootprint footprint) {
 		Report report = new UseFeatureChecker().check(ir);
 		if (report.isUnsupported()) {
 			return new UseMvResult.Unsupported(report);
@@ -82,7 +84,7 @@ public class UseMvFinder implements IModelFinder {
 		UseMvBackendCompiler compiler;
 		UseModel model;
 		try {
-			compiler = new UseMvBackendCompiler(ir);		
+			compiler = new UseMvBackendCompiler(new IRFootprintedModel(ir, footprint));		
 			model = compiler.compile();
 			System.out.println(model.getText());
 		} catch (UnsupportedTranslationException e) {

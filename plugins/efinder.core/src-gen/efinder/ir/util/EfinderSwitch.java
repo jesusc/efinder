@@ -107,6 +107,58 @@ public class EfinderSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EfinderPackage.FEATURE_REF: {
+				FeatureRef featureRef = (FeatureRef)theEObject;
+				T result = caseFeatureRef(featureRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.OPERATION_FEATURE_REF: {
+				OperationFeatureRef operationFeatureRef = (OperationFeatureRef)theEObject;
+				T result = caseOperationFeatureRef(operationFeatureRef);
+				if (result == null) result = caseFeatureRef(operationFeatureRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.BUILTIN_OPERATION_REF: {
+				BuiltinOperationRef builtinOperationRef = (BuiltinOperationRef)theEObject;
+				T result = caseBuiltinOperationRef(builtinOperationRef);
+				if (result == null) result = caseOperationFeatureRef(builtinOperationRef);
+				if (result == null) result = caseFeatureRef(builtinOperationRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.DEFINED_OPERATION_REF: {
+				DefinedOperationRef definedOperationRef = (DefinedOperationRef)theEObject;
+				T result = caseDefinedOperationRef(definedOperationRef);
+				if (result == null) result = caseOperationFeatureRef(definedOperationRef);
+				if (result == null) result = caseFeatureRef(definedOperationRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.PROPERTY_FEATURE_REF: {
+				PropertyFeatureRef propertyFeatureRef = (PropertyFeatureRef)theEObject;
+				T result = casePropertyFeatureRef(propertyFeatureRef);
+				if (result == null) result = caseFeatureRef(propertyFeatureRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.DERIVED_PROPERTY_REF: {
+				DerivedPropertyRef derivedPropertyRef = (DerivedPropertyRef)theEObject;
+				T result = caseDerivedPropertyRef(derivedPropertyRef);
+				if (result == null) result = casePropertyFeatureRef(derivedPropertyRef);
+				if (result == null) result = caseFeatureRef(derivedPropertyRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.METAMODEL_FEATURE_REF: {
+				MetamodelFeatureRef metamodelFeatureRef = (MetamodelFeatureRef)theEObject;
+				T result = caseMetamodelFeatureRef(metamodelFeatureRef);
+				if (result == null) result = casePropertyFeatureRef(metamodelFeatureRef);
+				if (result == null) result = caseFeatureRef(metamodelFeatureRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EfinderPackage.VARIABLE_DECLARATION: {
 				VariableDeclaration variableDeclaration = (VariableDeclaration)theEObject;
 				T result = caseVariableDeclaration(variableDeclaration);
@@ -315,6 +367,111 @@ public class EfinderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseOperation(Operation object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Feature Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseFeatureRef(FeatureRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Operation Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Operation Feature Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOperationFeatureRef(OperationFeatureRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Builtin Operation Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Builtin Operation Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBuiltinOperationRef(BuiltinOperationRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Defined Operation Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Defined Operation Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDefinedOperationRef(DefinedOperationRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Feature Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyFeatureRef(PropertyFeatureRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Derived Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Derived Property Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDerivedPropertyRef(DerivedPropertyRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Metamodel Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Metamodel Feature Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMetamodelFeatureRef(MetamodelFeatureRef object) {
 		return null;
 	}
 

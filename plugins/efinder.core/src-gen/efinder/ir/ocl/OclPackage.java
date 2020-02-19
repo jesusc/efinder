@@ -529,13 +529,22 @@ public interface OclPackage extends EPackage {
 	int OPERATION_CALL_EXP__NAME = ABSTRACT_OPERATION_CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Feature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__FEATURE = ABSTRACT_OPERATION_CALL_EXP_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Operation Call Exp</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_CALL_EXP_FEATURE_COUNT = ABSTRACT_OPERATION_CALL_EXP_FEATURE_COUNT + 1;
+	int OPERATION_CALL_EXP_FEATURE_COUNT = ABSTRACT_OPERATION_CALL_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Operation Call Exp</em>' class.
@@ -575,7 +584,7 @@ public interface OclPackage extends EPackage {
 	int PROPERTY_CALL_EXP__NAME = CALL_EXP_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * The feature id for the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -1881,6 +1890,17 @@ public interface OclPackage extends EPackage {
 	EAttribute getOperationCallExp_Name();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.OperationCallExp#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Feature</em>'.
+	 * @see efinder.ir.ocl.OperationCallExp#getFeature()
+	 * @see #getOperationCallExp()
+	 * @generated
+	 */
+	EReference getOperationCallExp_Feature();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.PropertyCallExp <em>Property Call Exp</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1902,10 +1922,10 @@ public interface OclPackage extends EPackage {
 	EAttribute getPropertyCallExp_Name();
 
 	/**
-	 * Returns the meta object for the reference '{@link efinder.ir.ocl.PropertyCallExp#getFeature <em>Feature</em>}'.
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.PropertyCallExp#getFeature <em>Feature</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @return the meta object for the containment reference '<em>Feature</em>'.
 	 * @see efinder.ir.ocl.PropertyCallExp#getFeature()
 	 * @see #getPropertyCallExp()
 	 * @generated
@@ -2643,6 +2663,14 @@ public interface OclPackage extends EPackage {
 		EAttribute OPERATION_CALL_EXP__NAME = eINSTANCE.getOperationCallExp_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Feature</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OPERATION_CALL_EXP__FEATURE = eINSTANCE.getOperationCallExp_Feature();
+
+		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.PropertyCallExpImpl <em>Property Call Exp</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2661,7 +2689,7 @@ public interface OclPackage extends EPackage {
 		EAttribute PROPERTY_CALL_EXP__NAME = eINSTANCE.getPropertyCallExp_Name();
 
 		/**
-		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Feature</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated

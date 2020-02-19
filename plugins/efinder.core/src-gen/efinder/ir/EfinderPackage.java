@@ -369,6 +369,229 @@ public interface EfinderPackage extends EPackage {
 	int OPERATION_OPERATION_COUNT = ABSTRACT_FUNCTION_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.impl.FeatureRefImpl <em>Feature Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.FeatureRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getFeatureRef()
+	 * @generated
+	 */
+	int FEATURE_REF = 6;
+
+	/**
+	 * The number of structural features of the '<em>Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REF_FEATURE_COUNT = 0;
+
+	/**
+	 * The number of operations of the '<em>Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REF_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.OperationFeatureRefImpl <em>Operation Feature Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.OperationFeatureRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getOperationFeatureRef()
+	 * @generated
+	 */
+	int OPERATION_FEATURE_REF = 7;
+
+	/**
+	 * The number of structural features of the '<em>Operation Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_FEATURE_REF_FEATURE_COUNT = FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Operation Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_FEATURE_REF_OPERATION_COUNT = FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.BuiltinOperationRefImpl <em>Builtin Operation Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.BuiltinOperationRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getBuiltinOperationRef()
+	 * @generated
+	 */
+	int BUILTIN_OPERATION_REF = 8;
+
+	/**
+	 * The number of structural features of the '<em>Builtin Operation Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILTIN_OPERATION_REF_FEATURE_COUNT = OPERATION_FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Builtin Operation Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILTIN_OPERATION_REF_OPERATION_COUNT = OPERATION_FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.DefinedOperationRefImpl <em>Defined Operation Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.DefinedOperationRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getDefinedOperationRef()
+	 * @generated
+	 */
+	int DEFINED_OPERATION_REF = 9;
+
+	/**
+	 * The feature id for the '<em><b>Operation</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINED_OPERATION_REF__OPERATION = OPERATION_FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Defined Operation Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINED_OPERATION_REF_FEATURE_COUNT = OPERATION_FEATURE_REF_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Defined Operation Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DEFINED_OPERATION_REF_OPERATION_COUNT = OPERATION_FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.PropertyFeatureRefImpl <em>Property Feature Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.PropertyFeatureRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getPropertyFeatureRef()
+	 * @generated
+	 */
+	int PROPERTY_FEATURE_REF = 10;
+
+	/**
+	 * The number of structural features of the '<em>Property Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_FEATURE_REF_FEATURE_COUNT = FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Property Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_FEATURE_REF_OPERATION_COUNT = FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.DerivedPropertyRefImpl <em>Derived Property Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.DerivedPropertyRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getDerivedPropertyRef()
+	 * @generated
+	 */
+	int DERIVED_PROPERTY_REF = 11;
+
+	/**
+	 * The feature id for the '<em><b>Property</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERIVED_PROPERTY_REF__PROPERTY = PROPERTY_FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Derived Property Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERIVED_PROPERTY_REF_FEATURE_COUNT = PROPERTY_FEATURE_REF_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Derived Property Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DERIVED_PROPERTY_REF_OPERATION_COUNT = PROPERTY_FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.MetamodelFeatureRefImpl <em>Metamodel Feature Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.MetamodelFeatureRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getMetamodelFeatureRef()
+	 * @generated
+	 */
+	int METAMODEL_FEATURE_REF = 12;
+
+	/**
+	 * The feature id for the '<em><b>Feature</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_FEATURE_REF__FEATURE = PROPERTY_FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Metamodel Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_FEATURE_REF_FEATURE_COUNT = PROPERTY_FEATURE_REF_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Metamodel Feature Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int METAMODEL_FEATURE_REF_OPERATION_COUNT = PROPERTY_FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -376,7 +599,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 6;
+	int VARIABLE_DECLARATION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -422,7 +645,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 7;
+	int PARAMETER = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -468,7 +691,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFMetamodel()
 	 * @generated
 	 */
-	int EF_METAMODEL = 8;
+	int EF_METAMODEL = 15;
 
 	/**
 	 * The feature id for the '<em><b>Roots</b></em>' containment reference list.
@@ -505,7 +728,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPackage()
 	 * @generated
 	 */
-	int EF_PACKAGE = 9;
+	int EF_PACKAGE = 16;
 
 	/**
 	 * The feature id for the '<em><b>Pkg</b></em>' reference.
@@ -560,7 +783,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFType()
 	 * @generated
 	 */
-	int EF_TYPE = 10;
+	int EF_TYPE = 17;
 
 	/**
 	 * The number of structural features of the '<em>EF Type</em>' class.
@@ -588,7 +811,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFClass()
 	 * @generated
 	 */
-	int EF_CLASS = 11;
+	int EF_CLASS = 18;
 
 	/**
 	 * The feature id for the '<em><b>Klass</b></em>' reference.
@@ -625,7 +848,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPrimitiveType()
 	 * @generated
 	 */
-	int EF_PRIMITIVE_TYPE = 12;
+	int EF_PRIMITIVE_TYPE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -662,7 +885,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnum()
 	 * @generated
 	 */
-	int EF_ENUM = 13;
+	int EF_ENUM = 20;
 
 	/**
 	 * The feature id for the '<em><b>Enum </b></em>' reference.
@@ -708,7 +931,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnumLiteral()
 	 * @generated
 	 */
-	int EF_ENUM_LITERAL = 14;
+	int EF_ENUM_LITERAL = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -745,7 +968,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTypeRef()
 	 * @generated
 	 */
-	int TYPE_REF = 15;
+	int TYPE_REF = 22;
 
 	/**
 	 * The number of structural features of the '<em>Type Ref</em>' class.
@@ -773,7 +996,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetaTypeRef()
 	 * @generated
 	 */
-	int META_TYPE_REF = 16;
+	int META_TYPE_REF = 23;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -810,7 +1033,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
 	 * @generated
 	 */
-	int INVALID_TYPE_REF = 17;
+	int INVALID_TYPE_REF = 24;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type Ref</em>' class.
@@ -838,7 +1061,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getCollectionTypeRef()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF = 18;
+	int COLLECTION_TYPE_REF = 25;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -875,7 +1098,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSetTypeRef()
 	 * @generated
 	 */
-	int SET_TYPE_REF = 19;
+	int SET_TYPE_REF = 26;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -912,7 +1135,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSequenceTypeRef()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE_REF = 20;
+	int SEQUENCE_TYPE_REF = 27;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -949,7 +1172,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBagTypeRef()
 	 * @generated
 	 */
-	int BAG_TYPE_REF = 21;
+	int BAG_TYPE_REF = 28;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -986,7 +1209,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOrderedSetTypeRef()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE_REF = 22;
+	int ORDERED_SET_TYPE_REF = 29;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1174,6 +1397,109 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperation_Parameters();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.FeatureRef <em>Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Feature Ref</em>'.
+	 * @see efinder.ir.FeatureRef
+	 * @generated
+	 */
+	EClass getFeatureRef();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.OperationFeatureRef <em>Operation Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Operation Feature Ref</em>'.
+	 * @see efinder.ir.OperationFeatureRef
+	 * @generated
+	 */
+	EClass getOperationFeatureRef();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.BuiltinOperationRef <em>Builtin Operation Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Builtin Operation Ref</em>'.
+	 * @see efinder.ir.BuiltinOperationRef
+	 * @generated
+	 */
+	EClass getBuiltinOperationRef();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.DefinedOperationRef <em>Defined Operation Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Defined Operation Ref</em>'.
+	 * @see efinder.ir.DefinedOperationRef
+	 * @generated
+	 */
+	EClass getDefinedOperationRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link efinder.ir.DefinedOperationRef#getOperation <em>Operation</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Operation</em>'.
+	 * @see efinder.ir.DefinedOperationRef#getOperation()
+	 * @see #getDefinedOperationRef()
+	 * @generated
+	 */
+	EReference getDefinedOperationRef_Operation();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.PropertyFeatureRef <em>Property Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Property Feature Ref</em>'.
+	 * @see efinder.ir.PropertyFeatureRef
+	 * @generated
+	 */
+	EClass getPropertyFeatureRef();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.DerivedPropertyRef <em>Derived Property Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Derived Property Ref</em>'.
+	 * @see efinder.ir.DerivedPropertyRef
+	 * @generated
+	 */
+	EClass getDerivedPropertyRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link efinder.ir.DerivedPropertyRef#getProperty <em>Property</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Property</em>'.
+	 * @see efinder.ir.DerivedPropertyRef#getProperty()
+	 * @see #getDerivedPropertyRef()
+	 * @generated
+	 */
+	EReference getDerivedPropertyRef_Property();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.MetamodelFeatureRef <em>Metamodel Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Metamodel Feature Ref</em>'.
+	 * @see efinder.ir.MetamodelFeatureRef
+	 * @generated
+	 */
+	EClass getMetamodelFeatureRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link efinder.ir.MetamodelFeatureRef#getFeature <em>Feature</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Feature</em>'.
+	 * @see efinder.ir.MetamodelFeatureRef#getFeature()
+	 * @see #getMetamodelFeatureRef()
+	 * @generated
+	 */
+	EReference getMetamodelFeatureRef_Feature();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.VariableDeclaration <em>Variable Declaration</em>}'.
@@ -1642,6 +1968,100 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION__PARAMETERS = eINSTANCE.getOperation_Parameters();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.FeatureRefImpl <em>Feature Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.FeatureRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getFeatureRef()
+		 * @generated
+		 */
+		EClass FEATURE_REF = eINSTANCE.getFeatureRef();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.OperationFeatureRefImpl <em>Operation Feature Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.OperationFeatureRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getOperationFeatureRef()
+		 * @generated
+		 */
+		EClass OPERATION_FEATURE_REF = eINSTANCE.getOperationFeatureRef();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.BuiltinOperationRefImpl <em>Builtin Operation Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.BuiltinOperationRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getBuiltinOperationRef()
+		 * @generated
+		 */
+		EClass BUILTIN_OPERATION_REF = eINSTANCE.getBuiltinOperationRef();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.DefinedOperationRefImpl <em>Defined Operation Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.DefinedOperationRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getDefinedOperationRef()
+		 * @generated
+		 */
+		EClass DEFINED_OPERATION_REF = eINSTANCE.getDefinedOperationRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Operation</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DEFINED_OPERATION_REF__OPERATION = eINSTANCE.getDefinedOperationRef_Operation();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.PropertyFeatureRefImpl <em>Property Feature Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.PropertyFeatureRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getPropertyFeatureRef()
+		 * @generated
+		 */
+		EClass PROPERTY_FEATURE_REF = eINSTANCE.getPropertyFeatureRef();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.DerivedPropertyRefImpl <em>Derived Property Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.DerivedPropertyRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getDerivedPropertyRef()
+		 * @generated
+		 */
+		EClass DERIVED_PROPERTY_REF = eINSTANCE.getDerivedPropertyRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Property</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference DERIVED_PROPERTY_REF__PROPERTY = eINSTANCE.getDerivedPropertyRef_Property();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.MetamodelFeatureRefImpl <em>Metamodel Feature Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.MetamodelFeatureRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getMetamodelFeatureRef()
+		 * @generated
+		 */
+		EClass METAMODEL_FEATURE_REF = eINSTANCE.getMetamodelFeatureRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Feature</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference METAMODEL_FEATURE_REF__FEATURE = eINSTANCE.getMetamodelFeatureRef_Feature();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.VariableDeclarationImpl <em>Variable Declaration</em>}' class.

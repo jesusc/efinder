@@ -13,6 +13,8 @@ import efinder.core.IModelFinder;
 import efinder.core.IModelFinder.Result;
 import efinder.core.IModelFinder.Status;
 import efinder.core.errors.UnsupportedTranslationException;
+import efinder.core.footprint.IFootprint;
+import efinder.core.footprint.ISlicingStrategy;
 import efinder.core.management.EMFModel;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.emfocl.use.EMFOCL2UseFixer;
@@ -23,11 +25,19 @@ public class EFinderRunner {
 	private @NonNull IModelFinder finder;
 	private final @NonNull TransformRegistry registry = new TransformRegistry();
 	
+	@NonNull 
+	private ISlicingStrategy slicingStrategy = new ISlicingStrategy.NoSlice();
+	
 	public EFinderRunner(@NonNull Model pivot) {
 		this.pivot = pivot;
 		// Configuration:
 		registry.add("use", new EMFOCL2UseFixer());
 		
+	}
+	
+	public EFinderRunner withSlicingStrategy(@NonNull ISlicingStrategy strategy) {
+		this.slicingStrategy = strategy;
+		return this;
 	}
 	
 	@NonNull
@@ -59,7 +69,8 @@ public class EFinderRunner {
 			adaptation.transform(ir);
 		}
 		
-		return finder.find(ir);
+		IFootprint footprint = slicingStrategy.getFootprint(ir);		
+		return finder.find(ir, footprint);
 	}
 	
 	public static class UnsupportedTranslationResult implements Result {

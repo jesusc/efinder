@@ -22,6 +22,7 @@ import efinder.ir.EFPrimitiveType;
 import efinder.ir.EFType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.MetaTypeRef;
+import efinder.ir.MetamodelFeatureRef;
 import efinder.ir.OrderedSetTypeRef;
 import efinder.ir.Parameter;
 import efinder.ir.SequenceTypeRef;
@@ -177,12 +178,15 @@ public class IRBuilder {
 	}
 
 	@NonNull
-	public static OclExpression newProperyCallExp(@NonNull String name, @Nullable EStructuralFeature feature, @NonNull OclExpression source) {
+	public static PropertyCallExp newProperyCallExp(@NonNull String name, @Nullable EStructuralFeature feature, @NonNull OclExpression source) {
 		PropertyCallExp call = OclFactory.eINSTANCE.createPropertyCallExp();
 		call.setName(name);
 		call.setSource(source);
-		if (feature != null)
-			call.setFeature(feature);
+		if (feature != null) {
+			MetamodelFeatureRef ref = EfinderFactory.eINSTANCE.createMetamodelFeatureRef();
+			ref.setFeature(feature);
+			call.setFeature(ref);
+		}
 		return call;
 	}
 

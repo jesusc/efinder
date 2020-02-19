@@ -92,6 +92,34 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 				return createOperationAdapter();
 			}
 			@Override
+			public Adapter caseFeatureRef(FeatureRef object) {
+				return createFeatureRefAdapter();
+			}
+			@Override
+			public Adapter caseOperationFeatureRef(OperationFeatureRef object) {
+				return createOperationFeatureRefAdapter();
+			}
+			@Override
+			public Adapter caseBuiltinOperationRef(BuiltinOperationRef object) {
+				return createBuiltinOperationRefAdapter();
+			}
+			@Override
+			public Adapter caseDefinedOperationRef(DefinedOperationRef object) {
+				return createDefinedOperationRefAdapter();
+			}
+			@Override
+			public Adapter casePropertyFeatureRef(PropertyFeatureRef object) {
+				return createPropertyFeatureRefAdapter();
+			}
+			@Override
+			public Adapter caseDerivedPropertyRef(DerivedPropertyRef object) {
+				return createDerivedPropertyRefAdapter();
+			}
+			@Override
+			public Adapter caseMetamodelFeatureRef(MetamodelFeatureRef object) {
+				return createMetamodelFeatureRefAdapter();
+			}
+			@Override
 			public Adapter caseVariableDeclaration(VariableDeclaration object) {
 				return createVariableDeclarationAdapter();
 			}
@@ -260,6 +288,104 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOperationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.FeatureRef <em>Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.FeatureRef
+	 * @generated
+	 */
+	public Adapter createFeatureRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.OperationFeatureRef <em>Operation Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.OperationFeatureRef
+	 * @generated
+	 */
+	public Adapter createOperationFeatureRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.BuiltinOperationRef <em>Builtin Operation Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.BuiltinOperationRef
+	 * @generated
+	 */
+	public Adapter createBuiltinOperationRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.DefinedOperationRef <em>Defined Operation Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.DefinedOperationRef
+	 * @generated
+	 */
+	public Adapter createDefinedOperationRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.PropertyFeatureRef <em>Property Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.PropertyFeatureRef
+	 * @generated
+	 */
+	public Adapter createPropertyFeatureRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.DerivedPropertyRef <em>Derived Property Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.DerivedPropertyRef
+	 * @generated
+	 */
+	public Adapter createDerivedPropertyRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.MetamodelFeatureRef <em>Metamodel Feature Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.MetamodelFeatureRef
+	 * @generated
+	 */
+	public Adapter createMetamodelFeatureRefAdapter() {
 		return null;
 	}
 

@@ -6,11 +6,15 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 import com.google.common.collect.ImmutableMap;
 
+import efinder.core.utils.IRUtils;
 import efinder.core.visitor.AbstractIRVisitor;
 import efinder.ir.EFEnum;
+import efinder.ir.MetamodelFeatureRef;
+import efinder.ir.PropertyFeatureRef;
 import efinder.ir.ocl.BagLiteralExp;
 import efinder.ir.ocl.BooleanLiteralExp;
 import efinder.ir.ocl.CollectionCallExp;
@@ -171,7 +175,7 @@ public class UseExpressionsCompiler extends AbstractIRVisitor<Void, StringContex
 	public Void visitPropertyCallExp(PropertyCallExp self, StringContext input) {
 		compile(self.getSource(), input);
 		String name = self.getName();
-		EStructuralFeature feature = (EStructuralFeature) self.getFeature();
+		EStructuralFeature feature = IRUtils.getMetamodelFeatureOrNull(self.getFeature());
 		if (feature instanceof EAttribute) {
 			name = mapping.toUsePropertyName((EAttribute) feature);
 		} else if (feature instanceof EReference) {

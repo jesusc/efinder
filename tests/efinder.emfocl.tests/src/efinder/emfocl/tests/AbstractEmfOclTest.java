@@ -2,6 +2,9 @@ package efinder.emfocl.tests;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.eclipse.emf.common.util.URI;
@@ -23,7 +26,7 @@ public abstract class AbstractEmfOclTest {
 	 * @return
 	 */
 	protected Model loadOclDocument(@NonNull String fileName) {
-		return loadOclDocumentFromURI("efinder.emfocl.tests/resources/ocl/" + fileName);
+		return loadOclDocumentFromURI("efinder.emfocl.tests/resources/" + fileName);
 	}
 	
 	protected Model loadOclDocumentFromURI(@NonNull String uri) {
@@ -37,8 +40,15 @@ public abstract class AbstractEmfOclTest {
 		return pivot;
 	}
 
-	public OclTestOracle readTestOracle(@NonNull String fileName) throws IOException {
+	protected OclTestOracle readTestOracle(@NonNull String fileName) throws IOException {
 		return OclTestOracle.newTestOracle(fileName);
 	}
 	
+	protected void saveModel(String fileName, @NonNull Resource model) throws FileNotFoundException, IOException {
+		File f = new File(fileName);
+		if (! f.getParentFile().exists()) 
+			f.getParentFile().mkdirs();
+		model.save(new FileOutputStream(f), null);		
+	}
+
 }

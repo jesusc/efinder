@@ -12,6 +12,7 @@ Automatic-Module-Name: efinder.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: efinder.core,
  efinder.core.errors,
+ efinder.core.footprint,
  efinder.core.ir,
  efinder.core.management,
  efinder.core.utils,

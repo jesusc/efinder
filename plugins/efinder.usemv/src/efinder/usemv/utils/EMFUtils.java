@@ -148,9 +148,12 @@ public class EMFUtils {
 		} else if (isBoolean(dt)) {
 			boolean b = Boolean.parseBoolean(useValue);
 			dynamicSet(object, feature, b);
-		} else if (isFloating(dt)) {
+		} else if (isFloat(dt)) {
 			// This is not totally accurate: we use float to make sure that is compatible with both
 			float d = Float.parseFloat(useValue);
+			dynamicSet(object, feature, d);
+		} else if (isDouble(dt)) {
+			double d = Double.parseDouble(useValue);
 			dynamicSet(object, feature, d);
 		} else if (isBigDecimal(dt)) {
 			BigDecimal d = new BigDecimal(useValue);
@@ -185,8 +188,12 @@ public class EMFUtils {
 		return isBoolean(dt.getName());
 	}
 
-	private static boolean isFloating(EDataType dt) {
-		return isFloating(dt.getName()); 
+	private static boolean isFloat(EDataType dt) {
+		return isFloat(dt.getName()); 
+	}
+	
+	private static boolean isDouble(EDataType dt) {
+		return isDouble(dt.getName()); 
 	}
 	
 	private static void dynamicSet(@NonNull EObject object, EAttribute feature, Object newValue) {
@@ -295,9 +302,8 @@ public class EMFUtils {
 	public static boolean isInteger  (String type)   { return type.equals("EInt") || type.equals("Integer") || type.equals("IntegerObject") || type.equals("EIntegerObject") || type.endsWith("Integer"); }	
 	public static boolean isString   (String type)   { return type.equals("EString") || type.equals("String") || type.endsWith("String"); }	
 	public static boolean isBoolean  (String type)   { return type.equals("EBoolean") || type.equals("boolean") || type.equals("EBooleanObject") || type.equals("Boolean") || type.endsWith("Boolean"); }
-	public static boolean isFloating (String type)   { return type.equals("EFloat")  || type.equals("float")  || type.equals("EFloatObject")  || type.equals("Float")  || type.endsWith("Float") ||
-	                                                          type.equals("EDouble") || type.equals("double") || type.equals("EDoubleObject") || type.equals("Double") || type.endsWith("Double"); }
-//	public static boolean isFloating(String type) {	return type.equals("EDouble") || type.equals("Double") || type.equals("EFloat") || type.equals("Float"); }
+	public static boolean isFloat (String type)   { return type.equals("EFloat")  || type.equals("float")  || type.equals("EFloatObject")  || type.equals("Float")  || type.endsWith("Float"); }
+	public static boolean isDouble (String type)   { return type.equals("EDouble") || type.equals("double") || type.equals("EDoubleObject") || type.equals("Double") || type.endsWith("Double"); }
 
 	public static boolean isContainment(EObject object, String refname) {
 		return ((EReference) object.eClass().getEStructuralFeature(refname)).isContainment();

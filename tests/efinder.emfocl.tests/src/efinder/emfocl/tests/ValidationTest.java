@@ -1,14 +1,12 @@
 package efinder.emfocl.tests;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
 import org.junit.Test;
@@ -18,7 +16,6 @@ import org.junit.runners.Parameterized.Parameters;
 
 import efinder.core.EFinderModel;
 import efinder.core.IModelFinder.Result;
-import efinder.core.management.EMFModel;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.usemv.UseMvFinder;
 
@@ -34,9 +31,9 @@ public class ValidationTest extends AbstractEmfOclTest {
 			String name = oclFile.getName().replace(".ocl", ".yaml");
 			Path spec = f.resolveSibling(name);
 			if (spec.toFile().exists()) {
-				return new TestData(oclFile.getName(), spec.toFile());	
+				return new TestData("ocl/" + oclFile.getName(), spec.toFile());	
 			}
-			return new TestData(oclFile.getName(), null);
+			return new TestData("ocl/" + oclFile.getName(), null);
 		}).map(d -> new Object[] { d }).collect(Collectors.toList());
 	}
 	
@@ -80,8 +77,7 @@ public class ValidationTest extends AbstractEmfOclTest {
 		
 		// Save to debug, possibly use a flag
 		if (result.isSat()) {
-			Resource model = result.getWitness().getResource();
-			model.save(new FileOutputStream("outputs/" + data.getWitnessAsFileOutput()), null);
+			saveModel("outputs/" + data.getWitnessAsFileOutput(), result.getWitness().getResource());
 		}
 		
 		if (data.oracle != null ) {

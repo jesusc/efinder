@@ -2,7 +2,7 @@
  */
 package efinder.ir.ocl;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
+import efinder.ir.PropertyFeatureRef;
 
 
 /**
@@ -46,25 +46,25 @@ public interface PropertyCallExp extends CallExp {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Feature</b></em>' reference.
+	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Feature</em>' reference.
-	 * @see #setFeature(EStructuralFeature)
+	 * @return the value of the '<em>Feature</em>' containment reference.
+	 * @see #setFeature(PropertyFeatureRef)
 	 * @see efinder.ir.ocl.OclPackage#getPropertyCallExp_Feature()
-	 * @model transient="true"
+	 * @model containment="true"
 	 * @generated
 	 */
-	EStructuralFeature getFeature();
+	PropertyFeatureRef getFeature();
 
 	/**
-	 * Sets the value of the '{@link efinder.ir.ocl.PropertyCallExp#getFeature <em>Feature</em>}' reference.
+	 * Sets the value of the '{@link efinder.ir.ocl.PropertyCallExp#getFeature <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Feature</em>' reference.
+	 * @param value the new value of the '<em>Feature</em>' containment reference.
 	 * @see #getFeature()
 	 * @generated
 	 */
-	void setFeature(EStructuralFeature value);
+	void setFeature(PropertyFeatureRef value);
 
 } // PropertyCallExp

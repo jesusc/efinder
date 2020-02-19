@@ -31,6 +31,42 @@ public interface EfinderFactory extends EFactory {
 	Specification createSpecification();
 
 	/**
+	 * Returns a new object of class '<em>Builtin Operation Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Builtin Operation Ref</em>'.
+	 * @generated
+	 */
+	BuiltinOperationRef createBuiltinOperationRef();
+
+	/**
+	 * Returns a new object of class '<em>Defined Operation Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Defined Operation Ref</em>'.
+	 * @generated
+	 */
+	DefinedOperationRef createDefinedOperationRef();
+
+	/**
+	 * Returns a new object of class '<em>Derived Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Derived Property Ref</em>'.
+	 * @generated
+	 */
+	DerivedPropertyRef createDerivedPropertyRef();
+
+	/**
+	 * Returns a new object of class '<em>Metamodel Feature Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Metamodel Feature Ref</em>'.
+	 * @generated
+	 */
+	MetamodelFeatureRef createMetamodelFeatureRef();
+
+	/**
 	 * Returns a new object of class '<em>Variable Declaration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

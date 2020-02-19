@@ -583,6 +583,16 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
+	public EReference getOperationCallExp_Feature() {
+		return (EReference)operationCallExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getPropertyCallExp() {
 		return propertyCallExpEClass;
 	}
@@ -1174,6 +1184,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 
 		operationCallExpEClass = createEClass(OPERATION_CALL_EXP);
 		createEAttribute(operationCallExpEClass, OPERATION_CALL_EXP__NAME);
+		createEReference(operationCallExpEClass, OPERATION_CALL_EXP__FEATURE);
 
 		propertyCallExpEClass = createEClass(PROPERTY_CALL_EXP);
 		createEAttribute(propertyCallExpEClass, PROPERTY_CALL_EXP__NAME);
@@ -1354,10 +1365,11 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 
 		initEClass(operationCallExpEClass, OperationCallExp.class, "OperationCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getOperationCallExp_Name(), ecorePackage.getEString(), "name", null, 1, 1, OperationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOperationCallExp_Feature(), theEfinderPackage.getOperationFeatureRef(), null, "feature", null, 0, 1, OperationCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyCallExpEClass, PropertyCallExp.class, "PropertyCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPropertyCallExp_Name(), ecorePackage.getEString(), "name", null, 1, 1, PropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getPropertyCallExp_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 0, 1, PropertyCallExp.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyCallExp_Feature(), theEfinderPackage.getPropertyFeatureRef(), null, "feature", null, 0, 1, PropertyCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(collectionCallExpEClass, CollectionCallExp.class, "CollectionCallExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getCollectionCallExp_Name(), ecorePackage.getEString(), "name", null, 1, 1, CollectionCallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

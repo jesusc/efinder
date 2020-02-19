@@ -2,6 +2,8 @@
  */
 package efinder.ir.ocl;
 
+import efinder.ir.OperationFeatureRef;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -13,6 +15,7 @@ package efinder.ir.ocl;
  * </p>
  * <ul>
  *   <li>{@link efinder.ir.ocl.OperationCallExp#getName <em>Name</em>}</li>
+ *   <li>{@link efinder.ir.ocl.OperationCallExp#getFeature <em>Feature</em>}</li>
  * </ul>
  *
  * @see efinder.ir.ocl.OclPackage#getOperationCallExp()
@@ -41,5 +44,27 @@ public interface OperationCallExp extends AbstractOperationCallExp {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Feature</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Feature</em>' containment reference.
+	 * @see #setFeature(OperationFeatureRef)
+	 * @see efinder.ir.ocl.OclPackage#getOperationCallExp_Feature()
+	 * @model containment="true"
+	 * @generated
+	 */
+	OperationFeatureRef getFeature();
+
+	/**
+	 * Sets the value of the '{@link efinder.ir.ocl.OperationCallExp#getFeature <em>Feature</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Feature</em>' containment reference.
+	 * @see #getFeature()
+	 * @generated
+	 */
+	void setFeature(OperationFeatureRef value);
 
 } // OperationCallExp

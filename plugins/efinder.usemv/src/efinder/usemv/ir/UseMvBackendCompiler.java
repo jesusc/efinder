@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -19,10 +18,9 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import com.google.common.base.Preconditions;
 
-import efinder.core.EFinderModel;
 import efinder.core.errors.UnsupportedTranslationException;
+import efinder.core.footprint.IRFootprintedModel;
 import efinder.core.management.EcoreMetamodel;
-import efinder.core.utils.IRUtils;
 import efinder.ir.Constraint;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
@@ -52,8 +50,7 @@ import efinder.usemv.utils.EMFUtils;
  */
 public class UseMvBackendCompiler {
 
-	@NonNull 
-	private final EFinderModel ir;
+	private final IRFootprintedModel ir;
 	@NonNull
 	private final UseMapping mapping;
 	@NonNull
@@ -61,9 +58,9 @@ public class UseMvBackendCompiler {
 	@NonNull
 	private final UseExpressionsCompiler compiler;  
 	
-	public UseMvBackendCompiler(@NonNull EFinderModel ir) {
-		this.ir = ir;
-		this.mapping = new UseMapping(ir.getSpecification().getMetamodels());
+	public UseMvBackendCompiler(IRFootprintedModel model) {
+		this.ir = model;
+		this.mapping = new UseMapping(model.getSpecification().getMetamodels());
 		this.typeCompiler = new UseTypeCompiler(mapping);
 		this.compiler = new UseExpressionsCompiler(mapping, typeCompiler);
 	}
@@ -79,13 +76,13 @@ public class UseMvBackendCompiler {
 	}
 	
 	private UseModel doCompile() {
-		Specification spec = ir.getSpecification();
+		// Specification spec = ir.getSpecification();
 		
-		List<? extends EFClass> allClasses = getAllClasses(spec);
-		List<? extends EFEnum> allEnumerations = getAllEnumerations(spec);
+		List<? extends EFClass> allClasses = ir.getAllClasses(); // getAllClasses(spec);
+		List<? extends EFEnum> allEnumerations = ir.getAllEnumerations(); // getAllEnumerations(spec);
 		
-		Map<EFType, Collection<OclDerivedProperty>> properties = IRUtils.getDerivedPropertiesAsMap(spec);
-		Map<EFType, Collection<OclOperation>> operations = IRUtils.getOperationsAsMap(spec);		
+		Map<EFType, Collection<OclDerivedProperty>> properties = ir.getDerivedProperties(); // IRUtils.getDerivedPropertiesAsMap(spec);
+		Map<EFType, Collection<OclOperation>> operations = ir.getOperations(); // IRUtils.getOperationsAsMap(spec);		
 		
 		List<EAttribute> nonUndefined = new ArrayList<EAttribute>();		
 		
@@ -120,7 +117,7 @@ public class UseMvBackendCompiler {
 				text.append("attributes\n");
 				
 				ATTR:
-				for (EAttribute att : c.getEAttributes()) {
+				for (EAttribute att : ir.getAttributes(c)) {
 					if (! EMFUtils.isNullable(att)) {
 						nonUndefined.add(att);
 					}
@@ -186,7 +183,7 @@ public class UseMvBackendCompiler {
 		Set<AssociationData> alreadyCreated = new HashSet<>();
 		for (EFClass efc : allClasses) {
 			EClass c = efc.getKlass();
-			for (EReference ref : c.getEReferences()) {
+			for (EReference ref : ir.getReferences(c)) {
 				String associationType = ref.isContainment() ? "composition" : "association";
 				AssociationData assoc = mapping.getAssociation(ref);
 				if (alreadyCreated.contains(assoc))
@@ -205,23 +202,9 @@ public class UseMvBackendCompiler {
 		addConstraints(text);
 		addNullableConstraints(text, nonUndefined);
 		
-		EcoreMetamodel mm = toEcoreMetamodel(spec);		
+		EcoreMetamodel mm = toEcoreMetamodel(ir.getSpecification());		
 		return new UseModel(text.toString(), mapping, mm);
-	}
-		
-	private List<? extends EFClass> getAllClasses(Specification spec) {
-		return spec.getMetamodels().stream()
-				.flatMap(m -> m.getRoots().stream())
-				.flatMap(p -> p.getClasses().stream())
-				.collect(Collectors.toList());
-	}
-	
-	private List<? extends EFEnum> getAllEnumerations(Specification spec) {
-		return spec.getMetamodels().stream()
-				.flatMap(m -> m.getRoots().stream())
-				.flatMap(p -> p.getEnumerations().stream())
-				.collect(Collectors.toList());
-	}
+	}		
 	
 	private void addNullableConstraints(StringBuilder text, Collection<? extends EAttribute> nonUndefined) {
 		for (EAttribute att : nonUndefined) {

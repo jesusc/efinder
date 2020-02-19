@@ -35,6 +35,36 @@ abstract class Operation extends AbstractFunction {
 	val Parameter[*] parameters;
 }
 
+abstract class FeatureRef {
+	
+}
+
+abstract class OperationFeatureRef extends FeatureRef {
+	
+}
+
+class BuiltinOperationRef extends OperationFeatureRef {
+	
+}
+
+class DefinedOperationRef extends OperationFeatureRef {
+	ref Operation[1] operation;
+}
+
+abstract class PropertyFeatureRef extends FeatureRef {
+	
+}
+
+class DerivedPropertyRef extends PropertyFeatureRef {
+	ref DerivedProperty[1] property;	
+}
+
+class MetamodelFeatureRef extends PropertyFeatureRef {
+	ref ecore.EStructuralFeature[1] feature;	
+}
+
+
+
 class VariableDeclaration {
 	attr String[1] name;
 	val TypeRef[1] type;			
@@ -140,12 +170,14 @@ package ocl {
 	
 	class OperationCallExp extends AbstractOperationCallExp {
 		attr String[1] name;
+		val OperationFeatureRef[0..1] feature;
 	}
 	
 	class PropertyCallExp extends CallExp {
 		attr String[1] name;
 		// TODO: This holds an optional EStructuralFeature, do this in an EMF-agnostic way
-		transient ref ecore.EStructuralFeature[0..1] feature;
+		//transient ref ecore.EStructuralFeature[0..1] feature;
+		val PropertyFeatureRef[0..1] feature;
 	}
 
 	class CollectionCallExp extends AbstractOperationCallExp {

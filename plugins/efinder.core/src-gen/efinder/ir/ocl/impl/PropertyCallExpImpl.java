@@ -2,14 +2,14 @@
  */
 package efinder.ir.ocl.impl;
 
+import efinder.ir.PropertyFeatureRef;
 import efinder.ir.ocl.OclPackage;
 import efinder.ir.ocl.PropertyCallExp;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -49,14 +49,14 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' reference.
+	 * The cached value of the '{@link #getFeature() <em>Feature</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getFeature()
 	 * @generated
 	 * @ordered
 	 */
-	protected EStructuralFeature feature;
+	protected PropertyFeatureRef feature;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -106,15 +106,7 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 	 * @generated
 	 */
 	@Override
-	public EStructuralFeature getFeature() {
-		if (feature != null && feature.eIsProxy()) {
-			InternalEObject oldFeature = (InternalEObject)feature;
-			feature = (EStructuralFeature)eResolveProxy(oldFeature);
-			if (feature != oldFeature) {
-				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OclPackage.PROPERTY_CALL_EXP__FEATURE, oldFeature, feature));
-			}
-		}
+	public PropertyFeatureRef getFeature() {
 		return feature;
 	}
 
@@ -123,8 +115,14 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EStructuralFeature basicGetFeature() {
-		return feature;
+	public NotificationChain basicSetFeature(PropertyFeatureRef newFeature, NotificationChain msgs) {
+		PropertyFeatureRef oldFeature = feature;
+		feature = newFeature;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OclPackage.PROPERTY_CALL_EXP__FEATURE, oldFeature, newFeature);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
 	}
 
 	/**
@@ -133,11 +131,32 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 	 * @generated
 	 */
 	@Override
-	public void setFeature(EStructuralFeature newFeature) {
-		EStructuralFeature oldFeature = feature;
-		feature = newFeature;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, OclPackage.PROPERTY_CALL_EXP__FEATURE, oldFeature, feature));
+	public void setFeature(PropertyFeatureRef newFeature) {
+		if (newFeature != feature) {
+			NotificationChain msgs = null;
+			if (feature != null)
+				msgs = ((InternalEObject)feature).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OclPackage.PROPERTY_CALL_EXP__FEATURE, null, msgs);
+			if (newFeature != null)
+				msgs = ((InternalEObject)newFeature).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OclPackage.PROPERTY_CALL_EXP__FEATURE, null, msgs);
+			msgs = basicSetFeature(newFeature, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OclPackage.PROPERTY_CALL_EXP__FEATURE, newFeature, newFeature));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case OclPackage.PROPERTY_CALL_EXP__FEATURE:
+				return basicSetFeature(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -151,8 +170,7 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 			case OclPackage.PROPERTY_CALL_EXP__NAME:
 				return getName();
 			case OclPackage.PROPERTY_CALL_EXP__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
+				return getFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -169,7 +187,7 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 				setName((String)newValue);
 				return;
 			case OclPackage.PROPERTY_CALL_EXP__FEATURE:
-				setFeature((EStructuralFeature)newValue);
+				setFeature((PropertyFeatureRef)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -187,7 +205,7 @@ public class PropertyCallExpImpl extends CallExpImpl implements PropertyCallExp 
 				setName(NAME_EDEFAULT);
 				return;
 			case OclPackage.PROPERTY_CALL_EXP__FEATURE:
-				setFeature((EStructuralFeature)null);
+				setFeature((PropertyFeatureRef)null);
 				return;
 		}
 		super.eUnset(featureID);

@@ -2,13 +2,19 @@ package efinder.core;
 
 import org.eclipse.jdt.annotation.NonNull;
 
+import efinder.core.footprint.IFootprint;
 import efinder.core.management.EMFModel;
 
 public interface IModelFinder {
+		
+	@NonNull
+	public Result find(@NonNull EFinderModel spec, @NonNull IFootprint footprint);
 	
 	@NonNull
-	public Result find(@NonNull EFinderModel spec);
-	
+	default Result find(@NonNull EFinderModel spec) {
+		return find(spec, IFootprint.NULL_FOOTPRINT);
+	}
+
 	/**
 	 * @return A unique id to represent this particular backend.
 	 */

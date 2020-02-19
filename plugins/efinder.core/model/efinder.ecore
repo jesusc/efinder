@@ -27,6 +27,24 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
         eType="#//Parameter" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FeatureRef" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OperationFeatureRef" abstract="true"
+      eSuperTypes="#//FeatureRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BuiltinOperationRef" eSuperTypes="#//OperationFeatureRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DefinedOperationRef" eSuperTypes="#//OperationFeatureRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operation" lowerBound="1"
+        eType="#//Operation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PropertyFeatureRef" abstract="true"
+      eSuperTypes="#//FeatureRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DerivedPropertyRef" eSuperTypes="#//PropertyFeatureRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
+        eType="#//DerivedProperty"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="MetamodelFeatureRef" eSuperTypes="#//PropertyFeatureRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="VariableDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//TypeRef"
@@ -110,12 +128,14 @@
     <eClassifiers xsi:type="ecore:EClass" name="OperationCallExp" eSuperTypes="#//ocl/AbstractOperationCallExp">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="#//OperationFeatureRef"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="PropertyCallExp" eSuperTypes="#//ocl/CallExp">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"
-          transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="feature" eType="#//PropertyFeatureRef"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="CollectionCallExp" eSuperTypes="#//ocl/AbstractOperationCallExp">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"

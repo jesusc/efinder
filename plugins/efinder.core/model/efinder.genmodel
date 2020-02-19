@@ -26,6 +26,19 @@
     <genClasses image="false" ecoreClass="efinder.ecore#//Operation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Operation/parameters"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="efinder.ecore#//FeatureRef"/>
+    <genClasses image="false" ecoreClass="efinder.ecore#//OperationFeatureRef"/>
+    <genClasses ecoreClass="efinder.ecore#//BuiltinOperationRef"/>
+    <genClasses ecoreClass="efinder.ecore#//DefinedOperationRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//DefinedOperationRef/operation"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="efinder.ecore#//PropertyFeatureRef"/>
+    <genClasses ecoreClass="efinder.ecore#//DerivedPropertyRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//DerivedPropertyRef/property"/>
+    </genClasses>
+    <genClasses ecoreClass="efinder.ecore#//MetamodelFeatureRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//MetamodelFeatureRef/feature"/>
+    </genClasses>
     <genClasses ecoreClass="efinder.ecore#//VariableDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//VariableDeclaration/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//VariableDeclaration/type"/>
@@ -113,6 +126,7 @@
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/OperationCallExp">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//ocl/OperationCallExp/name"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/OperationCallExp/feature"/>
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/PropertyCallExp">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//ocl/PropertyCallExp/name"/>
