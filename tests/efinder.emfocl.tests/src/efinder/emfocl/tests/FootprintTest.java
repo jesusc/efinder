@@ -2,14 +2,10 @@ package efinder.emfocl.tests;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.ocl.pivot.Model;
@@ -36,6 +32,7 @@ public class FootprintTest extends AbstractEmfOclTest {
 		tests.add(new TestData("relschema-1.footprint.ocl"));
 		tests.add(new TestData("relschema-2.footprint.ocl"));
 		tests.add(new TestData("relschema-3.footprint.ocl"));
+		tests.add(new TestData("relschema-4.footprint.ocl")); /* Assertion: Base should not be in the footprint */
 		
 		return tests;
 	}

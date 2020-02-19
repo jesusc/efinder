@@ -1,5 +1,11 @@
 package efinder.core.footprint;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -37,6 +43,25 @@ public class FootprintComputation {
 		for (Constraint constraint : model.getSpecification().getConstaints()) {
 			OclConstraint oclConstraint = (OclConstraint) constraint;
 			visitElement(oclConstraint, footprint); 
+		}
+		
+		// Introduce intermediate, empty classes if needed to have a proper (implicit)
+		// inheritance hierarchy in the footprint
+		boolean changed = true;
+		while (changed) {
+			changed = false;
+			Set<? extends EClass> allClasses = footprint.getClasses();
+			for (EClass sub : allClasses) {
+				// TODO: Maybe this can be done a bit better checking each super-type individually to reduce the footprint size a bit
+				List<? extends EClass> superTypes = sub.getEAllSuperTypes();
+				if (!Collections.disjoint(allClasses, superTypes)) {
+					for (EClass sup : sub.getESuperTypes()) {
+						changed = changed || footprint.addClass(sup);						
+					}
+					if (changed)
+						break;
+				}			
+			}					
 		}
 				
 		return footprint;

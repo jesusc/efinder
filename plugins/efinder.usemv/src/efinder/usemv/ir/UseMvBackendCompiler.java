@@ -102,10 +102,11 @@ public class UseMvBackendCompiler {
 			
 			text.append("class ").append(mapping.toUseTypeName(c));
 			
-			if (! c.getESuperTypes().isEmpty()) {
+			List<? extends EClass> superTypes = ir.getSupertypes(c);
+			if (! superTypes.isEmpty()) {
 				text.append(" < ");
 				String separator = "";
-				for (EClass sc : c.getESuperTypes()) {
+				for (EClass sc : superTypes) {
 					text.append(separator).append(mapping.toUseTypeName(sc));
 					separator = ", ";
 			    }						

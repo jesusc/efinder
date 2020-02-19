@@ -55,6 +55,11 @@ public class IRFootprintedModel {
 		return c.getEReferences().stream().filter(footprint::hasFeature).collect(Collectors.toList());
 	}
 	
+	public List<? extends EClass> getSupertypes(@NonNull EClass c) {
+		return c.getESuperTypes().stream().filter(footprint::hasClass).collect(Collectors.toList());
+	}
+
+	
 	@NonNull
 	public List<? extends EFEnum> getAllEnumerations() {
 		Specification spec = model.getSpecification();

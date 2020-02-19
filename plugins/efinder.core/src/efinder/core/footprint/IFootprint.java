@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -52,6 +53,8 @@ public interface IFootprint {
 		public boolean addFeature(@NonNull EStructuralFeature f) {
 			Preconditions.checkNotNull(f);
 			addClass(f.getEContainingClass());
+			if (f instanceof EReference) 
+				addClass(((EReference) f).getEReferenceType());
 			return features.add(f);
 		}
 		
@@ -61,6 +64,14 @@ public interface IFootprint {
 			if (type instanceof EFClass) 
 				addClass(((EFClass) type).getKlass());			
 			return functions.add(function);
+		}
+
+		public Set<? extends EClass> getClasses() {
+			return this.classes;
+		}
+		
+		public Set<? extends EStructuralFeature> getFeatures() {
+			return features;
 		}
 	}
 
