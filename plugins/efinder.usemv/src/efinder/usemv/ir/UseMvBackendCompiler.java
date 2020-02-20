@@ -311,7 +311,9 @@ public class UseMvBackendCompiler {
 		if (type.equals("EInt") || type.equals("Integer") || type.equals("IntegerObject") || 
 				type.endsWith("Integer") || 
 				"java.lang.Integer".equals(dt.getInstanceClassName()) || "EIntegerObject".equals(dt.getName()) ||
-				"int".equals(dt.getInstanceClassName()))
+				"int".equals(dt.getInstanceClassName()) ||
+				"ELong".equals(type) || "Long".equalsIgnoreCase(type) ||
+				"EByte".equals(type))
 			return "Integer";
 		
 		if (type.equals("EBoolean") ||  "java.lang.Boolean".equals(dt.getInstanceClassName()) || "boolean".equals(dt.getInstanceClassName()) ) 
