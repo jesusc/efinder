@@ -13,8 +13,16 @@ import com.google.common.collect.ImmutableSet;
 
 import efinder.core.EFinderModel;
 import efinder.core.errors.Report;
+import efinder.core.footprint.IRFootprintedModel;
+import efinder.ir.Constraint;
+import efinder.ir.DerivedProperty;
+import efinder.ir.Operation;
 import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.IterateExp;
+import efinder.ir.ocl.OclConstraint;
+import efinder.ir.ocl.OclDerivedProperty;
+import efinder.ir.ocl.OclExpression;
+import efinder.ir.ocl.OclOperation;
 import efinder.ir.ocl.OperationCallExp;
 import efinder.ir.ocl.TupleLiteralExp;
 import efinder.ir.ocl.UnsupportedExp;
@@ -27,10 +35,38 @@ import efinder.ir.ocl.UnsupportedExp;
  */
 public class UseFeatureChecker {
 	
-	public Report check(@NonNull EFinderModel model) {
+	public Report check(@NonNull IRFootprintedModel model) {
 		Report report = new Report();
 		
-		TreeIterator<EObject> it = model.getSpecification().eAllContents();
+		for (Constraint c : model.getConstraints()) {
+			if (c instanceof OclConstraint) {
+				check(((OclConstraint) c).getExpression(), report);
+			} else {
+				report.addUnsupported("Constraint type not supported" + c.eClass().getName(), c, Report.Action.STOP, "constraint-lang");
+			}
+		}
+		
+		for (Operation c : model.getOperations()) {
+			if (c instanceof OclOperation) {
+				check(((OclOperation) c).getBody(), report);
+			} else {
+				report.addUnsupported("Operation type not supported" + c.eClass().getName(), c, Report.Action.STOP, "operation-lang");
+			}
+		}
+
+		for (DerivedProperty c : model.getDerivedProperties()) {
+			if (c instanceof OclDerivedProperty) {
+				check(((OclDerivedProperty) c).getBody(), report);
+			} else {
+				report.addUnsupported("Property type not supported" + c.eClass().getName(), c, Report.Action.STOP, "property-lang");
+			}
+		}
+		
+		return report;
+	}
+
+	private void check(@NonNull OclExpression expression, @NonNull Report report) {
+		TreeIterator<EObject> it = expression.eAllContents();
 		while (it.hasNext()) {
 			EObject obj = it.next();
 			if (obj instanceof CollectionCallExp) {
@@ -46,8 +82,6 @@ public class UseFeatureChecker {
 				report.addUnsupported(exp.getDescription(), obj, Report.Action.STOP, exp.getReason());
 			}
 		}
-		
-		return report;
 	}
 
 	private static ImmutableMap<String, String> unsupportedOperations = ImmutableMap.<String, String>builder()

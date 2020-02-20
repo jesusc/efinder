@@ -81,8 +81,8 @@ public class UseMvBackendCompiler {
 		List<? extends EFClass> allClasses = ir.getAllClasses(); // getAllClasses(spec);
 		List<? extends EFEnum> allEnumerations = ir.getAllEnumerations(); // getAllEnumerations(spec);
 		
-		Map<EFType, Collection<OclDerivedProperty>> properties = ir.getDerivedProperties(); // IRUtils.getDerivedPropertiesAsMap(spec);
-		Map<EFType, Collection<OclOperation>> operations = ir.getOperations(); // IRUtils.getOperationsAsMap(spec);		
+		Map<EFType, Collection<OclDerivedProperty>> properties = ir.getDerivedPropertiesAsMap(); // IRUtils.getDerivedPropertiesAsMap(spec);
+		Map<EFType, Collection<OclOperation>> operations = ir.getOperationsAsMap(); // IRUtils.getOperationsAsMap(spec);		
 		
 		List<EAttribute> nonUndefined = new ArrayList<EAttribute>();		
 		
@@ -241,7 +241,7 @@ public class UseMvBackendCompiler {
 	private void addConstraints(@NonNull StringBuilder text) {
 		text.append("constraints\n\n");
 		
-		for(Constraint c : ir.getSpecification().getConstaints()) {
+		for(Constraint c : ir.getConstraints()) {
 			if (c instanceof OclInvariant) {
 				OclInvariant invariant = (OclInvariant) c;
 				addContext(text, ir.getSpecification(), invariant);

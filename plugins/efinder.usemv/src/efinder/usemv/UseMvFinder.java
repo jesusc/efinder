@@ -76,7 +76,9 @@ public class UseMvFinder implements IModelFinder {
 	
 	@Override
 	public @NonNull Result find(@NonNull EFinderModel ir, @NonNull IFootprint footprint) {
-		Report report = new UseFeatureChecker().check(ir);
+		IRFootprintedModel footprintedModel = new IRFootprintedModel(ir, footprint);
+		
+		Report report = new UseFeatureChecker().check(footprintedModel);
 		if (report.isUnsupported()) {
 			return new UseMvResult.Unsupported(report);
 		}
@@ -84,7 +86,7 @@ public class UseMvFinder implements IModelFinder {
 		UseMvBackendCompiler compiler;
 		UseModel model;
 		try {
-			compiler = new UseMvBackendCompiler(new IRFootprintedModel(ir, footprint));		
+			compiler = new UseMvBackendCompiler(footprintedModel);		
 			model = compiler.compile();
 			System.out.println(model.getText());
 		} catch (UnsupportedTranslationException e) {

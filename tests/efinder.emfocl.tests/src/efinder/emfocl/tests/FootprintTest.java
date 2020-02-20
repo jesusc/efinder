@@ -33,6 +33,7 @@ public class FootprintTest extends AbstractEmfOclTest {
 		tests.add(new TestData("relschema-2.footprint.ocl"));
 		tests.add(new TestData("relschema-3.footprint.ocl"));
 		tests.add(new TestData("relschema-4.footprint.ocl")); /* Assertion: Base should not be in the footprint */
+		tests.add(new TestData("relschema-5.footprint.ocl")); 
 		
 		return tests;
 	}

@@ -12,9 +12,12 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import efinder.core.EFinderModel;
 import efinder.core.utils.IRUtils;
+import efinder.ir.Constraint;
+import efinder.ir.DerivedProperty;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
 import efinder.ir.EFType;
+import efinder.ir.Operation;
 import efinder.ir.Specification;
 import efinder.ir.ocl.OclDerivedProperty;
 import efinder.ir.ocl.OclOperation;
@@ -58,7 +61,6 @@ public class IRFootprintedModel {
 	public List<? extends EClass> getSupertypes(@NonNull EClass c) {
 		return c.getESuperTypes().stream().filter(footprint::hasClass).collect(Collectors.toList());
 	}
-
 	
 	@NonNull
 	public List<? extends EFEnum> getAllEnumerations() {
@@ -70,22 +72,38 @@ public class IRFootprintedModel {
 	}
 
 	@NonNull
-	public Map<EFType, Collection<OclDerivedProperty>> getDerivedProperties() {
+	public Map<EFType, Collection<OclDerivedProperty>> getDerivedPropertiesAsMap() {
 		Specification spec = model.getSpecification();
 		// TODO: Also filter derived properties according to whether they are touched by contrainst or not (this doesn't appear in IFootprint now)
 		return IRUtils.getDerivedPropertiesAsMap(spec, footprint);
 	}
 
 	@NonNull
-	public Map<EFType, Collection<OclOperation>> getOperations() {
+	public Map<EFType, Collection<OclOperation>> getOperationsAsMap() {
 		Specification spec = model.getSpecification();
 		return IRUtils.getOperationsAsMap(spec, footprint);		
+	}
+	
+	@NonNull
+	public List<? extends Operation> getOperations() {
+		Specification spec = model.getSpecification();
+		return spec.getOperations().stream().filter(footprint::hasFunction).collect(Collectors.toList());
+	}
+
+	@NonNull
+	public List<? extends DerivedProperty> getDerivedProperties() {
+		Specification spec = model.getSpecification();
+		return spec.getProperties().stream().filter(footprint::hasFunction).collect(Collectors.toList());
+	}
+
+	@NonNull
+	public List<? extends Constraint> getConstraints() {
+		return getSpecification().getConstaints();
 	}
 
 	@NonNull
 	public Specification getSpecification() {
 		return model.getSpecification();
 	}
-
 	
 }
