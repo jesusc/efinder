@@ -1,16 +1,20 @@
 package efinder.core.ir;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
 
 import efinder.ir.BagTypeRef;
 import efinder.ir.EFClass;
@@ -62,6 +66,11 @@ import efinder.ir.ocl.VarExp;
 import efinder.ir.VariableDeclaration;
 
 public class IRBuilder {
+
+	public static ImmutableMap<String, EDataType> DataTypes = ImmutableMap.<String, EDataType>builder().
+			put("String", EcorePackage.Literals.ESTRING).
+			put("Integer", EcorePackage.Literals.EINT).
+			put("Boolean", EcorePackage.Literals.EBOOLEAN).build();	
 
 	@NonNull
 	public static Specification newSpecification() {
@@ -136,7 +145,7 @@ public class IRBuilder {
 	}
 
 	@NonNull
-	public static OclExpression newModelElement(TypeRef t) {
+	public static ModelElement newModelElement(TypeRef t) {
 		ModelElement me = OclFactory.eINSTANCE.createModelElement();
 		me.setType(t);
 		return me;
@@ -167,7 +176,11 @@ public class IRBuilder {
 
 	// Expressions
 	
-	// TODO: Not very nice parameters?? Should be just one
+	@NonNull
+	public static OperatorCallExp newOperatorCallExp(OperatorKind operator, @NonNull OclExpression source, @NonNull OclExpression arg) {
+		return newOperatorCallExp(operator, source, Collections.singletonList(arg));
+	}
+	
 	@NonNull
 	public static OperatorCallExp newOperatorCallExp(OperatorKind operator, @NonNull OclExpression source, List<? extends OclExpression> args) {
 		OperatorCallExp call = OclFactory.eINSTANCE.createOperatorCallExp();
@@ -222,7 +235,10 @@ public class IRBuilder {
 		return call;
 	}
 
-
+	public static efinder.ir.ocl.@NonNull OperationCallExp newOperationCallExp(@NonNull String name, @NonNull OclExpression source) {
+		return newOperationCallExp(name, source, Collections.emptyList());
+	}
+	
 	public static efinder.ir.ocl.@NonNull OperationCallExp newOperationCallExp(@NonNull String name, @NonNull OclExpression source, List<? extends OclExpression> args) {
 		efinder.ir.ocl.OperationCallExp call = OclFactory.eINSTANCE.createOperationCallExp();
 		call.setName(name);

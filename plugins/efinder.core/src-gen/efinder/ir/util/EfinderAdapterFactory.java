@@ -156,6 +156,14 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 				return createEFEnumLiteralAdapter();
 			}
 			@Override
+			public Adapter caseEFTupleType(EFTupleType object) {
+				return createEFTupleTypeAdapter();
+			}
+			@Override
+			public Adapter caseTupleTypeElement(TupleTypeElement object) {
+				return createTupleTypeElementAdapter();
+			}
+			@Override
 			public Adapter caseTypeRef(TypeRef object) {
 				return createTypeRefAdapter();
 			}
@@ -512,6 +520,34 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEFEnumLiteralAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.EFTupleType <em>EF Tuple Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.EFTupleType
+	 * @generated
+	 */
+	public Adapter createEFTupleTypeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.TupleTypeElement <em>Tuple Type Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.TupleTypeElement
+	 * @generated
+	 */
+	public Adapter createTupleTypeElementAdapter() {
 		return null;
 	}
 

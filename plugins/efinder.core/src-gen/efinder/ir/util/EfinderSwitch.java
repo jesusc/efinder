@@ -217,6 +217,19 @@ public class EfinderSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EfinderPackage.EF_TUPLE_TYPE: {
+				EFTupleType efTupleType = (EFTupleType)theEObject;
+				T result = caseEFTupleType(efTupleType);
+				if (result == null) result = caseEFType(efTupleType);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case EfinderPackage.TUPLE_TYPE_ELEMENT: {
+				TupleTypeElement tupleTypeElement = (TupleTypeElement)theEObject;
+				T result = caseTupleTypeElement(tupleTypeElement);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EfinderPackage.TYPE_REF: {
 				TypeRef typeRef = (TypeRef)theEObject;
 				T result = caseTypeRef(typeRef);
@@ -607,6 +620,36 @@ public class EfinderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseEFEnumLiteral(EFEnumLiteral object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>EF Tuple Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>EF Tuple Type</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseEFTupleType(EFTupleType object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple Type Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple Type Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTupleTypeElement(TupleTypeElement object) {
 		return null;
 	}
 

@@ -17,6 +17,7 @@ import org.junit.runners.Parameterized.Parameters;
 import efinder.core.EFinderModel;
 import efinder.core.IModelFinder.Result;
 import efinder.emfocl.PivotOclCompiler;
+import efinder.emfocl.runner.EFinderRunner;
 import efinder.usemv.UseMvFinder;
 
 @RunWith(Parameterized.class)
@@ -65,15 +66,16 @@ public class ValidationTest extends AbstractEmfOclTest {
 	@Test
 	public void testValidation() throws IOException {
 		Model pivot = loadOclDocument(data.oclFileName);
-		
-		PivotOclCompiler compiler = new PivotOclCompiler(pivot);
-		EFinderModel ir = compiler.compile();
 
 		// Assume that in all tests there is a root class called Model
 		TestBoundsProvider boundsProvider = new TestBoundsProvider().withInterval("Model", 1, 1); 
 		UseMvFinder finder = new UseMvFinder().withBoundsProvider(boundsProvider);
 				
-		Result result = finder.find(ir);
+		EFinderRunner runner = EFinderRunner.
+				withOclModel(pivot).
+				withFinder(finder);
+		
+		Result result = runner.find();
 		
 		// Save to debug, possibly use a flag
 		if (result.isSat()) {

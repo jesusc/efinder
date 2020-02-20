@@ -16,6 +16,7 @@ import efinder.ir.EFEnumLiteral;
 import efinder.ir.EFMetamodel;
 import efinder.ir.EFPackage;
 import efinder.ir.EFPrimitiveType;
+import efinder.ir.EFTupleType;
 import efinder.ir.EFType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.EfinderPackage;
@@ -31,6 +32,7 @@ import efinder.ir.PropertyFeatureRef;
 import efinder.ir.SequenceTypeRef;
 import efinder.ir.SetTypeRef;
 import efinder.ir.Specification;
+import efinder.ir.TupleTypeElement;
 import efinder.ir.TypeRef;
 import efinder.ir.TypedElement;
 import efinder.ir.VariableDeclaration;
@@ -212,6 +214,20 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass efTupleTypeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleTypeElementEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass typeRefEClass = null;
 
 	/**
@@ -366,7 +382,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getSpecification_Properties() {
+	public EReference getSpecification_Temporary() {
 		return (EReference)specificationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -376,7 +392,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getSpecification_Operations() {
+	public EReference getSpecification_Properties() {
 		return (EReference)specificationEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -386,8 +402,28 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getSpecification_PrimitiveTypes() {
+	public EReference getSpecification_Operations() {
 		return (EReference)specificationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSpecification_PrimitiveTypes() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getSpecification_TupleTypes() {
+		return (EReference)specificationEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -796,6 +832,66 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getEFTupleType() {
+		return efTupleTypeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getEFTupleType_Id() {
+		return (EAttribute)efTupleTypeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getEFTupleType_Elements() {
+		return (EReference)efTupleTypeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTupleTypeElement() {
+		return tupleTypeElementEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTupleTypeElement_Name() {
+		return (EAttribute)tupleTypeElementEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTupleTypeElement_Type() {
+		return (EReference)tupleTypeElementEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getTypeRef() {
 		return typeRefEClass;
 	}
@@ -922,9 +1018,11 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		specificationEClass = createEClass(SPECIFICATION);
 		createEReference(specificationEClass, SPECIFICATION__METAMODELS);
 		createEReference(specificationEClass, SPECIFICATION__CONSTAINTS);
+		createEReference(specificationEClass, SPECIFICATION__TEMPORARY);
 		createEReference(specificationEClass, SPECIFICATION__PROPERTIES);
 		createEReference(specificationEClass, SPECIFICATION__OPERATIONS);
 		createEReference(specificationEClass, SPECIFICATION__PRIMITIVE_TYPES);
+		createEReference(specificationEClass, SPECIFICATION__TUPLE_TYPES);
 
 		constraintEClass = createEClass(CONSTRAINT);
 		createEAttribute(constraintEClass, CONSTRAINT__NAME);
@@ -986,6 +1084,14 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 
 		efEnumLiteralEClass = createEClass(EF_ENUM_LITERAL);
 		createEAttribute(efEnumLiteralEClass, EF_ENUM_LITERAL__NAME);
+
+		efTupleTypeEClass = createEClass(EF_TUPLE_TYPE);
+		createEAttribute(efTupleTypeEClass, EF_TUPLE_TYPE__ID);
+		createEReference(efTupleTypeEClass, EF_TUPLE_TYPE__ELEMENTS);
+
+		tupleTypeElementEClass = createEClass(TUPLE_TYPE_ELEMENT);
+		createEAttribute(tupleTypeElementEClass, TUPLE_TYPE_ELEMENT__NAME);
+		createEReference(tupleTypeElementEClass, TUPLE_TYPE_ELEMENT__TYPE);
 
 		typeRefEClass = createEClass(TYPE_REF);
 
@@ -1053,6 +1159,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		efClassEClass.getESuperTypes().add(this.getEFType());
 		efPrimitiveTypeEClass.getESuperTypes().add(this.getEFType());
 		efEnumEClass.getESuperTypes().add(this.getEFType());
+		efTupleTypeEClass.getESuperTypes().add(this.getEFType());
 		metaTypeRefEClass.getESuperTypes().add(this.getTypeRef());
 		invalidTypeRefEClass.getESuperTypes().add(this.getTypeRef());
 		collectionTypeRefEClass.getESuperTypes().add(this.getTypeRef());
@@ -1065,9 +1172,11 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecification_Metamodels(), this.getEFMetamodel(), null, "metamodels", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_Constaints(), this.getConstraint(), null, "constaints", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecification_Temporary(), this.getEFClass(), null, "temporary", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_Properties(), this.getDerivedProperty(), null, "properties", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_Operations(), this.getOperation(), null, "operations", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_PrimitiveTypes(), this.getEFPrimitiveType(), null, "primitiveTypes", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecification_TupleTypes(), this.getEFTupleType(), null, "tupleTypes", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(constraintEClass, Constraint.class, "Constraint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConstraint_Name(), ecorePackage.getEString(), "name", null, 1, 1, Constraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1129,6 +1238,14 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 
 		initEClass(efEnumLiteralEClass, EFEnumLiteral.class, "EFEnumLiteral", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getEFEnumLiteral_Name(), ecorePackage.getEString(), "name", null, 1, 1, EFEnumLiteral.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(efTupleTypeEClass, EFTupleType.class, "EFTupleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getEFTupleType_Id(), ecorePackage.getEString(), "id", null, 1, 1, EFTupleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getEFTupleType_Elements(), this.getTupleTypeElement(), null, "elements", null, 0, -1, EFTupleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(tupleTypeElementEClass, TupleTypeElement.class, "TupleTypeElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTupleTypeElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, TupleTypeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTupleTypeElement_Type(), this.getTypeRef(), null, "type", null, 1, 1, TupleTypeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(typeRefEClass, TypeRef.class, "TypeRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

@@ -1,8 +1,12 @@
 package efinder.core;
 
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.annotation.NonNull;
+
+import com.google.common.collect.ImmutableMap;
 
 import efinder.ir.Specification;
 
@@ -15,7 +19,7 @@ import efinder.ir.Specification;
 public class EFinderModel {
 
 	private @NonNull Specification specification;
-
+	
 	public EFinderModel(@NonNull Specification specification) {
 		this.specification = specification;
 	}

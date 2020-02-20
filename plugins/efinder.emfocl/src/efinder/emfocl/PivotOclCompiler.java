@@ -66,6 +66,7 @@ import org.eclipse.ocl.pivot.StringLiteralExp;
 import org.eclipse.ocl.pivot.TemplateParameter;
 import org.eclipse.ocl.pivot.TupleLiteralExp;
 import org.eclipse.ocl.pivot.TupleLiteralPart;
+import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
 import org.eclipse.ocl.pivot.Variable;
@@ -87,6 +88,8 @@ import efinder.core.errors.InvalidModelException;
 import efinder.core.errors.Report;
 import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.ir.IRBuilder;
+import efinder.core.utils.IRUtils;
+import efinder.core.utils.IRUtils.TupleTypeHandler;
 import efinder.ir.AbstractFunction;
 import efinder.ir.DefinedOperationRef;
 import efinder.ir.DerivedPropertyRef;
@@ -95,6 +98,7 @@ import efinder.ir.EFEnum;
 import efinder.ir.EFEnumLiteral;
 import efinder.ir.EFPackage;
 import efinder.ir.EFPrimitiveType;
+import efinder.ir.EFTupleType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.MetaTypeRef;
 import efinder.ir.Specification;
@@ -167,6 +171,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			}
 		}
 		
+		visitor.specification.getTupleTypes().addAll(metamodelContext.tupleTypes.values());	
 		visitor.specification.getPrimitiveTypes().addAll(metamodelContext.primitiveTypes.values());
 
 		ctx.applyPending();
@@ -209,6 +214,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		private final Map<EEnum, EFEnum> enums = new HashMap<>();
 		@NonNull
 		private final Map<String, EFPrimitiveType> primitiveTypes = new HashMap<>();
+		@NonNull
+		private final Map<String, EFTupleType> tupleTypes = new HashMap<>();
 		@NonNull 
 		private final Registry registry;
 				
@@ -270,7 +277,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			if (t instanceof CollectionType) {
 				CollectionType ct = (CollectionType) t;
 				return getCollectionType(ct);
-			} if (t instanceof PrimitiveType || (t instanceof DataType && !(t instanceof Enumeration))) {
+			} else if (t instanceof TupleType) {
+				TupleType tt = (TupleType) t;
+				return IRBuilder.newMetaTypeRef(getTupleType(tt));
+			} else if (t instanceof PrimitiveType || (t instanceof DataType && !(t instanceof Enumeration))) {
 				DataType pt = (DataType) t;
 				return IRBuilder.newMetaTypeRef(getOrCreatePrimitiveType(pt.getName()));
 			} else if (t instanceof Enumeration) {
@@ -282,6 +292,25 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			}
 			
 			throw new UnsupportedOperationException("No support for: " + t);				
+		}
+
+
+		@NonNull
+		public EFTupleType getTupleType(TupleType tt) {		
+			TupleTypeHandler handler = getTupleTypeHandler(tt);
+			EFTupleType eft = tupleTypes.computeIfAbsent(handler.getId(), (k) -> handler.toType());
+			return eft;
+		}
+		
+		@NonNull
+		protected TupleTypeHandler getTupleTypeHandler(TupleType tt) {
+			Map<String, TypeRef> prop2types = new HashMap<String, TypeRef>();
+			for (Property property : tt.getOwnedProperties()) {
+				prop2types.put(property.getName(), getType(property.getType()));
+			}
+			
+			TupleTypeHandler handler = IRUtils.getTupleTypeHandler(prop2types);
+			return handler;
 		}
 				
 		@NonNull
@@ -384,6 +413,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			pkg.getEnumerations().add(r);
 			enums.put((EEnum) enum_, r);
 		}
+
 	}
 
 	private static class ModelImporter extends AbstractExtendingVisitor<Void, MetamodelContext> {
@@ -925,7 +955,9 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 
 		@Override
 		public OclExpression visitTupleLiteralExp(@NonNull TupleLiteralExp object) {
-			// object.getType() ==> TupleType
+			TupleType tt = (TupleType) object.getType();
+			EFTupleType eft = context.metamodels.getTupleType(tt);		
+			
 			efinder.ir.ocl.TupleLiteralExp tuple = IRBuilder.newTupleLiteral();
 			for (TupleLiteralPart tupleLiteralPart : object.getOwnedParts()) {
 				TuplePart part = OclFactory.eINSTANCE.createTuplePart();
@@ -933,6 +965,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				part.setValue(toExpression(tupleLiteralPart.getOwnedInit()));
 				tuple.getParts().add(part);
 			}
+
+			tuple.setType(eft);
 			
 			return tuple;
 		}

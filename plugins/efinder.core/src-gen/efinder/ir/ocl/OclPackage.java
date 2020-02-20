@@ -1366,13 +1366,22 @@ public interface OclPackage extends EPackage {
 	int TUPLE_LITERAL_EXP = 27;
 
 	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__TYPE = LITERAL_EXP_FEATURE_COUNT + 0;
+
+	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP__PARTS = LITERAL_EXP_FEATURE_COUNT + 0;
+	int TUPLE_LITERAL_EXP__PARTS = LITERAL_EXP_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Tuple Literal Exp</em>' class.
@@ -1381,7 +1390,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 1;
+	int TUPLE_LITERAL_EXP_FEATURE_COUNT = LITERAL_EXP_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>Tuple Literal Exp</em>' class.
@@ -2376,6 +2385,17 @@ public interface OclPackage extends EPackage {
 	EClass getTupleLiteralExp();
 
 	/**
+	 * Returns the meta object for the reference '{@link efinder.ir.ocl.TupleLiteralExp#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see efinder.ir.ocl.TupleLiteralExp#getType()
+	 * @see #getTupleLiteralExp()
+	 * @generated
+	 */
+	EReference getTupleLiteralExp_Type();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link efinder.ir.ocl.TupleLiteralExp#getParts <em>Parts</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3113,6 +3133,14 @@ public interface OclPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TUPLE_LITERAL_EXP = eINSTANCE.getTupleLiteralExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_LITERAL_EXP__TYPE = eINSTANCE.getTupleLiteralExp_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.

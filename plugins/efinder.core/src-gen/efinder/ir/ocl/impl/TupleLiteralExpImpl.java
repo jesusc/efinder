@@ -2,12 +2,14 @@
  */
 package efinder.ir.ocl.impl;
 
+import efinder.ir.EFTupleType;
 import efinder.ir.ocl.OclPackage;
 import efinder.ir.ocl.TupleLiteralExp;
 import efinder.ir.ocl.TuplePart;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -15,6 +17,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -26,12 +29,22 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link efinder.ir.ocl.impl.TupleLiteralExpImpl#getType <em>Type</em>}</li>
  *   <li>{@link efinder.ir.ocl.impl.TupleLiteralExpImpl#getParts <em>Parts</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralExp {
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EFTupleType type;
 	/**
 	 * The cached value of the '{@link #getParts() <em>Parts</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -59,6 +72,46 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	protected EClass eStaticClass() {
 		return OclPackage.Literals.TUPLE_LITERAL_EXP;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EFTupleType getType() {
+		if (type != null && type.eIsProxy()) {
+			InternalEObject oldType = (InternalEObject)type;
+			type = (EFTupleType)eResolveProxy(oldType);
+			if (type != oldType) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, OclPackage.TUPLE_LITERAL_EXP__TYPE, oldType, type));
+			}
+		}
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EFTupleType basicGetType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setType(EFTupleType newType) {
+		EFTupleType oldType = type;
+		type = newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OclPackage.TUPLE_LITERAL_EXP__TYPE, oldType, type));
 	}
 
 	/**
@@ -96,6 +149,9 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
+			case OclPackage.TUPLE_LITERAL_EXP__TYPE:
+				if (resolve) return getType();
+				return basicGetType();
 			case OclPackage.TUPLE_LITERAL_EXP__PARTS:
 				return getParts();
 		}
@@ -111,6 +167,9 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
+			case OclPackage.TUPLE_LITERAL_EXP__TYPE:
+				setType((EFTupleType)newValue);
+				return;
 			case OclPackage.TUPLE_LITERAL_EXP__PARTS:
 				getParts().clear();
 				getParts().addAll((Collection<? extends TuplePart>)newValue);
@@ -127,6 +186,9 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
+			case OclPackage.TUPLE_LITERAL_EXP__TYPE:
+				setType((EFTupleType)null);
+				return;
 			case OclPackage.TUPLE_LITERAL_EXP__PARTS:
 				getParts().clear();
 				return;
@@ -142,6 +204,8 @@ public class TupleLiteralExpImpl extends LiteralExpImpl implements TupleLiteralE
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
+			case OclPackage.TUPLE_LITERAL_EXP__TYPE:
+				return type != null;
 			case OclPackage.TUPLE_LITERAL_EXP__PARTS:
 				return parts != null && !parts.isEmpty();
 		}

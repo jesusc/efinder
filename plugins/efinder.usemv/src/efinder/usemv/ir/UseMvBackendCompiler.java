@@ -60,7 +60,7 @@ public class UseMvBackendCompiler {
 	
 	public UseMvBackendCompiler(IRFootprintedModel model) {
 		this.ir = model;
-		this.mapping = new UseMapping(model.getSpecification().getMetamodels());
+		this.mapping = new UseMapping(ir);
 		this.typeCompiler = new UseTypeCompiler(mapping);
 		this.compiler = new UseExpressionsCompiler(mapping, typeCompiler);
 	}

@@ -69,6 +69,8 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 			case EfinderPackage.EF_PRIMITIVE_TYPE: return createEFPrimitiveType();
 			case EfinderPackage.EF_ENUM: return createEFEnum();
 			case EfinderPackage.EF_ENUM_LITERAL: return createEFEnumLiteral();
+			case EfinderPackage.EF_TUPLE_TYPE: return createEFTupleType();
+			case EfinderPackage.TUPLE_TYPE_ELEMENT: return createTupleTypeElement();
 			case EfinderPackage.META_TYPE_REF: return createMetaTypeRef();
 			case EfinderPackage.INVALID_TYPE_REF: return createInvalidTypeRef();
 			case EfinderPackage.SET_TYPE_REF: return createSetTypeRef();
@@ -221,6 +223,28 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public EFEnumLiteral createEFEnumLiteral() {
 		EFEnumLiteralImpl efEnumLiteral = new EFEnumLiteralImpl();
 		return efEnumLiteral;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EFTupleType createEFTupleType() {
+		EFTupleTypeImpl efTupleType = new EFTupleTypeImpl();
+		return efTupleType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public TupleTypeElement createTupleTypeElement() {
+		TupleTypeElementImpl tupleTypeElement = new TupleTypeElementImpl();
+		return tupleTypeElement;
 	}
 
 	/**

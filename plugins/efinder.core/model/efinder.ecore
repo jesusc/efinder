@@ -6,12 +6,16 @@
         eType="#//EFMetamodel" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constaints" upperBound="-1"
         eType="#//Constraint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporary" upperBound="-1"
+        eType="#//EFClass" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//DerivedProperty" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
         eType="#//Operation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveTypes" upperBound="-1"
         eType="#//EFPrimitiveType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tupleTypes" upperBound="-1"
+        eType="#//EFTupleType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -78,6 +82,16 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EFEnumLiteral">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EFTupleType" eSuperTypes="#//EFType">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//TupleTypeElement" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleTypeElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//TypeRef"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeRef" abstract="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="MetaTypeRef" eSuperTypes="#//TypeRef">
@@ -223,6 +237,8 @@
     <eClassifiers xsi:type="ecore:EClass" name="OclUndefined" eSuperTypes="#//ocl/LiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclInvalid" eSuperTypes="#//ocl/LiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExp" eSuperTypes="#//ocl/LiteralExp">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+          eType="#//EFTupleType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
           eType="#//ocl/TuplePart" containment="true"/>
     </eClassifiers>

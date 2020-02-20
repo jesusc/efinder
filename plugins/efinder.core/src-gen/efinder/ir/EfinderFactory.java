@@ -139,6 +139,24 @@ public interface EfinderFactory extends EFactory {
 	EFEnumLiteral createEFEnumLiteral();
 
 	/**
+	 * Returns a new object of class '<em>EF Tuple Type</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>EF Tuple Type</em>'.
+	 * @generated
+	 */
+	EFTupleType createEFTupleType();
+
+	/**
+	 * Returns a new object of class '<em>Tuple Type Element</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Type Element</em>'.
+	 * @generated
+	 */
+	TupleTypeElement createTupleTypeElement();
+
+	/**
 	 * Returns a new object of class '<em>Meta Type Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

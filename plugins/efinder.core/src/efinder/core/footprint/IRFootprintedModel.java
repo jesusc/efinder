@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -40,11 +41,13 @@ public class IRFootprintedModel {
 
 	@NonNull
 	public List<? extends EFClass> getAllClasses() {
-		Specification spec = model.getSpecification();
-		return spec.getMetamodels().stream()
-				.flatMap(m -> m.getRoots().stream())
-				.flatMap(p -> p.getClasses().stream())
-				.filter(c -> footprint.hasClass(c.getKlass()))
+		Specification spec = model.getSpecification();		
+		return Stream.concat(
+				spec.getTemporary().stream(), 
+				spec.getMetamodels().stream()
+					.flatMap(m -> m.getRoots().stream())
+					.flatMap(p -> p.getClasses().stream())
+					.filter(c -> footprint.hasClass(c.getKlass())))				
 				.collect(Collectors.toList());
 	}
 

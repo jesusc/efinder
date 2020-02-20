@@ -85,13 +85,22 @@ public interface EfinderPackage extends EPackage {
 	int SPECIFICATION__CONSTAINTS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Temporary</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__TEMPORARY = 2;
+
+	/**
 	 * The feature id for the '<em><b>Properties</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__PROPERTIES = 2;
+	int SPECIFICATION__PROPERTIES = 3;
 
 	/**
 	 * The feature id for the '<em><b>Operations</b></em>' containment reference list.
@@ -100,7 +109,7 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__OPERATIONS = 3;
+	int SPECIFICATION__OPERATIONS = 4;
 
 	/**
 	 * The feature id for the '<em><b>Primitive Types</b></em>' containment reference list.
@@ -109,7 +118,16 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__PRIMITIVE_TYPES = 4;
+	int SPECIFICATION__PRIMITIVE_TYPES = 5;
+
+	/**
+	 * The feature id for the '<em><b>Tuple Types</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SPECIFICATION__TUPLE_TYPES = 6;
 
 	/**
 	 * The number of structural features of the '<em>Specification</em>' class.
@@ -118,7 +136,7 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION_FEATURE_COUNT = 5;
+	int SPECIFICATION_FEATURE_COUNT = 7;
 
 	/**
 	 * The number of operations of the '<em>Specification</em>' class.
@@ -970,6 +988,98 @@ public interface EfinderPackage extends EPackage {
 	int EF_ENUM_LITERAL_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.impl.EFTupleTypeImpl <em>EF Tuple Type</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.EFTupleTypeImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getEFTupleType()
+	 * @generated
+	 */
+	int EF_TUPLE_TYPE = 22;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EF_TUPLE_TYPE__ID = EF_TYPE_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Elements</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EF_TUPLE_TYPE__ELEMENTS = EF_TYPE_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>EF Tuple Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EF_TUPLE_TYPE_FEATURE_COUNT = EF_TYPE_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>EF Tuple Type</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EF_TUPLE_TYPE_OPERATION_COUNT = EF_TYPE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link efinder.ir.impl.TupleTypeElementImpl <em>Tuple Type Element</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.TupleTypeElementImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getTupleTypeElement()
+	 * @generated
+	 */
+	int TUPLE_TYPE_ELEMENT = 23;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_ELEMENT__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_ELEMENT__TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Type Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_ELEMENT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Tuple Type Element</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_TYPE_ELEMENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.impl.TypeRefImpl <em>Type Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -977,7 +1087,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTypeRef()
 	 * @generated
 	 */
-	int TYPE_REF = 22;
+	int TYPE_REF = 24;
 
 	/**
 	 * The number of structural features of the '<em>Type Ref</em>' class.
@@ -1005,7 +1115,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetaTypeRef()
 	 * @generated
 	 */
-	int META_TYPE_REF = 23;
+	int META_TYPE_REF = 25;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1042,7 +1152,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
 	 * @generated
 	 */
-	int INVALID_TYPE_REF = 24;
+	int INVALID_TYPE_REF = 26;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type Ref</em>' class.
@@ -1070,7 +1180,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getCollectionTypeRef()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF = 25;
+	int COLLECTION_TYPE_REF = 27;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1107,7 +1217,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSetTypeRef()
 	 * @generated
 	 */
-	int SET_TYPE_REF = 26;
+	int SET_TYPE_REF = 28;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1144,7 +1254,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSequenceTypeRef()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE_REF = 27;
+	int SEQUENCE_TYPE_REF = 29;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1181,7 +1291,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBagTypeRef()
 	 * @generated
 	 */
-	int BAG_TYPE_REF = 28;
+	int BAG_TYPE_REF = 30;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1218,7 +1328,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOrderedSetTypeRef()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE_REF = 29;
+	int ORDERED_SET_TYPE_REF = 31;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1281,6 +1391,17 @@ public interface EfinderPackage extends EPackage {
 	EReference getSpecification_Constaints();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getTemporary <em>Temporary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Temporary</em>'.
+	 * @see efinder.ir.Specification#getTemporary()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_Temporary();
+
+	/**
 	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getProperties <em>Properties</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1312,6 +1433,17 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSpecification_PrimitiveTypes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getTupleTypes <em>Tuple Types</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Tuple Types</em>'.
+	 * @see efinder.ir.Specification#getTupleTypes()
+	 * @see #getSpecification()
+	 * @generated
+	 */
+	EReference getSpecification_TupleTypes();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.Constraint <em>Constraint</em>}'.
@@ -1733,6 +1865,70 @@ public interface EfinderPackage extends EPackage {
 	EAttribute getEFEnumLiteral_Name();
 
 	/**
+	 * Returns the meta object for class '{@link efinder.ir.EFTupleType <em>EF Tuple Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>EF Tuple Type</em>'.
+	 * @see efinder.ir.EFTupleType
+	 * @generated
+	 */
+	EClass getEFTupleType();
+
+	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.EFTupleType#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see efinder.ir.EFTupleType#getId()
+	 * @see #getEFTupleType()
+	 * @generated
+	 */
+	EAttribute getEFTupleType_Id();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.EFTupleType#getElements <em>Elements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Elements</em>'.
+	 * @see efinder.ir.EFTupleType#getElements()
+	 * @see #getEFTupleType()
+	 * @generated
+	 */
+	EReference getEFTupleType_Elements();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.TupleTypeElement <em>Tuple Type Element</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tuple Type Element</em>'.
+	 * @see efinder.ir.TupleTypeElement
+	 * @generated
+	 */
+	EClass getTupleTypeElement();
+
+	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.TupleTypeElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see efinder.ir.TupleTypeElement#getName()
+	 * @see #getTupleTypeElement()
+	 * @generated
+	 */
+	EAttribute getTupleTypeElement_Name();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.TupleTypeElement#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Type</em>'.
+	 * @see efinder.ir.TupleTypeElement#getType()
+	 * @see #getTupleTypeElement()
+	 * @generated
+	 */
+	EReference getTupleTypeElement_Type();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.TypeRef <em>Type Ref</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1884,6 +2080,14 @@ public interface EfinderPackage extends EPackage {
 		EReference SPECIFICATION__CONSTAINTS = eINSTANCE.getSpecification_Constaints();
 
 		/**
+		 * The meta object literal for the '<em><b>Temporary</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__TEMPORARY = eINSTANCE.getSpecification_Temporary();
+
+		/**
 		 * The meta object literal for the '<em><b>Properties</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1906,6 +2110,14 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFICATION__PRIMITIVE_TYPES = eINSTANCE.getSpecification_PrimitiveTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Tuple Types</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference SPECIFICATION__TUPLE_TYPES = eINSTANCE.getSpecification_TupleTypes();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.ConstraintImpl <em>Constraint</em>}' class.
@@ -2268,6 +2480,58 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EF_ENUM_LITERAL__NAME = eINSTANCE.getEFEnumLiteral_Name();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.EFTupleTypeImpl <em>EF Tuple Type</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.EFTupleTypeImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getEFTupleType()
+		 * @generated
+		 */
+		EClass EF_TUPLE_TYPE = eINSTANCE.getEFTupleType();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EF_TUPLE_TYPE__ID = eINSTANCE.getEFTupleType_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EF_TUPLE_TYPE__ELEMENTS = eINSTANCE.getEFTupleType_Elements();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.TupleTypeElementImpl <em>Tuple Type Element</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.TupleTypeElementImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getTupleTypeElement()
+		 * @generated
+		 */
+		EClass TUPLE_TYPE_ELEMENT = eINSTANCE.getTupleTypeElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TUPLE_TYPE_ELEMENT__NAME = eINSTANCE.getTupleTypeElement_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_TYPE_ELEMENT__TYPE = eINSTANCE.getTupleTypeElement_Type();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.TypeRefImpl <em>Type Ref</em>}' class.

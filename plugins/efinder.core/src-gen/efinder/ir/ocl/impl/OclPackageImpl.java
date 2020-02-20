@@ -991,8 +991,18 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getTupleLiteralExp_Parts() {
+	public EReference getTupleLiteralExp_Type() {
 		return (EReference)tupleLiteralExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTupleLiteralExp_Parts() {
+		return (EReference)tupleLiteralExpEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1280,6 +1290,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		oclInvalidEClass = createEClass(OCL_INVALID);
 
 		tupleLiteralExpEClass = createEClass(TUPLE_LITERAL_EXP);
+		createEReference(tupleLiteralExpEClass, TUPLE_LITERAL_EXP__TYPE);
 		createEReference(tupleLiteralExpEClass, TUPLE_LITERAL_EXP__PARTS);
 
 		tuplePartEClass = createEClass(TUPLE_PART);
@@ -1466,6 +1477,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		initEClass(oclInvalidEClass, OclInvalid.class, "OclInvalid", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(tupleLiteralExpEClass, TupleLiteralExp.class, "TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTupleLiteralExp_Type(), theEfinderPackage.getEFTupleType(), null, "type", null, 1, 1, TupleLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTupleLiteralExp_Parts(), this.getTuplePart(), null, "parts", null, 0, -1, TupleLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tuplePartEClass, TuplePart.class, "TuplePart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

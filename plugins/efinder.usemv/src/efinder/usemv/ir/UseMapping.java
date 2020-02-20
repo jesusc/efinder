@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
@@ -15,6 +16,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
+import efinder.core.footprint.IRFootprintedModel;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
 import efinder.ir.EFEnumLiteral;
@@ -43,8 +45,10 @@ public class UseMapping {
 	@NonNull
 	private final String modelName;	
 
-	public UseMapping(@NonNull List<? extends EFMetamodel> metamodels) {
+	public UseMapping(IRFootprintedModel ir) {
+		List<? extends EFMetamodel> metamodels = ir.getSpecification().getMetamodels();
 		mapMetamodels(metamodels);
+		ir.getSpecification().getTemporary().forEach(c -> eclassifier2use.put(c.getKlass(), UseReservedWords.toUseName(c.getKlass().getName())));
 		this.modelName = UseReservedWords.toUseName(metamodels.get(0).getRoots().get(0).getPkg().getName());
 	}
 

@@ -4,8 +4,10 @@ package efinder.ir.impl;
 
 import efinder.ir.Constraint;
 import efinder.ir.DerivedProperty;
+import efinder.ir.EFClass;
 import efinder.ir.EFMetamodel;
 import efinder.ir.EFPrimitiveType;
+import efinder.ir.EFTupleType;
 import efinder.ir.EfinderPackage;
 import efinder.ir.Operation;
 import efinder.ir.Specification;
@@ -34,9 +36,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getMetamodels <em>Metamodels</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getConstaints <em>Constaints</em>}</li>
+ *   <li>{@link efinder.ir.impl.SpecificationImpl#getTemporary <em>Temporary</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getOperations <em>Operations</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getPrimitiveTypes <em>Primitive Types</em>}</li>
+ *   <li>{@link efinder.ir.impl.SpecificationImpl#getTupleTypes <em>Tuple Types</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +65,16 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	 * @ordered
 	 */
 	protected EList<Constraint> constaints;
+
+	/**
+	 * The cached value of the '{@link #getTemporary() <em>Temporary</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTemporary()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EFClass> temporary;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -91,6 +105,16 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	 * @ordered
 	 */
 	protected EList<EFPrimitiveType> primitiveTypes;
+
+	/**
+	 * The cached value of the '{@link #getTupleTypes() <em>Tuple Types</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTupleTypes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<EFTupleType> tupleTypes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -143,6 +167,19 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	 * @generated
 	 */
 	@Override
+	public EList<EFClass> getTemporary() {
+		if (temporary == null) {
+			temporary = new EObjectContainmentEList<EFClass>(EFClass.class, this, EfinderPackage.SPECIFICATION__TEMPORARY);
+		}
+		return temporary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EList<DerivedProperty> getProperties() {
 		if (properties == null) {
 			properties = new EObjectContainmentEList<DerivedProperty>(DerivedProperty.class, this, EfinderPackage.SPECIFICATION__PROPERTIES);
@@ -182,18 +219,35 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	 * @generated
 	 */
 	@Override
+	public EList<EFTupleType> getTupleTypes() {
+		if (tupleTypes == null) {
+			tupleTypes = new EObjectContainmentEList<EFTupleType>(EFTupleType.class, this, EfinderPackage.SPECIFICATION__TUPLE_TYPES);
+		}
+		return tupleTypes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case EfinderPackage.SPECIFICATION__METAMODELS:
 				return ((InternalEList<?>)getMetamodels()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__CONSTAINTS:
 				return ((InternalEList<?>)getConstaints()).basicRemove(otherEnd, msgs);
+			case EfinderPackage.SPECIFICATION__TEMPORARY:
+				return ((InternalEList<?>)getTemporary()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__OPERATIONS:
 				return ((InternalEList<?>)getOperations()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__PRIMITIVE_TYPES:
 				return ((InternalEList<?>)getPrimitiveTypes()).basicRemove(otherEnd, msgs);
+			case EfinderPackage.SPECIFICATION__TUPLE_TYPES:
+				return ((InternalEList<?>)getTupleTypes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -210,12 +264,16 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				return getMetamodels();
 			case EfinderPackage.SPECIFICATION__CONSTAINTS:
 				return getConstaints();
+			case EfinderPackage.SPECIFICATION__TEMPORARY:
+				return getTemporary();
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				return getProperties();
 			case EfinderPackage.SPECIFICATION__OPERATIONS:
 				return getOperations();
 			case EfinderPackage.SPECIFICATION__PRIMITIVE_TYPES:
 				return getPrimitiveTypes();
+			case EfinderPackage.SPECIFICATION__TUPLE_TYPES:
+				return getTupleTypes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -237,6 +295,10 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				getConstaints().clear();
 				getConstaints().addAll((Collection<? extends Constraint>)newValue);
 				return;
+			case EfinderPackage.SPECIFICATION__TEMPORARY:
+				getTemporary().clear();
+				getTemporary().addAll((Collection<? extends EFClass>)newValue);
+				return;
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				getProperties().clear();
 				getProperties().addAll((Collection<? extends DerivedProperty>)newValue);
@@ -248,6 +310,10 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 			case EfinderPackage.SPECIFICATION__PRIMITIVE_TYPES:
 				getPrimitiveTypes().clear();
 				getPrimitiveTypes().addAll((Collection<? extends EFPrimitiveType>)newValue);
+				return;
+			case EfinderPackage.SPECIFICATION__TUPLE_TYPES:
+				getTupleTypes().clear();
+				getTupleTypes().addAll((Collection<? extends EFTupleType>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -267,6 +333,9 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 			case EfinderPackage.SPECIFICATION__CONSTAINTS:
 				getConstaints().clear();
 				return;
+			case EfinderPackage.SPECIFICATION__TEMPORARY:
+				getTemporary().clear();
+				return;
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				getProperties().clear();
 				return;
@@ -275,6 +344,9 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				return;
 			case EfinderPackage.SPECIFICATION__PRIMITIVE_TYPES:
 				getPrimitiveTypes().clear();
+				return;
+			case EfinderPackage.SPECIFICATION__TUPLE_TYPES:
+				getTupleTypes().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -292,12 +364,16 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				return metamodels != null && !metamodels.isEmpty();
 			case EfinderPackage.SPECIFICATION__CONSTAINTS:
 				return constaints != null && !constaints.isEmpty();
+			case EfinderPackage.SPECIFICATION__TEMPORARY:
+				return temporary != null && !temporary.isEmpty();
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case EfinderPackage.SPECIFICATION__OPERATIONS:
 				return operations != null && !operations.isEmpty();
 			case EfinderPackage.SPECIFICATION__PRIMITIVE_TYPES:
 				return primitiveTypes != null && !primitiveTypes.isEmpty();
+			case EfinderPackage.SPECIFICATION__TUPLE_TYPES:
+				return tupleTypes != null && !tupleTypes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -16,6 +16,7 @@ import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.footprint.IFootprint;
 import efinder.core.footprint.ISlicingStrategy;
 import efinder.core.management.EMFModel;
+import efinder.core.transform.TupleToClassTransform;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.emfocl.use.EMFOCL2UseFixer;
 
@@ -32,6 +33,7 @@ public class EFinderRunner {
 		this.pivot = pivot;
 		// Configuration:
 		registry.add("use", new EMFOCL2UseFixer());
+		registry.add("use", new TupleToClassTransform());
 		
 	}
 	

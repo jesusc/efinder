@@ -16,6 +16,8 @@ import efinder.core.errors.Report;
 import efinder.core.footprint.IRFootprintedModel;
 import efinder.ir.Constraint;
 import efinder.ir.DerivedProperty;
+import efinder.ir.EFTupleType;
+import efinder.ir.MetaTypeRef;
 import efinder.ir.Operation;
 import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.IterateExp;
@@ -48,7 +50,7 @@ public class UseFeatureChecker {
 		
 		for (Operation c : model.getOperations()) {
 			if (c instanceof OclOperation) {
-				check(((OclOperation) c).getBody(), report);
+				check(c, report);
 			} else {
 				report.addUnsupported("Operation type not supported" + c.eClass().getName(), c, Report.Action.STOP, "operation-lang");
 			}
@@ -56,7 +58,7 @@ public class UseFeatureChecker {
 
 		for (DerivedProperty c : model.getDerivedProperties()) {
 			if (c instanceof OclDerivedProperty) {
-				check(((OclDerivedProperty) c).getBody(), report);
+				check(c, report);
 			} else {
 				report.addUnsupported("Property type not supported" + c.eClass().getName(), c, Report.Action.STOP, "property-lang");
 			}
@@ -65,8 +67,8 @@ public class UseFeatureChecker {
 		return report;
 	}
 
-	private void check(@NonNull OclExpression expression, @NonNull Report report) {
-		TreeIterator<EObject> it = expression.eAllContents();
+	private void check(@NonNull EObject element, @NonNull Report report) {
+		TreeIterator<EObject> it = element.eAllContents();
 		while (it.hasNext()) {
 			EObject obj = it.next();
 			if (obj instanceof CollectionCallExp) {
@@ -75,6 +77,8 @@ public class UseFeatureChecker {
 				outOperationCallExp((OperationCallExp) obj, report);
 			} else if (obj instanceof TupleLiteralExp) {
 				report.addUnsupported("Tuple literals are unsupported", obj, Report.Action.STOP, "tuple");
+			} else if (obj instanceof MetaTypeRef && ((MetaTypeRef) obj).getType() instanceof EFTupleType) {
+				report.addUnsupported("TupleType not unsupported", obj, Report.Action.STOP, "tuple");
 			} else if (obj instanceof IterateExp) {
 				report.addUnsupported("IterateExp is not unsupported", obj, Report.Action.STOP, "iterate");
 			} else if (obj instanceof UnsupportedExp) {

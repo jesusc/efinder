@@ -10,9 +10,11 @@
     <genClasses ecoreClass="efinder.ecore#//Specification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/metamodels"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/constaints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/temporary"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/operations"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/primitiveTypes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/tupleTypes"/>
     </genClasses>
     <genClasses image="false" ecoreClass="efinder.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//Constraint/name"/>
@@ -67,6 +69,14 @@
     </genClasses>
     <genClasses ecoreClass="efinder.ecore#//EFEnumLiteral">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//EFEnumLiteral/name"/>
+    </genClasses>
+    <genClasses ecoreClass="efinder.ecore#//EFTupleType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//EFTupleType/id"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//EFTupleType/elements"/>
+    </genClasses>
+    <genClasses ecoreClass="efinder.ecore#//TupleTypeElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//TupleTypeElement/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//TupleTypeElement/type"/>
     </genClasses>
     <genClasses image="false" ecoreClass="efinder.ecore#//TypeRef"/>
     <genClasses ecoreClass="efinder.ecore#//MetaTypeRef">
@@ -183,6 +193,8 @@
       <genClasses ecoreClass="efinder.ecore#//ocl/OclUndefined"/>
       <genClasses ecoreClass="efinder.ecore#//ocl/OclInvalid"/>
       <genClasses ecoreClass="efinder.ecore#//ocl/TupleLiteralExp">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference efinder.ecore#//ocl/TupleLiteralExp/type"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/TupleLiteralExp/parts"/>
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/TuplePart">
