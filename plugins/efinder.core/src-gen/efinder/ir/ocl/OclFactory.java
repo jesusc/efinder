@@ -274,6 +274,15 @@ public interface OclFactory extends EFactory {
 	BagLiteralExp createBagLiteralExp();
 
 	/**
+	 * Returns a new object of class '<em>Unsupported Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Unsupported Exp</em>'.
+	 * @generated
+	 */
+	UnsupportedExp createUnsupportedExp();
+
+	/**
 	 * Returns a new object of class '<em>Any Lib Element</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

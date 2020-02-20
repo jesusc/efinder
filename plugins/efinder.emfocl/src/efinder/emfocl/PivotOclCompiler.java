@@ -476,7 +476,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@Override
 		public Void visitConstraint(@NonNull Constraint object) {
 			ExpressionInOCL expr = (ExpressionInOCL) getExpression(object.getOwnedSpecification());
-					
+			
 			Namespace ctx = object.getContext();
 			
 			// There are two contexts: one in the constraint and another in the expression
@@ -504,7 +504,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				OclExpression irExpr = ExpressionVisitor.compileExpression(expr, context);
 				
 				// 4. Create the invariant object
-				OclInvariant invariant = IRBuilder.newInvariant(irExpr);
+				OclInvariant invariant = IRBuilder.newInvariant(irExpr, object.getName());
 				specification.getConstaints().add(invariant);
 				invariant.setKlass(efc);
 				invariant.setContextVariable(varDcl);
@@ -671,7 +671,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				throw new UnsupportedOperationException("Only class references allowed: " + object);				
 			}
 			if (type instanceof Enumeration) {
-				throw new UnsupportedTranslationException("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
+				return IRBuilder.newUnsupportedExp("TypeExp as enumeration not supported " + object, "TypeExpIsEnum");
 			}
 			if (type instanceof VoidType) {
 				// Tentatively use undefined to represent the same. Example: org.eclipse.ocl.examples.xtext.tests/src/org/eclipse/ocl/examples/test/xtext/models/Bug441620.oc 
@@ -702,12 +702,12 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		
 		@Override
 		public OclExpression visitOppositePropertyCallExp(@NonNull OppositePropertyCallExp object) {
-			throw new UnsupportedTranslationException("Opposite properties not supported: " + object, "opposite-property");
+			return IRBuilder.newUnsupportedExp("Opposite properties not supported: " + object, "opposite-property");
 		}
 		
 		@Override
 		public OclExpression visitShadowExp(@NonNull ShadowExp object) {
-			throw new UnsupportedTranslationException("ShadowExp not supported: " + object, "shadow-exp");
+			return IRBuilder.newUnsupportedExp("ShadowExp not supported: " + object, "shadow-exp");
 		}
 		
 		@Override
@@ -889,7 +889,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				int i1 = evaluateOclExpression(first);
 				int i2 = evaluateOclExpression(last);
 				if ( i2 > RANGE_LIMIT )
-					throw new UnsupportedTranslationException("Collection range is to high:" + range + ". ", "range");
+					return Collections.singletonList(IRBuilder.newUnsupportedExp("Collection range is to high:" + range + ". ", "range"));
 				
 				if ( i1 <= i2 ) {
 					for(int i = i1; i <= i2; i++) {
@@ -902,7 +902,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				// I guess this means that unfolding is empty
 				return Collections.emptyList();
 			} catch ( Exception e ) {
-				throw new UnsupportedTranslationException("Collection range cannot be flattened:" + range + ". " + e.getMessage(), "range");
+				return Collections.singletonList(IRBuilder.newUnsupportedExp("Collection range cannot be flattened:" + range + ". " + e.getMessage(), "range"));
 			}			
 		}
 

@@ -57,6 +57,7 @@ import efinder.ir.ocl.SequenceLiteralExp;
 import efinder.ir.ocl.SetLiteralExp;
 import efinder.ir.ocl.StringLiteralExp;
 import efinder.ir.ocl.TupleLiteralExp;
+import efinder.ir.ocl.UnsupportedExp;
 import efinder.ir.ocl.VarExp;
 import efinder.ir.VariableDeclaration;
 
@@ -83,9 +84,10 @@ public class IRBuilder {
 	}
 
 	@NonNull
-	public static OclInvariant newInvariant(@NonNull OclExpression expr) {
+	public static OclInvariant newInvariant(@NonNull OclExpression expr, String name) {
 		OclInvariant constraint = OclFactory.eINSTANCE.createOclInvariant();
 		constraint.setExpression(expr);
+		constraint.setName(name);
 		return constraint;
 	}
 
@@ -387,6 +389,14 @@ public class IRBuilder {
 	public static OclExpression newSequenceLiteral(@NonNull List<? extends OclExpression> parts) {
 		SequenceLiteralExp exp = OclFactory.eINSTANCE.createSequenceLiteralExp();
 		exp.getParts().addAll(parts);
+		return exp;
+	}
+
+	@NonNull
+	public static OclExpression newUnsupportedExp(@NonNull String description, @NonNull String reason) {
+		UnsupportedExp exp = OclFactory.eINSTANCE.createUnsupportedExp();
+		exp.setDescription(description);
+		exp.setReason(reason);
 		return exp;
 	}
 

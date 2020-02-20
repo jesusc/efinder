@@ -14,7 +14,7 @@ class Specification {
 }
 
 abstract class Constraint {
-	
+	attr String[1] name;
 } 
 
 abstract class TypedElement {
@@ -294,6 +294,11 @@ package ocl {
 	class OrderedSetLiteralExp extends CollectionLiteralExp { }
 	class SequenceLiteralExp extends CollectionLiteralExp { }
 	class BagLiteralExp extends CollectionLiteralExp { }
+	
+	class UnsupportedExp extends OclExpression {
+		attr String[1] reason;
+		attr String[1] description;
+	}
 	
 	// Library types
 	class OclAnyLibElement { }			

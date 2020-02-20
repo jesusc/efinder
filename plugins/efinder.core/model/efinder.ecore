@@ -13,7 +13,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="primitiveTypes" upperBound="-1"
         eType="#//EFPrimitiveType" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypedElement" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//TypeRef"
         containment="true"/>
@@ -245,6 +247,12 @@
     <eClassifiers xsi:type="ecore:EClass" name="OrderedSetLiteralExp" eSuperTypes="#//ocl/CollectionLiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="SequenceLiteralExp" eSuperTypes="#//ocl/CollectionLiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="BagLiteralExp" eSuperTypes="#//ocl/CollectionLiteralExp"/>
+    <eClassifiers xsi:type="ecore:EClass" name="UnsupportedExp" eSuperTypes="#//ocl/OclExpression">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="reason" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OclAnyLibElement"/>
   </eSubpackages>
 </ecore:EPackage>

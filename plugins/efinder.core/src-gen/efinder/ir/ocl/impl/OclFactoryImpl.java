@@ -85,6 +85,7 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 			case OclPackage.ORDERED_SET_LITERAL_EXP: return createOrderedSetLiteralExp();
 			case OclPackage.SEQUENCE_LITERAL_EXP: return createSequenceLiteralExp();
 			case OclPackage.BAG_LITERAL_EXP: return createBagLiteralExp();
+			case OclPackage.UNSUPPORTED_EXP: return createUnsupportedExp();
 			case OclPackage.OCL_ANY_LIB_ELEMENT: return createOclAnyLibElement();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -427,6 +428,17 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 	public BagLiteralExp createBagLiteralExp() {
 		BagLiteralExpImpl bagLiteralExp = new BagLiteralExpImpl();
 		return bagLiteralExp;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public UnsupportedExp createUnsupportedExp() {
+		UnsupportedExpImpl unsupportedExp = new UnsupportedExpImpl();
+		return unsupportedExp;
 	}
 
 	/**

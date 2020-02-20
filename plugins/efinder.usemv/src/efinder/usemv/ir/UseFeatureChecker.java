@@ -17,6 +17,7 @@ import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.IterateExp;
 import efinder.ir.ocl.OperationCallExp;
 import efinder.ir.ocl.TupleLiteralExp;
+import efinder.ir.ocl.UnsupportedExp;
 
 /**
  * Checks if the IR model is supported by USE or not, and reports useful messages. 
@@ -38,8 +39,11 @@ public class UseFeatureChecker {
 				outOperationCallExp((OperationCallExp) obj, report);
 			} else if (obj instanceof TupleLiteralExp) {
 				report.addUnsupported("Tuple literals are unsupported", obj, Report.Action.STOP, "tuple");
-			}  else if (obj instanceof IterateExp) {
+			} else if (obj instanceof IterateExp) {
 				report.addUnsupported("IterateExp is not unsupported", obj, Report.Action.STOP, "iterate");
+			} else if (obj instanceof UnsupportedExp) {
+				UnsupportedExp exp = (UnsupportedExp) obj;
+				report.addUnsupported(exp.getDescription(), obj, Report.Action.STOP, exp.getReason());
 			}
 		}
 		

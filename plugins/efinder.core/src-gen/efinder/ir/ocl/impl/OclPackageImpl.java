@@ -43,6 +43,7 @@ import efinder.ir.ocl.SetLiteralExp;
 import efinder.ir.ocl.StringLiteralExp;
 import efinder.ir.ocl.TupleLiteralExp;
 import efinder.ir.ocl.TuplePart;
+import efinder.ir.ocl.UnsupportedExp;
 import efinder.ir.ocl.VarExp;
 import efinder.ir.ocl.WithContextVariable;
 
@@ -305,6 +306,13 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	private EClass bagLiteralExpEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass unsupportedExpEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -1113,6 +1121,36 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getUnsupportedExp() {
+		return unsupportedExpEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUnsupportedExp_Reason() {
+		return (EAttribute)unsupportedExpEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getUnsupportedExp_Description() {
+		return (EAttribute)unsupportedExpEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getOclAnyLibElement() {
 		return oclAnyLibElementEClass;
 	}
@@ -1263,6 +1301,10 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 
 		bagLiteralExpEClass = createEClass(BAG_LITERAL_EXP);
 
+		unsupportedExpEClass = createEClass(UNSUPPORTED_EXP);
+		createEAttribute(unsupportedExpEClass, UNSUPPORTED_EXP__REASON);
+		createEAttribute(unsupportedExpEClass, UNSUPPORTED_EXP__DESCRIPTION);
+
 		oclAnyLibElementEClass = createEClass(OCL_ANY_LIB_ELEMENT);
 
 		// Create enums
@@ -1335,6 +1377,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		orderedSetLiteralExpEClass.getESuperTypes().add(this.getCollectionLiteralExp());
 		sequenceLiteralExpEClass.getESuperTypes().add(this.getCollectionLiteralExp());
 		bagLiteralExpEClass.getESuperTypes().add(this.getCollectionLiteralExp());
+		unsupportedExpEClass.getESuperTypes().add(this.getOclExpression());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(oclConstraintEClass, OclConstraint.class, "OclConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1443,6 +1486,10 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		initEClass(sequenceLiteralExpEClass, SequenceLiteralExp.class, "SequenceLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(bagLiteralExpEClass, BagLiteralExp.class, "BagLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(unsupportedExpEClass, UnsupportedExp.class, "UnsupportedExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUnsupportedExp_Reason(), ecorePackage.getEString(), "reason", null, 1, 1, UnsupportedExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getUnsupportedExp_Description(), ecorePackage.getEString(), "description", null, 1, 1, UnsupportedExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclAnyLibElementEClass, OclAnyLibElement.class, "OclAnyLibElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

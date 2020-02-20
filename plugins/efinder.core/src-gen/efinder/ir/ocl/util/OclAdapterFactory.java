@@ -215,6 +215,10 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 				return createBagLiteralExpAdapter();
 			}
 			@Override
+			public Adapter caseUnsupportedExp(UnsupportedExp object) {
+				return createUnsupportedExpAdapter();
+			}
+			@Override
 			public Adapter caseOclAnyLibElement(OclAnyLibElement object) {
 				return createOclAnyLibElementAdapter();
 			}
@@ -749,6 +753,20 @@ public class OclAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createBagLiteralExpAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.ocl.UnsupportedExp <em>Unsupported Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.ocl.UnsupportedExp
+	 * @generated
+	 */
+	public Adapter createUnsupportedExpAdapter() {
 		return null;
 	}
 

@@ -352,6 +352,13 @@ public class OclSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case OclPackage.UNSUPPORTED_EXP: {
+				UnsupportedExp unsupportedExp = (UnsupportedExp)theEObject;
+				T result = caseUnsupportedExp(unsupportedExp);
+				if (result == null) result = caseOclExpression(unsupportedExp);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case OclPackage.OCL_ANY_LIB_ELEMENT: {
 				OclAnyLibElement oclAnyLibElement = (OclAnyLibElement)theEObject;
 				T result = caseOclAnyLibElement(oclAnyLibElement);
@@ -884,6 +891,21 @@ public class OclSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBagLiteralExp(BagLiteralExp object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unsupported Exp</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unsupported Exp</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnsupportedExp(UnsupportedExp object) {
 		return null;
 	}
 

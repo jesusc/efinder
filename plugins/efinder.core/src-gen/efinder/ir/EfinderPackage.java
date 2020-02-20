@@ -140,13 +140,22 @@ public interface EfinderPackage extends EPackage {
 	int CONSTRAINT = 1;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONSTRAINT__NAME = 0;
+
+	/**
 	 * The number of structural features of the '<em>Constraint</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONSTRAINT_FEATURE_COUNT = 0;
+	int CONSTRAINT_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Constraint</em>' class.
@@ -1315,6 +1324,17 @@ public interface EfinderPackage extends EPackage {
 	EClass getConstraint();
 
 	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.Constraint#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see efinder.ir.Constraint#getName()
+	 * @see #getConstraint()
+	 * @generated
+	 */
+	EAttribute getConstraint_Name();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.TypedElement <em>Typed Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1896,6 +1916,14 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EClass CONSTRAINT = eINSTANCE.getConstraint();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CONSTRAINT__NAME = eINSTANCE.getConstraint_Name();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.TypedElementImpl <em>Typed Element</em>}' class.

@@ -70,6 +70,15 @@ public interface OclPackage extends EPackage {
 	int OCL_CONSTRAINT = 0;
 
 	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_CONSTRAINT__NAME = EfinderPackage.CONSTRAINT__NAME;
+
+	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -142,6 +151,15 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 */
 	int OCL_INVARIANT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_INVARIANT__NAME = OCL_CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -1652,6 +1670,52 @@ public interface OclPackage extends EPackage {
 	int BAG_LITERAL_EXP_OPERATION_COUNT = COLLECTION_LITERAL_EXP_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.ocl.impl.UnsupportedExpImpl <em>Unsupported Exp</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.ocl.impl.UnsupportedExpImpl
+	 * @see efinder.ir.ocl.impl.OclPackageImpl#getUnsupportedExp()
+	 * @generated
+	 */
+	int UNSUPPORTED_EXP = 35;
+
+	/**
+	 * The feature id for the '<em><b>Reason</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSUPPORTED_EXP__REASON = OCL_EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSUPPORTED_EXP__DESCRIPTION = OCL_EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Unsupported Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSUPPORTED_EXP_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Unsupported Exp</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSUPPORTED_EXP_OPERATION_COUNT = OCL_EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.ocl.impl.OclAnyLibElementImpl <em>Any Lib Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1659,7 +1723,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclAnyLibElement()
 	 * @generated
 	 */
-	int OCL_ANY_LIB_ELEMENT = 35;
+	int OCL_ANY_LIB_ELEMENT = 36;
 
 	/**
 	 * The number of structural features of the '<em>Any Lib Element</em>' class.
@@ -1687,7 +1751,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 36;
+	int OPERATOR_KIND = 37;
 
 
 	/**
@@ -2448,6 +2512,38 @@ public interface OclPackage extends EPackage {
 	EClass getBagLiteralExp();
 
 	/**
+	 * Returns the meta object for class '{@link efinder.ir.ocl.UnsupportedExp <em>Unsupported Exp</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Unsupported Exp</em>'.
+	 * @see efinder.ir.ocl.UnsupportedExp
+	 * @generated
+	 */
+	EClass getUnsupportedExp();
+
+	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.ocl.UnsupportedExp#getReason <em>Reason</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Reason</em>'.
+	 * @see efinder.ir.ocl.UnsupportedExp#getReason()
+	 * @see #getUnsupportedExp()
+	 * @generated
+	 */
+	EAttribute getUnsupportedExp_Reason();
+
+	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.ocl.UnsupportedExp#getDescription <em>Description</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Description</em>'.
+	 * @see efinder.ir.ocl.UnsupportedExp#getDescription()
+	 * @see #getUnsupportedExp()
+	 * @generated
+	 */
+	EAttribute getUnsupportedExp_Description();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.OclAnyLibElement <em>Any Lib Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3135,6 +3231,32 @@ public interface OclPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BAG_LITERAL_EXP = eINSTANCE.getBagLiteralExp();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.ocl.impl.UnsupportedExpImpl <em>Unsupported Exp</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.ocl.impl.UnsupportedExpImpl
+		 * @see efinder.ir.ocl.impl.OclPackageImpl#getUnsupportedExp()
+		 * @generated
+		 */
+		EClass UNSUPPORTED_EXP = eINSTANCE.getUnsupportedExp();
+
+		/**
+		 * The meta object literal for the '<em><b>Reason</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNSUPPORTED_EXP__REASON = eINSTANCE.getUnsupportedExp_Reason();
+
+		/**
+		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute UNSUPPORTED_EXP__DESCRIPTION = eINSTANCE.getUnsupportedExp_Description();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.OclAnyLibElementImpl <em>Any Lib Element</em>}' class.
