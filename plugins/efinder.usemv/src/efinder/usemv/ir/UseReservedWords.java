@@ -30,6 +30,7 @@ public class UseReservedWords {
 		reserved.put("Sequence", "Sequence_");
 		reserved.put("Bag", "Bag_");
 		reserved.put("Set", "Set_");
+		reserved.put("Collection", "Collection_");
 		reserved.put("Integer", "Integer_");
 		reserved.put("Real", "Real_");
 		reserved.put("String", "String_");

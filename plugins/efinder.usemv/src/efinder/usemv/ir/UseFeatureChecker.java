@@ -65,6 +65,8 @@ public class UseFeatureChecker {
 	private static ImmutableSet<String> unsupportedCollectionOperations = ImmutableSet.<String>builder()
 			.add("indexOf")
 			.add("at")
+			.add("first") /* Could be emulated sometimes with ->any(true) */
+			.add("last")  /* Could be emulated sometimes with ->any(true) */
 			.build();
 	
 	private void outCollectionCallExp(@NonNull CollectionCallExp obj, @NonNull Report input) {
