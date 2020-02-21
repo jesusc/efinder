@@ -31,6 +31,11 @@ context RelModel inv oneModel:
 context AttrMap inv oneModel:
 	Row.allInstances()->exists(r | r.columns->includes(self))
   
+context Attribute inv oneModel:
+	RelSchema.allInstances()->exists(r | r.attributes->includes(self))
+
+context Value inv oneModel:
+	AttrMap.allInstances()->exists(r | r.value = self)
 
 --context RelModel
 --def: example() :  Set(Tuple (rel : String, keyName : String))

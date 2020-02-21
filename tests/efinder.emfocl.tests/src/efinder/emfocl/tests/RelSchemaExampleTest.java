@@ -48,7 +48,14 @@ public class RelSchemaExampleTest extends AbstractEmfOclTest {
 		EMFModel partialModel = ResourceUtils.fromFile("resources/examples/" + xmiPartialModel, "resources/examples/RelSchema.ecore");		
 
 		// Assume that in all tests there is a root class called Model
-		TestBoundsProvider boundsProvider = new TestBoundsProvider().withInterval("Model", 1, 1);
+		TestBoundsProvider boundsProvider = new TestBoundsProvider()
+				.withInterval("RelModel", 1, 1)
+				.withInterval("Attribute", 3, 3) /* Make it has one more attribute */
+				.withInterval("Row", 1, 1)
+				.withInterval("AttrMap", 2, 2)
+				.withInterval("Value", 1, 4)
+				;
+		
 		UseMvFinder finder = new UseMvFinder()
 				.withBoundsProvider(boundsProvider)
 				.withPartialModel(partialModel);

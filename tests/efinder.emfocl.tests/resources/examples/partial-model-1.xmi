@@ -5,23 +5,25 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:relschema="http://efinder/relschema"
     xsi:schemaLocation="http://efinder/relschema RelSchema.ecore">
-  <schemas name="ChillyRel"
+  <schemas name="People"
       rows="//@rows.0">
     <attributes
-        name="Black"/>
+        name="name"
+        isKey="true"/>
     <attributes
-        name="White"/>
+        name="age"
+        datatype_="//@datatypes.1"/>
   </schemas>
-  <schemas name=""
-      rows="//@rows.1"/>
   <rows typing="//@schemas.0">
     <columns
         attribute="//@schemas.0/@attributes.0">
       <value
-          content="A"/>
+          content="8"
+          dt="//@datatypes.1"/>
     </columns>
   </rows>
-  <rows typing="//@schemas.1"/>
   <datatypes
-      name="CoolType"/>
+      name="String"/>
+  <datatypes
+      name="Integer"/>
 </relschema:RelModel>
