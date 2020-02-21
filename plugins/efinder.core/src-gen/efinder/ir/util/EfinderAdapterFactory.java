@@ -112,6 +112,10 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 				return createPropertyFeatureRefAdapter();
 			}
 			@Override
+			public Adapter caseTupleFieldRef(TupleFieldRef object) {
+				return createTupleFieldRefAdapter();
+			}
+			@Override
 			public Adapter caseDerivedPropertyRef(DerivedPropertyRef object) {
 				return createDerivedPropertyRefAdapter();
 			}
@@ -366,6 +370,20 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createPropertyFeatureRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.TupleFieldRef <em>Tuple Field Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.TupleFieldRef
+	 * @generated
+	 */
+	public Adapter createTupleFieldRefAdapter() {
 		return null;
 	}
 

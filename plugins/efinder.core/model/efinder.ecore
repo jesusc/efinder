@@ -43,6 +43,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PropertyFeatureRef" abstract="true"
       eSuperTypes="#//FeatureRef"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TupleFieldRef" eSuperTypes="#//PropertyFeatureRef">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="#//EFTupleType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DerivedPropertyRef" eSuperTypes="#//PropertyFeatureRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
         eType="#//DerivedProperty"/>

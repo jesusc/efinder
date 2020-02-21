@@ -143,6 +143,14 @@ public class EfinderSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EfinderPackage.TUPLE_FIELD_REF: {
+				TupleFieldRef tupleFieldRef = (TupleFieldRef)theEObject;
+				T result = caseTupleFieldRef(tupleFieldRef);
+				if (result == null) result = casePropertyFeatureRef(tupleFieldRef);
+				if (result == null) result = caseFeatureRef(tupleFieldRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EfinderPackage.DERIVED_PROPERTY_REF: {
 				DerivedPropertyRef derivedPropertyRef = (DerivedPropertyRef)theEObject;
 				T result = caseDerivedPropertyRef(derivedPropertyRef);
@@ -455,6 +463,21 @@ public class EfinderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T casePropertyFeatureRef(PropertyFeatureRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Tuple Field Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Tuple Field Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTupleFieldRef(TupleFieldRef object) {
 		return null;
 	}
 

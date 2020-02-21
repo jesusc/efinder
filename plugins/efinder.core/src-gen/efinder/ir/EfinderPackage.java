@@ -545,6 +545,52 @@ public interface EfinderPackage extends EPackage {
 	int PROPERTY_FEATURE_REF_OPERATION_COUNT = FEATURE_REF_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.impl.TupleFieldRefImpl <em>Tuple Field Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.TupleFieldRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getTupleFieldRef()
+	 * @generated
+	 */
+	int TUPLE_FIELD_REF = 11;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_FIELD_REF__TYPE = PROPERTY_FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_FIELD_REF__NAME = PROPERTY_FEATURE_REF_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of structural features of the '<em>Tuple Field Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_FIELD_REF_FEATURE_COUNT = PROPERTY_FEATURE_REF_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of operations of the '<em>Tuple Field Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_FIELD_REF_OPERATION_COUNT = PROPERTY_FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.impl.DerivedPropertyRefImpl <em>Derived Property Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -552,7 +598,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getDerivedPropertyRef()
 	 * @generated
 	 */
-	int DERIVED_PROPERTY_REF = 11;
+	int DERIVED_PROPERTY_REF = 12;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -589,7 +635,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetamodelFeatureRef()
 	 * @generated
 	 */
-	int METAMODEL_FEATURE_REF = 12;
+	int METAMODEL_FEATURE_REF = 13;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -626,7 +672,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 13;
+	int VARIABLE_DECLARATION = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -672,7 +718,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 14;
+	int PARAMETER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -718,7 +764,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFMetamodel()
 	 * @generated
 	 */
-	int EF_METAMODEL = 15;
+	int EF_METAMODEL = 16;
 
 	/**
 	 * The feature id for the '<em><b>Roots</b></em>' containment reference list.
@@ -755,7 +801,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPackage()
 	 * @generated
 	 */
-	int EF_PACKAGE = 16;
+	int EF_PACKAGE = 17;
 
 	/**
 	 * The feature id for the '<em><b>Pkg</b></em>' reference.
@@ -810,7 +856,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFType()
 	 * @generated
 	 */
-	int EF_TYPE = 17;
+	int EF_TYPE = 18;
 
 	/**
 	 * The number of structural features of the '<em>EF Type</em>' class.
@@ -838,7 +884,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFClass()
 	 * @generated
 	 */
-	int EF_CLASS = 18;
+	int EF_CLASS = 19;
 
 	/**
 	 * The feature id for the '<em><b>Klass</b></em>' reference.
@@ -875,7 +921,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPrimitiveType()
 	 * @generated
 	 */
-	int EF_PRIMITIVE_TYPE = 19;
+	int EF_PRIMITIVE_TYPE = 20;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -912,7 +958,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnum()
 	 * @generated
 	 */
-	int EF_ENUM = 20;
+	int EF_ENUM = 21;
 
 	/**
 	 * The feature id for the '<em><b>Enum </b></em>' reference.
@@ -958,7 +1004,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnumLiteral()
 	 * @generated
 	 */
-	int EF_ENUM_LITERAL = 21;
+	int EF_ENUM_LITERAL = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -995,7 +1041,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFTupleType()
 	 * @generated
 	 */
-	int EF_TUPLE_TYPE = 22;
+	int EF_TUPLE_TYPE = 23;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1041,7 +1087,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTupleTypeElement()
 	 * @generated
 	 */
-	int TUPLE_TYPE_ELEMENT = 23;
+	int TUPLE_TYPE_ELEMENT = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1087,7 +1133,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTypeRef()
 	 * @generated
 	 */
-	int TYPE_REF = 24;
+	int TYPE_REF = 25;
 
 	/**
 	 * The number of structural features of the '<em>Type Ref</em>' class.
@@ -1115,7 +1161,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetaTypeRef()
 	 * @generated
 	 */
-	int META_TYPE_REF = 25;
+	int META_TYPE_REF = 26;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1152,7 +1198,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
 	 * @generated
 	 */
-	int INVALID_TYPE_REF = 26;
+	int INVALID_TYPE_REF = 27;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type Ref</em>' class.
@@ -1180,7 +1226,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getCollectionTypeRef()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF = 27;
+	int COLLECTION_TYPE_REF = 28;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1217,7 +1263,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSetTypeRef()
 	 * @generated
 	 */
-	int SET_TYPE_REF = 28;
+	int SET_TYPE_REF = 29;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1254,7 +1300,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSequenceTypeRef()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE_REF = 29;
+	int SEQUENCE_TYPE_REF = 30;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1291,7 +1337,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBagTypeRef()
 	 * @generated
 	 */
-	int BAG_TYPE_REF = 30;
+	int BAG_TYPE_REF = 31;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1328,7 +1374,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOrderedSetTypeRef()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE_REF = 31;
+	int ORDERED_SET_TYPE_REF = 32;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1610,6 +1656,38 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getPropertyFeatureRef();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.TupleFieldRef <em>Tuple Field Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Tuple Field Ref</em>'.
+	 * @see efinder.ir.TupleFieldRef
+	 * @generated
+	 */
+	EClass getTupleFieldRef();
+
+	/**
+	 * Returns the meta object for the reference '{@link efinder.ir.TupleFieldRef#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Type</em>'.
+	 * @see efinder.ir.TupleFieldRef#getType()
+	 * @see #getTupleFieldRef()
+	 * @generated
+	 */
+	EReference getTupleFieldRef_Type();
+
+	/**
+	 * Returns the meta object for the attribute '{@link efinder.ir.TupleFieldRef#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see efinder.ir.TupleFieldRef#getName()
+	 * @see #getTupleFieldRef()
+	 * @generated
+	 */
+	EAttribute getTupleFieldRef_Name();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.DerivedPropertyRef <em>Derived Property Ref</em>}'.
@@ -2266,6 +2344,32 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EClass PROPERTY_FEATURE_REF = eINSTANCE.getPropertyFeatureRef();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.TupleFieldRefImpl <em>Tuple Field Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.TupleFieldRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getTupleFieldRef()
+		 * @generated
+		 */
+		EClass TUPLE_FIELD_REF = eINSTANCE.getTupleFieldRef();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TUPLE_FIELD_REF__TYPE = eINSTANCE.getTupleFieldRef_Type();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TUPLE_FIELD_REF__NAME = eINSTANCE.getTupleFieldRef_Name();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.DerivedPropertyRefImpl <em>Derived Property Ref</em>}' class.

@@ -5,8 +5,15 @@ import org.eclipse.jdt.annotation.NonNull;
 @SuppressWarnings("serial")
 public class TypeError extends RuntimeException {
 	
-	public TypeError(@NonNull String message) {
+	private String reason;
+
+	public TypeError(@NonNull String message, String reason) {
 		super(message);
+		this.reason = reason;
+	}
+	
+	public String getReason() {
+		return reason;
 	}
 
 }

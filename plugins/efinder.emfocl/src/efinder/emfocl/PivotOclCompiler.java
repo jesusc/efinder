@@ -102,6 +102,7 @@ import efinder.ir.EFTupleType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.MetaTypeRef;
 import efinder.ir.Specification;
+import efinder.ir.TupleFieldRef;
 import efinder.ir.TypeRef;
 import efinder.ir.VariableDeclaration;
 import efinder.ir.ocl.CollectionCallExp;
@@ -720,9 +721,16 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			
 			Property definition = p.getReferredProperty();
 			if (definition.getESObject() == null) {
-				// This is likely defined in the OCL text, so we resolve against it
 				efinder.ir.ocl.@NonNull PropertyCallExp call = IRBuilder.newProperyCallExp(name, null, source);
-				context.addPendingResolution(new ResolveProperty(definition, call));
+
+				// It can be a tuple access
+				if (definition.eContainer() instanceof TupleType) {
+					TupleType tt = (TupleType) definition.eContainer();
+					context.addPendingResolution(new ResolveTupleAccess(definition, tt, call));
+				} else {				
+					// This is likely defined in the OCL text, so we resolve against it
+					context.addPendingResolution(new ResolveProperty(definition, call));
+				}
 				return call;
 			} else {			
 				EStructuralFeature f = (EStructuralFeature) p.getReferredProperty().getESObject();
@@ -873,7 +881,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			}
 			
 			if (found == null) {
-				throw new TypeError("Can't find enum literal" + object);
+				throw new TypeError("Can't find enum literal" + object, "no-enum");
 			}
 			
 			return IRBuilder.newEnumLiteral(eft, found);
@@ -1061,8 +1069,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 	
 	private static class ResolveOperation implements Consumer<CompilerContext> {
 
-		private Operation operation;
-		private efinder.ir.ocl.@NonNull OperationCallExp call;
+		private final Operation operation;
+		private final efinder.ir.ocl.@NonNull OperationCallExp call;
 
 		public ResolveOperation(Operation operation, efinder.ir.ocl.@NonNull OperationCallExp call) {
 			this.operation = operation;
@@ -1072,6 +1080,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@Override
 		public void accept(CompilerContext c) {
 			efinder.ir.Operation irOperation = c.getOperation(operation);
+			if (irOperation == null) {
+				throw new TypeError("Operation not declared " + operation.getName(), "operation-not-found");
+			}
+
 			DefinedOperationRef ref = EfinderFactory.eINSTANCE.createDefinedOperationRef();
 			ref.setOperation(irOperation);
 			call.setFeature(ref);
@@ -1080,8 +1092,8 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 
 	private static class ResolveProperty implements Consumer<CompilerContext> {
 
-		private Property property;
-		private efinder.ir.ocl.@NonNull PropertyCallExp call;
+		private final Property property;
+		private final efinder.ir.ocl.@NonNull PropertyCallExp call;
 
 		public ResolveProperty(@NonNull Property property, efinder.ir.ocl.@NonNull PropertyCallExp call) {
 			this.property = property;
@@ -1091,8 +1103,38 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@Override
 		public void accept(CompilerContext c) {
 			@Nullable OclDerivedProperty irProperty = c.getProperty(property);
+			Preconditions.checkNotNull(irProperty);
+			if (property == null) {
+				throw new TypeError("Property not declared " + property.getName(), "property-not-found");
+			}
+			
 			DerivedPropertyRef ref = EfinderFactory.eINSTANCE.createDerivedPropertyRef();
 			ref.setProperty(irProperty);
+			call.setFeature(ref);
+		}		
+	}
+
+	private static class ResolveTupleAccess implements Consumer<CompilerContext> {
+
+		private final Property property;
+		private final efinder.ir.ocl.@NonNull PropertyCallExp call;
+		private final TupleType tupleType;
+
+		public ResolveTupleAccess(@NonNull Property property, @NonNull TupleType tt, efinder.ir.ocl.@NonNull PropertyCallExp call) {
+			this.property = property;
+			this.tupleType = tt;
+			this.call = call;
+		}
+		
+		@Override
+		public void accept(CompilerContext c) {
+			EFTupleType ttx = c.metamodels.getTupleType(tupleType);
+			if (ttx == null)
+				return;
+
+			TupleFieldRef ref = EfinderFactory.eINSTANCE.createTupleFieldRef();
+			ref.setType(ttx);
+			ref.setName(property.getName());
 			call.setFeature(ref);
 		}		
 	}

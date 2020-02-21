@@ -49,6 +49,15 @@ public interface EfinderFactory extends EFactory {
 	DefinedOperationRef createDefinedOperationRef();
 
 	/**
+	 * Returns a new object of class '<em>Tuple Field Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Tuple Field Ref</em>'.
+	 * @generated
+	 */
+	TupleFieldRef createTupleFieldRef();
+
+	/**
 	 * Returns a new object of class '<em>Derived Property Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

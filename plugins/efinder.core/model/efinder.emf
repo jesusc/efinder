@@ -58,6 +58,11 @@ abstract class PropertyFeatureRef extends FeatureRef {
 	
 }
 
+class TupleFieldRef extends PropertyFeatureRef {
+	ref EFTupleType[1] type;
+	attr String[1] name;	
+}
+
 class DerivedPropertyRef extends PropertyFeatureRef {
 	ref DerivedProperty[1] property;	
 }

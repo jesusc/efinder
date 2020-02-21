@@ -32,6 +32,7 @@ import efinder.ir.PropertyFeatureRef;
 import efinder.ir.SequenceTypeRef;
 import efinder.ir.SetTypeRef;
 import efinder.ir.Specification;
+import efinder.ir.TupleFieldRef;
 import efinder.ir.TupleTypeElement;
 import efinder.ir.TypeRef;
 import efinder.ir.TypedElement;
@@ -131,6 +132,13 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	private EClass propertyFeatureRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass tupleFieldRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -584,6 +592,36 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	@Override
 	public EClass getPropertyFeatureRef() {
 		return propertyFeatureRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EClass getTupleFieldRef() {
+		return tupleFieldRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getTupleFieldRef_Type() {
+		return (EReference)tupleFieldRefEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EAttribute getTupleFieldRef_Name() {
+		return (EAttribute)tupleFieldRefEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -1050,6 +1088,10 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 
 		propertyFeatureRefEClass = createEClass(PROPERTY_FEATURE_REF);
 
+		tupleFieldRefEClass = createEClass(TUPLE_FIELD_REF);
+		createEReference(tupleFieldRefEClass, TUPLE_FIELD_REF__TYPE);
+		createEAttribute(tupleFieldRefEClass, TUPLE_FIELD_REF__NAME);
+
 		derivedPropertyRefEClass = createEClass(DERIVED_PROPERTY_REF);
 		createEReference(derivedPropertyRefEClass, DERIVED_PROPERTY_REF__PROPERTY);
 
@@ -1153,6 +1195,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		builtinOperationRefEClass.getESuperTypes().add(this.getOperationFeatureRef());
 		definedOperationRefEClass.getESuperTypes().add(this.getOperationFeatureRef());
 		propertyFeatureRefEClass.getESuperTypes().add(this.getFeatureRef());
+		tupleFieldRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
 		derivedPropertyRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
 		metamodelFeatureRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
@@ -1203,6 +1246,10 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		initEReference(getDefinedOperationRef_Operation(), this.getOperation(), null, "operation", null, 1, 1, DefinedOperationRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(propertyFeatureRefEClass, PropertyFeatureRef.class, "PropertyFeatureRef", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(tupleFieldRefEClass, TupleFieldRef.class, "TupleFieldRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getTupleFieldRef_Type(), this.getEFTupleType(), null, "type", null, 1, 1, TupleFieldRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTupleFieldRef_Name(), ecorePackage.getEString(), "name", null, 1, 1, TupleFieldRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(derivedPropertyRefEClass, DerivedPropertyRef.class, "DerivedPropertyRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDerivedPropertyRef_Property(), this.getDerivedProperty(), null, "property", null, 1, 1, DerivedPropertyRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
