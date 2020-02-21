@@ -73,7 +73,7 @@ public class DatasetEvaluationTest {
 	private void doTest(@NonNull String metadataFile, @NonNull String repoDir, String results) throws FileNotFoundException, IOException, ParseException {
 		Predicate<String> predicate = (f) -> true;
 		// Uncomment and replace with the proper path if you want to test a single file
-		// onlyOneFile = (f) -> f.contains("EMFtoCSP/plugins/fr.inria.atlanmod.emftocsp.examples/samples/ecore/ER.ecore");
+		//Predicate<String> onlyOneFile = (f) -> f.contains("M2TiiLEnvDev/TuringProject/model/projetTuring.ecore");
 		//predicate = onlyOneFile;
 
 		Mode evaluationMode = Mode.COMPLETE_FILE;

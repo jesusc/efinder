@@ -37,6 +37,7 @@ import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.footprint.FootprintComputation;
 import efinder.core.footprint.IFootprint;
 import efinder.emfocl.PivotOclCompiler;
+import efinder.emfocl.TypeError;
 import efinder.emfocl.use.EMFOCL2UseFixer;
 import efinder.ir.Constraint;
 import efinder.ir.Specification;
@@ -188,7 +189,6 @@ public class Dataset {
 				as = toAs(r);
 			} catch ( Exception e ) {
 				e.printStackTrace();
-				// TODO: Record the error
 				stats.loadError(filename);
 				return;
 			}
@@ -239,6 +239,8 @@ public class Dataset {
 		for (DatasetFile datasetFile : files) {
 			try {
 				datasetFile.evaluate(stats, mode);
+			} catch (TypeError e) {
+				stats.typeError(datasetFile.filename, e.getReason());
 			} catch (Exception e) {
 				e.printStackTrace();
 				stats.unknownFailure(datasetFile.filename);	

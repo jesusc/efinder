@@ -23,6 +23,7 @@ public class Stats {
 	List<String> invalidTranslation = new ArrayList<>();
 	// Reason => File
 	HashMap<String, List<String>> unsupportedFeature = new HashMap<>();	
+	HashMap<String, List<String>> typeErrors = new HashMap<>();	
 	
 	List<String> unknownFailure = new ArrayList<>();
 	
@@ -87,6 +88,16 @@ public class Stats {
 		out.println();
 
 		out.println();
+		out.println("*** Type errors:");
+		for (Entry<String, List<String>> items : typeErrors.entrySet()) {
+			out.println("  - " + items.getKey() + "(" + items.getValue().size() + " files)");
+			for (String string : items.getValue()) {
+				out.println("     - " + string);
+			}
+		}
+		out.println();
+		
+		out.println();
 		out.println("*** Invalid translation:");
 		for (String string : invalidTranslation) {
 			out.println("  - " + string);
@@ -108,6 +119,7 @@ public class Stats {
 		out.println("   *     Failures: " + totalFailures);
 		out.println("       -  Unknown: " + unknownFailure.size());
 		out.println("       - Load err: " + loadErrors.size());
+		out.println("       - Type err: " + typeErrors.size());
 		out.println("       - Validate: " + doNotValidate.size());
 		// Preconditions.checkState(totalFailures + numProcessed == totalFiles);
 		
@@ -123,11 +135,16 @@ public class Stats {
 	}
 
 	private int getTotalFailures() {
-		return unknownFailure.size() + doNotValidate.size() + loadErrors.size();
+		return unknownFailure.size() + doNotValidate.size() + loadErrors.size() + typeErrors.size();
 	}
 
 	public void loadError(@NonNull String filename) {
 		loadErrors.add(filename);
+	}
+
+	public void typeError(@NonNull String filename, String reason) {
+		typeErrors.computeIfAbsent(reason, (k) -> new ArrayList<>());
+		typeErrors.get(reason).add(filename);
 	}
 
 }
