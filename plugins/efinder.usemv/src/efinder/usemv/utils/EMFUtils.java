@@ -142,9 +142,14 @@ public class EMFUtils {
 			int v = Integer.parseInt(useValue);
 			dynamicSet(object, feature, v);		
 		} else if ( isString(dt) ) {
-			String str = (useValue.startsWith("\"") && useValue.endsWith("\"")) || (useValue.startsWith("'")  && useValue.endsWith("'")) ? 
-					 useValue.substring(1, useValue.length()-1) : useValue;
-			dynamicSet(object, feature, str);		
+			String str = extractRawString(useValue);
+			dynamicSet(object, feature, str);
+		} else if ( isChar(dt)) {
+			String str = extractRawString(useValue);
+			if (! str.isEmpty()) {
+				char c = str.charAt(0);			
+				dynamicSet(object, feature, c);
+			}
 		} else if (isBoolean(dt)) {
 			boolean b = Boolean.parseBoolean(useValue);
 			dynamicSet(object, feature, b);
@@ -165,8 +170,18 @@ public class EMFUtils {
 		} else {
 			throw new UnsupportedOperationException();
 		}
+	}
+
+	private static String extractRawString(String useValue) {
+		return (useValue.startsWith("\"") && useValue.endsWith("\"")) || (useValue.startsWith("'")  && useValue.endsWith("'")) ? 
+				 useValue.substring(1, useValue.length()-1) : useValue;
 	}	
 	
+	private static boolean isChar(EDataType dt) {
+		String type = dt.getName();
+		return "EChar".equals(type) || "char".equalsIgnoreCase(type);
+	}
+
 	private static boolean isBigDecimal(EDataType dt) {
 		String type = dt.getName();
 		return type.equals("EBigDecimal") || type.equals("BigDecimal");

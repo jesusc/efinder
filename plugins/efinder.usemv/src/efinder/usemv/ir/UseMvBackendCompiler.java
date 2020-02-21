@@ -319,7 +319,7 @@ public class UseMvBackendCompiler {
 		if (type.equals("EBoolean") ||  "java.lang.Boolean".equals(dt.getInstanceClassName()) || "boolean".equals(dt.getInstanceClassName()) ) 
 			return "Boolean";
 			
-		if (type.equals("EString") || type.equals("String") || type.endsWith("String"))
+		if (type.equals("EString") || type.equals("String") || type.endsWith("String") || type.equalsIgnoreCase("char") || type.equals("EChar"))
 			return "String";
 
         if ( type.equals("EFloat")  || type.equals("float")  || type.equals("EFloatObject")  || type.equals("Float")  || type.endsWith("Float") ||
