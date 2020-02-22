@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EPackage.Registry;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -396,6 +397,14 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 			EFClass r = IRBuilder.newClass((EClass) eclass);
 			pkg.getClasses().add(r);
 			classes.put(eclass, r);
+			
+			// Recursively visit reference types in case we need to load its packages
+			// Sometimes this is needed, see e.g., 'eclipse/ocl/examples/org.eclipse.ocl.examples.project.completeocltutorial/model/ExtraXtextValidation.ocl'
+			for (EReference ref : eclass.getEAllReferences()) {
+				EClass target = ref.getEReferenceType();
+				createPackage(target.getEPackage());
+			}
+			
 		}
 
 		public void createEnum(@NonNull EFPackage pkg, @NonNull EEnum enum_) {
