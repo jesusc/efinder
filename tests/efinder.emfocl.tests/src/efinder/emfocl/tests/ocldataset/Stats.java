@@ -133,9 +133,17 @@ public class Stats {
 		}
 		return count;
 	}
+	
+	private int totalTypeErrors() {
+		int count = 0;
+		for (Entry<String, List<String>> entry : typeErrors.entrySet()) {
+			count += entry.getValue().size();
+		}
+		return count;
+	}
 
 	private int getTotalFailures() {
-		return unknownFailure.size() + doNotValidate.size() + loadErrors.size() + typeErrors.size();
+		return unknownFailure.size() + doNotValidate.size() + loadErrors.size() + totalTypeErrors();
 	}
 
 	public void loadError(@NonNull String filename) {

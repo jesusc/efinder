@@ -39,7 +39,6 @@ import efinder.core.footprint.IFootprint;
 import efinder.core.transform.TupleToClassTransform;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.emfocl.TypeError;
-import efinder.emfocl.use.EMFOCL2UseFixer;
 import efinder.ir.Constraint;
 import efinder.ir.Specification;
 import efinder.usemv.UseMvFinder;
@@ -240,6 +239,10 @@ public class Dataset {
 		for (DatasetFile datasetFile : files) {
 			try {
 				datasetFile.evaluate(stats, mode);
+			} catch (org.eclipse.ocl.pivot.internal.delegate.OCLDelegateException e) {
+				e.printStackTrace();
+				// This typically happens when we read a feature which is derived but it is not marked as changeable
+				stats.typeError(datasetFile.filename, "ocl-delegate-exception");
 			} catch (TypeError e) {
 				stats.typeError(datasetFile.filename, e.getReason());
 			} catch (Exception e) {
