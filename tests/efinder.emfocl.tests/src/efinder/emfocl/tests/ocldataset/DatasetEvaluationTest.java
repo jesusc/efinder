@@ -54,6 +54,9 @@ public class DatasetEvaluationTest {
 		// REMOVE WHEN TIMEOUT IS IMPLEMENTED
 		invalids.add("ablunk/dmx/dev-plugins/hub.sam.dmx/resources/dbl.ecore");
 		
+		// Invalid because a property with 'derivation' annotation is changeable => make the witness model creation fail
+		invalids.add("adilinam/QVTdCaseStudy/org.eclipse.ocl.examples.xtext.tests/model/OCLinEcoreTutorial.ecore");
+		
 		return invalids;
 	}
 
