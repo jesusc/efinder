@@ -14,6 +14,7 @@ import efinder.ir.TypeRef;
 import efinder.ir.TypedElement;
 import efinder.ir.ocl.OclFactory;
 import efinder.ir.ocl.OperationCallExp;
+import efinder.ir.ocl.PropertyCallExp;
 import efinder.ir.ocl.SetLiteralExp;
 
 public class EMFOCL2UseFixer extends AbstractIRVisitor<Void, Void> implements IDialectAdaptation {
@@ -25,10 +26,19 @@ public class EMFOCL2UseFixer extends AbstractIRVisitor<Void, Void> implements ID
 		spec.eAllContents().forEachRemaining(o -> {
 			if (o instanceof OperationCallExp) {
 				inOperationCallExp((OperationCallExp) o);
+			} else if (o instanceof PropertyCallExp) {
+				inPropertyCallExp((PropertyCallExp) o);			
 			} else if (o instanceof TypedElement) {
 				inTypedElement((TypedElement) o);
 			}
 		});
+	}
+
+	private void inPropertyCallExp(PropertyCallExp o) {
+		if (o.getName().equals("oclContainer")) {
+			OperationCallExp newOp = IRBuilder.newOperationCallExp(o.getName(), o.getSource());
+			EcoreUtil.replace(o, newOp);
+		}
 	}
 
 	private void inTypedElement(TypedElement self) {

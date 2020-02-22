@@ -628,6 +628,34 @@ public interface EfinderPackage extends EPackage {
 	int DERIVED_PROPERTY_REF_OPERATION_COUNT = PROPERTY_FEATURE_REF_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.impl.BuiltinPropertyRefImpl <em>Builtin Property Ref</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.BuiltinPropertyRefImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getBuiltinPropertyRef()
+	 * @generated
+	 */
+	int BUILTIN_PROPERTY_REF = 13;
+
+	/**
+	 * The number of structural features of the '<em>Builtin Property Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILTIN_PROPERTY_REF_FEATURE_COUNT = PROPERTY_FEATURE_REF_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Builtin Property Ref</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BUILTIN_PROPERTY_REF_OPERATION_COUNT = PROPERTY_FEATURE_REF_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.impl.MetamodelFeatureRefImpl <em>Metamodel Feature Ref</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -635,7 +663,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetamodelFeatureRef()
 	 * @generated
 	 */
-	int METAMODEL_FEATURE_REF = 13;
+	int METAMODEL_FEATURE_REF = 14;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -672,7 +700,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 14;
+	int VARIABLE_DECLARATION = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -718,7 +746,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 15;
+	int PARAMETER = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -764,7 +792,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFMetamodel()
 	 * @generated
 	 */
-	int EF_METAMODEL = 16;
+	int EF_METAMODEL = 17;
 
 	/**
 	 * The feature id for the '<em><b>Roots</b></em>' containment reference list.
@@ -801,7 +829,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPackage()
 	 * @generated
 	 */
-	int EF_PACKAGE = 17;
+	int EF_PACKAGE = 18;
 
 	/**
 	 * The feature id for the '<em><b>Pkg</b></em>' reference.
@@ -856,7 +884,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFType()
 	 * @generated
 	 */
-	int EF_TYPE = 18;
+	int EF_TYPE = 19;
 
 	/**
 	 * The number of structural features of the '<em>EF Type</em>' class.
@@ -884,7 +912,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFClass()
 	 * @generated
 	 */
-	int EF_CLASS = 19;
+	int EF_CLASS = 20;
 
 	/**
 	 * The feature id for the '<em><b>Klass</b></em>' reference.
@@ -921,7 +949,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPrimitiveType()
 	 * @generated
 	 */
-	int EF_PRIMITIVE_TYPE = 20;
+	int EF_PRIMITIVE_TYPE = 21;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -958,7 +986,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnum()
 	 * @generated
 	 */
-	int EF_ENUM = 21;
+	int EF_ENUM = 22;
 
 	/**
 	 * The feature id for the '<em><b>Enum </b></em>' reference.
@@ -1004,7 +1032,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnumLiteral()
 	 * @generated
 	 */
-	int EF_ENUM_LITERAL = 22;
+	int EF_ENUM_LITERAL = 23;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1041,7 +1069,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFTupleType()
 	 * @generated
 	 */
-	int EF_TUPLE_TYPE = 23;
+	int EF_TUPLE_TYPE = 24;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1087,7 +1115,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTupleTypeElement()
 	 * @generated
 	 */
-	int TUPLE_TYPE_ELEMENT = 24;
+	int TUPLE_TYPE_ELEMENT = 25;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1133,7 +1161,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTypeRef()
 	 * @generated
 	 */
-	int TYPE_REF = 25;
+	int TYPE_REF = 26;
 
 	/**
 	 * The number of structural features of the '<em>Type Ref</em>' class.
@@ -1161,7 +1189,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetaTypeRef()
 	 * @generated
 	 */
-	int META_TYPE_REF = 26;
+	int META_TYPE_REF = 27;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1198,7 +1226,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
 	 * @generated
 	 */
-	int INVALID_TYPE_REF = 27;
+	int INVALID_TYPE_REF = 28;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type Ref</em>' class.
@@ -1226,7 +1254,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getCollectionTypeRef()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF = 28;
+	int COLLECTION_TYPE_REF = 29;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1263,7 +1291,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSetTypeRef()
 	 * @generated
 	 */
-	int SET_TYPE_REF = 29;
+	int SET_TYPE_REF = 30;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1300,7 +1328,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSequenceTypeRef()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE_REF = 30;
+	int SEQUENCE_TYPE_REF = 31;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1337,7 +1365,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBagTypeRef()
 	 * @generated
 	 */
-	int BAG_TYPE_REF = 31;
+	int BAG_TYPE_REF = 32;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1374,7 +1402,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOrderedSetTypeRef()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE_REF = 32;
+	int ORDERED_SET_TYPE_REF = 33;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1709,6 +1737,16 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getDerivedPropertyRef_Property();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.BuiltinPropertyRef <em>Builtin Property Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Builtin Property Ref</em>'.
+	 * @see efinder.ir.BuiltinPropertyRef
+	 * @generated
+	 */
+	EClass getBuiltinPropertyRef();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.MetamodelFeatureRef <em>Metamodel Feature Ref</em>}'.
@@ -2388,6 +2426,16 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DERIVED_PROPERTY_REF__PROPERTY = eINSTANCE.getDerivedPropertyRef_Property();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.BuiltinPropertyRefImpl <em>Builtin Property Ref</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.BuiltinPropertyRefImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getBuiltinPropertyRef()
+		 * @generated
+		 */
+		EClass BUILTIN_PROPERTY_REF = eINSTANCE.getBuiltinPropertyRef();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.MetamodelFeatureRefImpl <em>Metamodel Feature Ref</em>}' class.

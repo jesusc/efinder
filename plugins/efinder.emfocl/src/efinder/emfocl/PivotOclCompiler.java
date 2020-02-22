@@ -736,8 +736,10 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				if (definition.eContainer() instanceof TupleType) {
 					TupleType tt = (TupleType) definition.eContainer();
 					context.addPendingResolution(new ResolveTupleAccess(definition, tt, call));
+				} else if (definition.getImplementation() != null) {
+					call.setFeature(EfinderFactory.eINSTANCE.createBuiltinPropertyRef());
 				} else {				
-					// This is likely defined in the OCL text, so we resolve against it
+					// This is likely defined in the OCL text, so we resolve against it					
 					context.addPendingResolution(new ResolveProperty(definition, call));
 				}
 				return call;
@@ -789,7 +791,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 					if (refOp.getImplementation() instanceof EObjectOperation) {
 						context.addPendingResolution(new ResolveOperation(refOp, call));
 					} else {
-						// TODO: Register built-in
+						call.setFeature(EfinderFactory.eINSTANCE.createBuiltinOperationRef());
 					}
 					return call;
 				}
@@ -1112,8 +1114,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@Override
 		public void accept(CompilerContext c) {
 			@Nullable OclDerivedProperty irProperty = c.getProperty(property);
-			Preconditions.checkNotNull(irProperty);
-			if (property == null) {
+			if (irProperty == null) {
 				throw new TypeError("Property not declared " + property.getName(), "property-not-found");
 			}
 			

@@ -61,6 +61,7 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 			case EfinderPackage.DEFINED_OPERATION_REF: return createDefinedOperationRef();
 			case EfinderPackage.TUPLE_FIELD_REF: return createTupleFieldRef();
 			case EfinderPackage.DERIVED_PROPERTY_REF: return createDerivedPropertyRef();
+			case EfinderPackage.BUILTIN_PROPERTY_REF: return createBuiltinPropertyRef();
 			case EfinderPackage.METAMODEL_FEATURE_REF: return createMetamodelFeatureRef();
 			case EfinderPackage.VARIABLE_DECLARATION: return createVariableDeclaration();
 			case EfinderPackage.PARAMETER: return createParameter();
@@ -136,6 +137,17 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public DerivedPropertyRef createDerivedPropertyRef() {
 		DerivedPropertyRefImpl derivedPropertyRef = new DerivedPropertyRefImpl();
 		return derivedPropertyRef;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public BuiltinPropertyRef createBuiltinPropertyRef() {
+		BuiltinPropertyRefImpl builtinPropertyRef = new BuiltinPropertyRefImpl();
+		return builtinPropertyRef;
 	}
 
 	/**

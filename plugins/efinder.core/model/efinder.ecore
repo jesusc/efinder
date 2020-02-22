@@ -51,6 +51,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="property" lowerBound="1"
         eType="#//DerivedProperty"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BuiltinPropertyRef" eSuperTypes="#//PropertyFeatureRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="MetamodelFeatureRef" eSuperTypes="#//PropertyFeatureRef">
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>

@@ -5,6 +5,7 @@ package efinder.ir.impl;
 import efinder.ir.AbstractFunction;
 import efinder.ir.BagTypeRef;
 import efinder.ir.BuiltinOperationRef;
+import efinder.ir.BuiltinPropertyRef;
 import efinder.ir.CollectionTypeRef;
 import efinder.ir.Constraint;
 import efinder.ir.DefinedOperationRef;
@@ -146,6 +147,13 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	private EClass derivedPropertyRefEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass builtinPropertyRefEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -650,6 +658,16 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
+	public EClass getBuiltinPropertyRef() {
+		return builtinPropertyRefEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public EClass getMetamodelFeatureRef() {
 		return metamodelFeatureRefEClass;
 	}
@@ -1095,6 +1113,8 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		derivedPropertyRefEClass = createEClass(DERIVED_PROPERTY_REF);
 		createEReference(derivedPropertyRefEClass, DERIVED_PROPERTY_REF__PROPERTY);
 
+		builtinPropertyRefEClass = createEClass(BUILTIN_PROPERTY_REF);
+
 		metamodelFeatureRefEClass = createEClass(METAMODEL_FEATURE_REF);
 		createEReference(metamodelFeatureRefEClass, METAMODEL_FEATURE_REF__FEATURE);
 
@@ -1197,6 +1217,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		propertyFeatureRefEClass.getESuperTypes().add(this.getFeatureRef());
 		tupleFieldRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
 		derivedPropertyRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
+		builtinPropertyRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
 		metamodelFeatureRefEClass.getESuperTypes().add(this.getPropertyFeatureRef());
 		parameterEClass.getESuperTypes().add(this.getVariableDeclaration());
 		efClassEClass.getESuperTypes().add(this.getEFType());
@@ -1253,6 +1274,8 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 
 		initEClass(derivedPropertyRefEClass, DerivedPropertyRef.class, "DerivedPropertyRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDerivedPropertyRef_Property(), this.getDerivedProperty(), null, "property", null, 1, 1, DerivedPropertyRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(builtinPropertyRefEClass, BuiltinPropertyRef.class, "BuiltinPropertyRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(metamodelFeatureRefEClass, MetamodelFeatureRef.class, "MetamodelFeatureRef", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMetamodelFeatureRef_Feature(), ecorePackage.getEStructuralFeature(), null, "feature", null, 1, 1, MetamodelFeatureRef.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

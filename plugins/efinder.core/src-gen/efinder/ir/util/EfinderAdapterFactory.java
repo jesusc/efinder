@@ -120,6 +120,10 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 				return createDerivedPropertyRefAdapter();
 			}
 			@Override
+			public Adapter caseBuiltinPropertyRef(BuiltinPropertyRef object) {
+				return createBuiltinPropertyRefAdapter();
+			}
+			@Override
 			public Adapter caseMetamodelFeatureRef(MetamodelFeatureRef object) {
 				return createMetamodelFeatureRefAdapter();
 			}
@@ -398,6 +402,20 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDerivedPropertyRefAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.BuiltinPropertyRef <em>Builtin Property Ref</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.BuiltinPropertyRef
+	 * @generated
+	 */
+	public Adapter createBuiltinPropertyRefAdapter() {
 		return null;
 	}
 

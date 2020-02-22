@@ -44,6 +44,7 @@
     <genClasses ecoreClass="efinder.ecore#//DerivedPropertyRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//DerivedPropertyRef/property"/>
     </genClasses>
+    <genClasses ecoreClass="efinder.ecore#//BuiltinPropertyRef"/>
     <genClasses ecoreClass="efinder.ecore#//MetamodelFeatureRef">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//MetamodelFeatureRef/feature"/>
     </genClasses>

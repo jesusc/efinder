@@ -159,6 +159,14 @@ public class EfinderSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case EfinderPackage.BUILTIN_PROPERTY_REF: {
+				BuiltinPropertyRef builtinPropertyRef = (BuiltinPropertyRef)theEObject;
+				T result = caseBuiltinPropertyRef(builtinPropertyRef);
+				if (result == null) result = casePropertyFeatureRef(builtinPropertyRef);
+				if (result == null) result = caseFeatureRef(builtinPropertyRef);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case EfinderPackage.METAMODEL_FEATURE_REF: {
 				MetamodelFeatureRef metamodelFeatureRef = (MetamodelFeatureRef)theEObject;
 				T result = caseMetamodelFeatureRef(metamodelFeatureRef);
@@ -493,6 +501,21 @@ public class EfinderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDerivedPropertyRef(DerivedPropertyRef object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Builtin Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Builtin Property Ref</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBuiltinPropertyRef(BuiltinPropertyRef object) {
 		return null;
 	}
 

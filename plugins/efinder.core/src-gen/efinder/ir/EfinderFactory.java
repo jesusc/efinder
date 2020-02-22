@@ -67,6 +67,15 @@ public interface EfinderFactory extends EFactory {
 	DerivedPropertyRef createDerivedPropertyRef();
 
 	/**
+	 * Returns a new object of class '<em>Builtin Property Ref</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Builtin Property Ref</em>'.
+	 * @generated
+	 */
+	BuiltinPropertyRef createBuiltinPropertyRef();
+
+	/**
 	 * Returns a new object of class '<em>Metamodel Feature Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

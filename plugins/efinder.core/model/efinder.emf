@@ -67,6 +67,10 @@ class DerivedPropertyRef extends PropertyFeatureRef {
 	ref DerivedProperty[1] property;	
 }
 
+class BuiltinPropertyRef extends PropertyFeatureRef {
+	
+}
+
 class MetamodelFeatureRef extends PropertyFeatureRef {
 	ref ecore.EStructuralFeature[1] feature;	
 }

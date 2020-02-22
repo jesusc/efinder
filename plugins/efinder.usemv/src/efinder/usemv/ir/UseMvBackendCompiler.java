@@ -3,6 +3,7 @@ package efinder.usemv.ir;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -83,6 +84,7 @@ public class UseMvBackendCompiler {
 		
 		Map<EFType, Collection<OclDerivedProperty>> properties = ir.getDerivedPropertiesAsMap(); // IRUtils.getDerivedPropertiesAsMap(spec);
 		Map<EFType, Collection<OclOperation>> operations = ir.getOperationsAsMap(); // IRUtils.getOperationsAsMap(spec);		
+		Map<EClass, List<String>> containers = precomputeContainers();
 		
 		List<EAttribute> nonUndefined = new ArrayList<EAttribute>();		
 		
@@ -114,11 +116,12 @@ public class UseMvBackendCompiler {
 			
 			text.append("\n");
 			
-			if (!c.getEAttributes().isEmpty() || !classDerived.isEmpty()) {
+			List<? extends EAttribute> attributes = ir.getAttributes(c);
+			if (!attributes.isEmpty() || !classDerived.isEmpty()) {
 				text.append("attributes\n");
 				
 				ATTR:
-				for (EAttribute att : ir.getAttributes(c)) {
+				for (EAttribute att : attributes) {
 					if (! EMFUtils.isNullable(att)) {
 						nonUndefined.add(att);
 					}
@@ -146,8 +149,11 @@ public class UseMvBackendCompiler {
 				}
 			}
 			
-			if (!classOperations.isEmpty()) {
+			
+			OPERATIONS:
+			{
 				text.append("operations\n");
+				appendOclContainer(c, containers, text);
 				for (OclOperation op : classOperations) {
 					String type = toUseType(op.getType());						
 					text.append("  " + op.getName() + "(");
@@ -355,4 +361,48 @@ public class UseMvBackendCompiler {
 			return ((MetaTypeRef) ref).getType() instanceof EFPrimitiveType;
 		return true;
 	}
+	
+	
+	@NonNull
+	private Map<EClass, List<String>> precomputeContainers() {		
+		// add "refImmediateComposite" operation to each classifier (supported by ATL, but not by USE).
+		// (1) obtain containers of each class
+		Map<EClass, List<String>> containers = new HashMap<>();
+		for (EFClass cl : ir.getAllClasses()) {
+			EClass container = cl.getKlass();
+			for (EReference ref : ir.getReferences(container)) { 
+				if (ref.isContainment()) {
+					EClass containee = ref.getEReferenceType();
+
+					List<String> constraints = containers.computeIfAbsent(containee, k -> new ArrayList<>());					
+					
+					String useType = mapping.toUseTypeName(container);	
+					String refName = mapping.toUsePropertyName(ref);
+					constraints.add(ref.isMany() ?
+							useType + ".allInstances()->select(o|o." + refName + "->includes(self))" : 
+							useType + ".allInstances()->select(o|o." + refName + " = self)");
+				}
+			}
+		}
+		
+		return containers;
+	}
+
+	private void appendOclContainer(@NonNull EClass containee, @NonNull Map<EClass, List<String>> containers, @NonNull StringBuilder text) {
+		String body = "";
+		List<String> selects = containers.get(containee);
+		if (selects==null) {
+			body = "oclUndefined(OclVoid)";
+		}
+		else {
+			body = selects.get(0);
+			for (int i=1; i<selects.size(); i++) body += "->union("+selects.get(i)+")";
+			body += "->any(true)";
+		}
+		
+		text.append("  oclContainer() : OclAny = ").
+			append(body).
+			append("\n");
+	}
+
 }
