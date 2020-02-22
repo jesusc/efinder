@@ -1,12 +1,15 @@
 package efinder.usemv.ir;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
@@ -43,15 +46,22 @@ public class UseMapping {
 	@NonNull
 	private final Map<String, String> useToEcoreLiteralName = new HashMap<String, String>();
 	@NonNull
+	private final Set<String> temporaryClassNames = new HashSet<String>();	
+	@NonNull
 	private final String modelName;	
 
 	public UseMapping(IRFootprintedModel ir) {
 		List<? extends EFMetamodel> metamodels = ir.getSpecification().getMetamodels();
 		mapMetamodels(metamodels);
 		ir.getSpecification().getTemporary().forEach(c -> eclassifier2use.put(c.getKlass(), UseReservedWords.toUseName(c.getKlass().getName())));
+		ir.getSpecification().getTemporary().forEach(c -> temporaryClassNames.add(UseReservedWords.toUseName(c.getKlass().getName())));
 		this.modelName = UseReservedWords.toUseName(metamodels.get(0).getRoots().get(0).getPkg().getName());
 	}
 
+	public boolean isTemporary(@NonNull EClass c) {
+		return temporaryClassNames.contains(c.getName());
+	}
+	
 	private void mapMetamodels(@NonNull List<? extends EFMetamodel> metamodels) {
 		Function<EClassifier, String> nameMapper = metamodels.size() > 1 ?
 				(c) -> UseReservedWords.toUseName(c.getEPackage().getName() + "_" + c.getName()) :

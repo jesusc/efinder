@@ -81,10 +81,14 @@ public class UseModel {
 		
 		// parse objects
 		for (MObject useObject : useObjects) {
-			EClassifier classifier = mapping.getInverseType(useObject.cls().name());
+			EClass klass = (EClass) mapping.getInverseType(useObject.cls().name());
+			
+			if (mapping.isTemporary(klass)) 
+				continue;
+			
 			// EObject object = createEObject(pkg, className);
-			EPackage pkg = classifier.getEPackage();
-			EObject object = createEObject(pkg, classifier.getName());
+			EPackage pkg = klass.getEPackage();
+			EObject object = createEObject(pkg, klass.getName());
 			// TODO: asignar id
 			eobjects.put(useObject.name(), object);
 			emfObjects.add(object);
@@ -132,6 +136,9 @@ public class UseModel {
 		for (MLink useLink : state.allLinks()) {
 			EObject object1 = eobjects.get(useLink.linkedObjects().get(0).name()); // TODO: check whether this works in general
 			EObject object2 = eobjects.get(useLink.linkedObjects().get(1).name());
+
+			if (mapping.isTemporary(object1.eClass()) || mapping.isTemporary(object2.eClass()))
+				continue;
 			
 			EPackage pkg = object1.eClass().getEPackage();
 			
