@@ -42,7 +42,7 @@ public class UseFeatureChecker {
 		
 		for (Constraint c : model.getConstraints()) {
 			if (c instanceof OclConstraint) {
-				check(((OclConstraint) c).getExpression(), report);
+				check(c, report);
 			} else {
 				report.addUnsupported("Constraint type not supported" + c.eClass().getName(), c, Report.Action.STOP, "constraint-lang");
 			}
