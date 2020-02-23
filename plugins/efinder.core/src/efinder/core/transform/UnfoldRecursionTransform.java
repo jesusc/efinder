@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
@@ -20,6 +21,7 @@ import efinder.core.IDialectAdaptation;
 import efinder.core.ir.IRBuilder;
 import efinder.core.utils.IRCopier;
 import efinder.ir.AbstractFunction;
+import efinder.ir.DefinedOperationRef;
 import efinder.ir.EFType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.Parameter;
@@ -47,11 +49,45 @@ public class UnfoldRecursionTransform implements IDialectAdaptation {
 	@Override
 	public void transform(@NonNull EFinderModel model) {		
 		model.getSpecification().eAllContents().forEachRemaining(o -> {
+			if (o instanceof OclOperation) {
+				inOclOperation((OclOperation) o, model.getSpecification());
+			}
 			if (o instanceof IterateExp) {
 				transformIterate((IterateExp) o, model.getSpecification());
 			}
 		});
-		
+	}
+
+	private void inOclOperation(@NonNull OclOperation o, @NonNull Specification specification) {
+		// TODO Auto-generated method stub
+		List<OperationCallExp> sites = needsUnfolding(o);
+		if (sites != null) {
+			unfold(specification, o, sites, DEFAULT_UNFOLDINGS);
+		}
+	}
+
+	private List<OperationCallExp> needsUnfolding(OclOperation operation) {
+		ArrayList<OperationCallExp> unfoldingSites = null;
+		// Don't start at the body because we need to process even the very first element of the tree
+		TreeIterator<EObject> it = operation.eAllContents(); 
+		while ( it.hasNext() ) {
+			EObject o = it.next();
+			if ( o instanceof OperationCallExp ) {
+				OperationCallExp prop = ((OperationCallExp) o);
+				if ( isResolvedBy(prop, operation)) {
+					if ( unfoldingSites == null ) 
+						unfoldingSites = new ArrayList<OperationCallExp>();
+					unfoldingSites.add((OperationCallExp) o);
+				}				
+			}
+		}
+		return unfoldingSites;
+	}
+
+	
+	private boolean isResolvedBy(@NonNull OperationCallExp prop, @NonNull OclOperation operation) {
+		// TODO: Check dynamic resolvers?
+		return prop.getFeature() instanceof DefinedOperationRef && ((DefinedOperationRef) prop.getFeature()).getOperation() == operation;
 	}
 
 	private void transformIterate(@NonNull IterateExp o, @NonNull Specification specification) {
