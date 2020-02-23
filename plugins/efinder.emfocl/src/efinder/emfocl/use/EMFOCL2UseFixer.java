@@ -28,10 +28,20 @@ public class EMFOCL2UseFixer extends AbstractIRVisitor<Void, Void> implements ID
 				inOperationCallExp((OperationCallExp) o);
 			} else if (o instanceof PropertyCallExp) {
 				inPropertyCallExp((PropertyCallExp) o);			
-			} else if (o instanceof TypedElement) {
-				inTypedElement((TypedElement) o);
+			//} else if (o instanceof TypedElement) {
+			//	inTypedElement((TypedElement) o);
+			} else if (o instanceof CollectionTypeRef) {
+				inCollectionTypeRef((CollectionTypeRef) o);
 			}
 		});
+	}
+
+	// Change all OrderedSet by Set and let the FeatureChecker handle the invalid operations
+	private void inCollectionTypeRef(CollectionTypeRef ref) {
+		if (ref instanceof OrderedSetTypeRef) {
+			TypeRef newType = IRBuilder.newSetTypeRef(ref.getContainedType());
+			EcoreUtil.replace(ref, newType);
+		}		
 	}
 
 	private void inPropertyCallExp(PropertyCallExp o) {

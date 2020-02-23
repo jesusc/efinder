@@ -73,7 +73,7 @@ public class TupleToClassTransform implements IDialectAdaptation {
 	}
 
 	private void transformTupleExp(@NonNull TupleLiteralExp exp, @NonNull Map<EFTupleType, EFClass> classes) {
-		EFClass c = classes.get(exp.getType());
+		EFClass c = classes.get(exp.getTupleType());
 
 		ModelElement newElement = IRBuilder.newModelElement(IRBuilder.newMetaTypeRef(c));
 		OperationCallExp allInstances = IRBuilder.newOperationCallExp("allInstances", newElement);

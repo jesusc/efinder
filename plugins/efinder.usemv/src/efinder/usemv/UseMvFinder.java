@@ -272,7 +272,7 @@ public class UseMvFinder implements IModelFinder {
         if ( useOutput.contains("Cannot transform invariant") ) {
         	// This will end-up into a NOT_SUPPORTED_BY_USE
         	// return new Pair<Outcome, Boolean>(Outcome.UNSATISFIABLE, false);
-        	return null;
+        	throw new InvalidUseTranslation(new UnsupportedTranslation(useOutput));
         }
     	
 		// configure

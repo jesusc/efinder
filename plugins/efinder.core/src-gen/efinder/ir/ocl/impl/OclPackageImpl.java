@@ -23,7 +23,6 @@ import efinder.ir.ocl.LiteralExp;
 import efinder.ir.ocl.LoopExp;
 import efinder.ir.ocl.ModelElement;
 import efinder.ir.ocl.OclAnyLibElement;
-import efinder.ir.ocl.OclConstraint;
 import efinder.ir.ocl.OclDerivedProperty;
 import efinder.ir.ocl.OclExpression;
 import efinder.ir.ocl.OclFactory;
@@ -62,13 +61,6 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class OclPackageImpl extends EPackageImpl implements OclPackage {
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EClass oclConstraintEClass = null;
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -401,26 +393,6 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getOclConstraint() {
-		return oclConstraintEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EReference getOclConstraint_Expression() {
-		return (EReference)oclConstraintEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public EClass getWithContextVariable() {
 		return withContextVariableEClass;
 	}
@@ -453,6 +425,16 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	@Override
 	public EReference getOclInvariant_Klass() {
 		return (EReference)oclInvariantEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public EReference getOclInvariant_Expression() {
+		return (EReference)oclInvariantEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -511,8 +493,8 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EClass getModelElement() {
-		return modelElementEClass;
+	public EReference getOclExpression_Type() {
+		return (EReference)oclExpressionEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -521,8 +503,8 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getModelElement_Type() {
-		return (EReference)modelElementEClass.getEStructuralFeatures().get(0);
+	public EClass getModelElement() {
+		return modelElementEClass;
 	}
 
 	/**
@@ -991,7 +973,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getTupleLiteralExp_Type() {
+	public EReference getTupleLiteralExp_TupleType() {
 		return (EReference)tupleLiteralExpEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -1204,14 +1186,12 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		oclConstraintEClass = createEClass(OCL_CONSTRAINT);
-		createEReference(oclConstraintEClass, OCL_CONSTRAINT__EXPRESSION);
-
 		withContextVariableEClass = createEClass(WITH_CONTEXT_VARIABLE);
 		createEReference(withContextVariableEClass, WITH_CONTEXT_VARIABLE__CONTEXT_VARIABLE);
 
 		oclInvariantEClass = createEClass(OCL_INVARIANT);
 		createEReference(oclInvariantEClass, OCL_INVARIANT__KLASS);
+		createEReference(oclInvariantEClass, OCL_INVARIANT__EXPRESSION);
 
 		oclDerivedPropertyEClass = createEClass(OCL_DERIVED_PROPERTY);
 		createEReference(oclDerivedPropertyEClass, OCL_DERIVED_PROPERTY__BODY);
@@ -1220,9 +1200,9 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		createEReference(oclOperationEClass, OCL_OPERATION__BODY);
 
 		oclExpressionEClass = createEClass(OCL_EXPRESSION);
+		createEReference(oclExpressionEClass, OCL_EXPRESSION__TYPE);
 
 		modelElementEClass = createEClass(MODEL_ELEMENT);
-		createEReference(modelElementEClass, MODEL_ELEMENT__TYPE);
 
 		callExpEClass = createEClass(CALL_EXP);
 		createEReference(callExpEClass, CALL_EXP__SOURCE);
@@ -1290,7 +1270,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		oclInvalidEClass = createEClass(OCL_INVALID);
 
 		tupleLiteralExpEClass = createEClass(TUPLE_LITERAL_EXP);
-		createEReference(tupleLiteralExpEClass, TUPLE_LITERAL_EXP__TYPE);
+		createEReference(tupleLiteralExpEClass, TUPLE_LITERAL_EXP__TUPLE_TYPE);
 		createEReference(tupleLiteralExpEClass, TUPLE_LITERAL_EXP__PARTS);
 
 		tuplePartEClass = createEClass(TUPLE_PART);
@@ -1353,8 +1333,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		oclConstraintEClass.getESuperTypes().add(theEfinderPackage.getConstraint());
-		oclInvariantEClass.getESuperTypes().add(this.getOclConstraint());
+		oclInvariantEClass.getESuperTypes().add(theEfinderPackage.getConstraint());
 		oclInvariantEClass.getESuperTypes().add(this.getWithContextVariable());
 		oclDerivedPropertyEClass.getESuperTypes().add(theEfinderPackage.getDerivedProperty());
 		oclDerivedPropertyEClass.getESuperTypes().add(this.getWithContextVariable());
@@ -1391,14 +1370,12 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		unsupportedExpEClass.getESuperTypes().add(this.getOclExpression());
 
 		// Initialize classes, features, and operations; add parameters
-		initEClass(oclConstraintEClass, OclConstraint.class, "OclConstraint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getOclConstraint_Expression(), this.getOclExpression(), null, "expression", null, 1, 1, OclConstraint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(withContextVariableEClass, WithContextVariable.class, "WithContextVariable", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWithContextVariable_ContextVariable(), theEfinderPackage.getVariableDeclaration(), null, "contextVariable", null, 1, 1, WithContextVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclInvariantEClass, OclInvariant.class, "OclInvariant", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOclInvariant_Klass(), theEfinderPackage.getEFClass(), null, "klass", null, 1, 1, OclInvariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getOclInvariant_Expression(), this.getOclExpression(), null, "expression", null, 1, 1, OclInvariant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclDerivedPropertyEClass, OclDerivedProperty.class, "OclDerivedProperty", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getOclDerivedProperty_Body(), this.getOclExpression(), null, "body", null, 1, 1, OclDerivedProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1407,9 +1384,9 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		initEReference(getOclOperation_Body(), this.getOclExpression(), null, "body", null, 1, 1, OclOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(oclExpressionEClass, OclExpression.class, "OclExpression", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getOclExpression_Type(), theEfinderPackage.getTypeRef(), null, "type", null, 0, 1, OclExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(modelElementEClass, ModelElement.class, "ModelElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElement_Type(), theEfinderPackage.getTypeRef(), null, "type", null, 1, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(callExpEClass, CallExp.class, "CallExp", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCallExp_Source(), this.getOclExpression(), null, "source", null, 1, 1, CallExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1477,7 +1454,7 @@ public class OclPackageImpl extends EPackageImpl implements OclPackage {
 		initEClass(oclInvalidEClass, OclInvalid.class, "OclInvalid", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(tupleLiteralExpEClass, TupleLiteralExp.class, "TupleLiteralExp", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTupleLiteralExp_Type(), theEfinderPackage.getEFTupleType(), null, "type", null, 1, 1, TupleLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTupleLiteralExp_TupleType(), theEfinderPackage.getEFTupleType(), null, "tupleType", null, 1, 1, TupleLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTupleLiteralExp_Parts(), this.getTuplePart(), null, "parts", null, 0, -1, TupleLiteralExp.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tuplePartEClass, TuplePart.class, "TuplePart", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

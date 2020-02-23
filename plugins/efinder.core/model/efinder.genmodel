@@ -114,15 +114,13 @@
         <genEnumLiterals ecoreEnumLiteral="efinder.ecore#//ocl/OperatorKind/XOR"/>
         <genEnumLiterals ecoreEnumLiteral="efinder.ecore#//ocl/OperatorKind/IMPLIES"/>
       </genEnums>
-      <genClasses ecoreClass="efinder.ecore#//ocl/OclConstraint">
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/OclConstraint/expression"/>
-      </genClasses>
       <genClasses image="false" ecoreClass="efinder.ecore#//ocl/WithContextVariable">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/WithContextVariable/contextVariable"/>
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/OclInvariant">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference efinder.ecore#//ocl/OclInvariant/klass"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/OclInvariant/expression"/>
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/OclDerivedProperty">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/OclDerivedProperty/body"/>
@@ -130,11 +128,10 @@
       <genClasses ecoreClass="efinder.ecore#//ocl/OclOperation">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/OclOperation/body"/>
       </genClasses>
-      <genClasses image="false" ecoreClass="efinder.ecore#//ocl/OclExpression"/>
-      <genClasses ecoreClass="efinder.ecore#//ocl/ModelElement">
-        <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference efinder.ecore#//ocl/ModelElement/type"/>
+      <genClasses image="false" ecoreClass="efinder.ecore#//ocl/OclExpression">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/OclExpression/type"/>
       </genClasses>
+      <genClasses ecoreClass="efinder.ecore#//ocl/ModelElement"/>
       <genClasses image="false" ecoreClass="efinder.ecore#//ocl/CallExp">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/CallExp/source"/>
       </genClasses>
@@ -199,7 +196,7 @@
       <genClasses ecoreClass="efinder.ecore#//ocl/OclInvalid"/>
       <genClasses ecoreClass="efinder.ecore#//ocl/TupleLiteralExp">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference efinder.ecore#//ocl/TupleLiteralExp/type"/>
+            ecoreFeature="ecore:EReference efinder.ecore#//ocl/TupleLiteralExp/tupleType"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//ocl/TupleLiteralExp/parts"/>
       </genClasses>
       <genClasses ecoreClass="efinder.ecore#//ocl/TuplePart">

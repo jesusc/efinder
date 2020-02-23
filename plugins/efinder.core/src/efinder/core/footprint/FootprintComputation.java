@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
@@ -20,8 +19,8 @@ import efinder.ir.MetaTypeRef;
 import efinder.ir.MetamodelFeatureRef;
 import efinder.ir.OperationFeatureRef;
 import efinder.ir.PropertyFeatureRef;
-import efinder.ir.ocl.OclConstraint;
 import efinder.ir.ocl.OclDerivedProperty;
+import efinder.ir.ocl.OclInvariant;
 import efinder.ir.ocl.OclOperation;
 import efinder.ir.ocl.OperationCallExp;
 import efinder.ir.ocl.PropertyCallExp;
@@ -41,7 +40,7 @@ public class FootprintComputation {
 		MutableFootprint footprint = new IFootprint.MutableFootprint();
 		
 		for (Constraint constraint : model.getSpecification().getConstaints()) {
-			OclConstraint oclConstraint = (OclConstraint) constraint;
+			OclInvariant oclConstraint = (OclInvariant) constraint;
 			visitElement(oclConstraint, footprint); 
 		}
 		

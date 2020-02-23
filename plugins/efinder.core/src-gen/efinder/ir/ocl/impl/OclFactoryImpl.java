@@ -57,7 +57,6 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case OclPackage.OCL_CONSTRAINT: return createOclConstraint();
 			case OclPackage.OCL_INVARIANT: return createOclInvariant();
 			case OclPackage.OCL_DERIVED_PROPERTY: return createOclDerivedProperty();
 			case OclPackage.OCL_OPERATION: return createOclOperation();
@@ -120,17 +119,6 @@ public class OclFactoryImpl extends EFactoryImpl implements OclFactory {
 			default:
 				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public OclConstraint createOclConstraint() {
-		OclConstraintImpl oclConstraint = new OclConstraintImpl();
-		return oclConstraint;
 	}
 
 	/**

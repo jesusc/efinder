@@ -6,12 +6,10 @@ import java.util.Set;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
-import org.tzi.use.uml.ocl.type.TupleType;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 
-import efinder.core.EFinderModel;
 import efinder.core.errors.Report;
 import efinder.core.footprint.IRFootprintedModel;
 import efinder.ir.Constraint;
@@ -21,9 +19,8 @@ import efinder.ir.MetaTypeRef;
 import efinder.ir.Operation;
 import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.IterateExp;
-import efinder.ir.ocl.OclConstraint;
 import efinder.ir.ocl.OclDerivedProperty;
-import efinder.ir.ocl.OclExpression;
+import efinder.ir.ocl.OclInvariant;
 import efinder.ir.ocl.OclOperation;
 import efinder.ir.ocl.OperationCallExp;
 import efinder.ir.ocl.TupleLiteralExp;
@@ -41,7 +38,7 @@ public class UseFeatureChecker {
 		Report report = new Report();
 		
 		for (Constraint c : model.getConstraints()) {
-			if (c instanceof OclConstraint) {
+			if (c instanceof OclInvariant) {
 				check(c, report);
 			} else {
 				report.addUnsupported("Constraint type not supported" + c.eClass().getName(), c, Report.Action.STOP, "constraint-lang");

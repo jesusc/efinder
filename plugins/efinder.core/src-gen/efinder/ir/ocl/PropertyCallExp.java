@@ -4,7 +4,6 @@ package efinder.ir.ocl;
 
 import efinder.ir.PropertyFeatureRef;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property Call Exp</b></em>'.

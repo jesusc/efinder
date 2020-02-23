@@ -5,7 +5,6 @@ package efinder.ir.ocl;
 import efinder.ir.EFEnumLiteral;
 import efinder.ir.MetaTypeRef;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Enum Literal Exp</b></em>'.

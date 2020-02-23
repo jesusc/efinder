@@ -985,7 +985,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				tuple.getParts().add(part);
 			}
 
-			tuple.setType(eft);
+			tuple.setTupleType(eft);
 			
 			return tuple;
 		}
@@ -998,7 +998,21 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		
 		@NonNull
 		public OclExpression toExpression(@NonNull OCLExpression expr) {
-			return expr.accept(this);
+			OclExpression r = expr.accept(this);
+			try {
+				// TODO: Do all of this in a more elegant way
+				if (expr.getType() != null)
+					r.setType(context.metamodels.getType(expr.getType()));
+			} catch (Exception e) {
+				// Fallback, e.g. for ModelElement
+				try {
+					if (expr.getTypeValue() != null)
+						r.setType(context.metamodels.getType(expr.getTypeValue()));
+				} catch (Exception e2) {
+					// Couldn't recover a type
+				}
+			}
+			return r;
 		}		
 		
 		@NonNull

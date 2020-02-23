@@ -4,8 +4,11 @@ package efinder.ir.ocl.impl;
 
 import efinder.ir.ocl.IteratorExp;
 import efinder.ir.ocl.OclPackage;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -103,7 +106,6 @@ public class IteratorExpImpl extends LoopExpImpl implements IteratorExp {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {

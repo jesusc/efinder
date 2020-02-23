@@ -17,6 +17,7 @@ import efinder.core.footprint.IFootprint;
 import efinder.core.footprint.ISlicingStrategy;
 import efinder.core.management.EMFModel;
 import efinder.core.transform.TupleToClassTransform;
+import efinder.core.transform.UnfoldRecursionTransform;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.emfocl.use.EMFOCL2UseFixer;
 
@@ -34,7 +35,7 @@ public class EFinderRunner {
 		// Configuration:
 		registry.add("use", new EMFOCL2UseFixer());
 		registry.add("use", new TupleToClassTransform());
-		
+		registry.add("use", new UnfoldRecursionTransform());		
 	}
 	
 	public EFinderRunner withSlicingStrategy(@NonNull ISlicingStrategy strategy) {

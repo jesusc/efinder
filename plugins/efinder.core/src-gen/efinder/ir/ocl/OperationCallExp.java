@@ -4,7 +4,6 @@ package efinder.ir.ocl;
 
 import efinder.ir.OperationFeatureRef;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Operation Call Exp</b></em>'.

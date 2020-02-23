@@ -3,15 +3,16 @@
 package efinder.ir.ocl.impl;
 
 import efinder.ir.OperationFeatureRef;
+
 import efinder.ir.ocl.OclPackage;
 import efinder.ir.ocl.OperationCallExp;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

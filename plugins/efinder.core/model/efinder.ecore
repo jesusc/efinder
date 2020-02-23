@@ -112,17 +112,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="BagTypeRef" eSuperTypes="#//CollectionTypeRef"/>
   <eClassifiers xsi:type="ecore:EClass" name="OrderedSetTypeRef" eSuperTypes="#//CollectionTypeRef"/>
   <eSubpackages name="ocl" nsURI="http://efinder/ir/ocl" nsPrefix="efinder_ocl">
-    <eClassifiers xsi:type="ecore:EClass" name="OclConstraint" eSuperTypes="#//Constraint">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
-          eType="#//ocl/OclExpression" containment="true"/>
-    </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WithContextVariable" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EReference" name="contextVariable" lowerBound="1"
           eType="#//VariableDeclaration" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OclInvariant" eSuperTypes="#//ocl/OclConstraint #//ocl/WithContextVariable">
+    <eClassifiers xsi:type="ecore:EClass" name="OclInvariant" eSuperTypes="#//Constraint #//ocl/WithContextVariable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="klass" lowerBound="1"
           eType="#//EFClass"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
+          eType="#//ocl/OclExpression" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="OclDerivedProperty" eSuperTypes="#//DerivedProperty #//ocl/WithContextVariable">
       <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1"
@@ -132,11 +130,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="body" lowerBound="1"
           eType="#//ocl/OclExpression" containment="true"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="OclExpression" abstract="true"/>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//ocl/OclExpression">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
-          eType="#//TypeRef" containment="true"/>
+    <eClassifiers xsi:type="ecore:EClass" name="OclExpression" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="#//TypeRef"
+          containment="true"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElement" eSuperTypes="#//ocl/OclExpression"/>
     <eClassifiers xsi:type="ecore:EClass" name="CallExp" abstract="true" eSuperTypes="#//ocl/OclExpression">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
           eType="#//ocl/OclExpression" containment="true"/>
@@ -242,7 +240,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="OclUndefined" eSuperTypes="#//ocl/LiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="OclInvalid" eSuperTypes="#//ocl/LiteralExp"/>
     <eClassifiers xsi:type="ecore:EClass" name="TupleLiteralExp" eSuperTypes="#//ocl/LiteralExp">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="tupleType" lowerBound="1"
           eType="#//EFTupleType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="parts" upperBound="-1"
           eType="#//ocl/TuplePart" containment="true"/>

@@ -4,7 +4,6 @@ package efinder.ir;
 
 import org.eclipse.emf.common.util.EList;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>EF Tuple Type</b></em>'.

@@ -3,6 +3,7 @@
 package efinder.ir.ocl;
 
 import efinder.ir.EFTupleType;
+
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -14,7 +15,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link efinder.ir.ocl.TupleLiteralExp#getType <em>Type</em>}</li>
+ *   <li>{@link efinder.ir.ocl.TupleLiteralExp#getTupleType <em>Tuple Type</em>}</li>
  *   <li>{@link efinder.ir.ocl.TupleLiteralExp#getParts <em>Parts</em>}</li>
  * </ul>
  *
@@ -24,26 +25,26 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface TupleLiteralExp extends LiteralExp {
 	/**
-	 * Returns the value of the '<em><b>Type</b></em>' reference.
+	 * Returns the value of the '<em><b>Tuple Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' reference.
-	 * @see #setType(EFTupleType)
-	 * @see efinder.ir.ocl.OclPackage#getTupleLiteralExp_Type()
+	 * @return the value of the '<em>Tuple Type</em>' reference.
+	 * @see #setTupleType(EFTupleType)
+	 * @see efinder.ir.ocl.OclPackage#getTupleLiteralExp_TupleType()
 	 * @model required="true"
 	 * @generated
 	 */
-	EFTupleType getType();
+	EFTupleType getTupleType();
 
 	/**
-	 * Sets the value of the '{@link efinder.ir.ocl.TupleLiteralExp#getType <em>Type</em>}' reference.
+	 * Sets the value of the '{@link efinder.ir.ocl.TupleLiteralExp#getTupleType <em>Tuple Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' reference.
-	 * @see #getType()
+	 * @param value the new value of the '<em>Tuple Type</em>' reference.
+	 * @see #getTupleType()
 	 * @generated
 	 */
-	void setType(EFTupleType value);
+	void setTupleType(EFTupleType value);
 
 	/**
 	 * Returns the value of the '<em><b>Parts</b></em>' containment reference list.

@@ -3,12 +3,14 @@
 package efinder.ir.ocl.impl;
 
 import efinder.ir.EFClass;
-import efinder.ir.VariableDeclaration;
 
+import efinder.ir.VariableDeclaration;
+import efinder.ir.impl.ConstraintImpl;
+import efinder.ir.ocl.OclExpression;
 import efinder.ir.ocl.OclInvariant;
 import efinder.ir.ocl.OclPackage;
-import efinder.ir.ocl.WithContextVariable;
 
+import efinder.ir.ocl.WithContextVariable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -27,11 +29,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <ul>
  *   <li>{@link efinder.ir.ocl.impl.OclInvariantImpl#getContextVariable <em>Context Variable</em>}</li>
  *   <li>{@link efinder.ir.ocl.impl.OclInvariantImpl#getKlass <em>Klass</em>}</li>
+ *   <li>{@link efinder.ir.ocl.impl.OclInvariantImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant {
+public class OclInvariantImpl extends ConstraintImpl implements OclInvariant {
 	/**
 	 * The cached value of the '{@link #getContextVariable() <em>Context Variable</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -51,6 +54,16 @@ public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant 
 	 * @ordered
 	 */
 	protected EFClass klass;
+
+	/**
+	 * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExpression()
+	 * @generated
+	 * @ordered
+	 */
+	protected OclExpression expression;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -162,10 +175,57 @@ public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant 
 	 * @generated
 	 */
 	@Override
+	public OclExpression getExpression() {
+		return expression;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetExpression(OclExpression newExpression, NotificationChain msgs) {
+		OclExpression oldExpression = expression;
+		expression = newExpression;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, OclPackage.OCL_INVARIANT__EXPRESSION, oldExpression, newExpression);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setExpression(OclExpression newExpression) {
+		if (newExpression != expression) {
+			NotificationChain msgs = null;
+			if (expression != null)
+				msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - OclPackage.OCL_INVARIANT__EXPRESSION, null, msgs);
+			if (newExpression != null)
+				msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - OclPackage.OCL_INVARIANT__EXPRESSION, null, msgs);
+			msgs = basicSetExpression(newExpression, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, OclPackage.OCL_INVARIANT__EXPRESSION, newExpression, newExpression));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case OclPackage.OCL_INVARIANT__CONTEXT_VARIABLE:
 				return basicSetContextVariable(null, msgs);
+			case OclPackage.OCL_INVARIANT__EXPRESSION:
+				return basicSetExpression(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -183,6 +243,8 @@ public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant 
 			case OclPackage.OCL_INVARIANT__KLASS:
 				if (resolve) return getKlass();
 				return basicGetKlass();
+			case OclPackage.OCL_INVARIANT__EXPRESSION:
+				return getExpression();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -200,6 +262,9 @@ public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant 
 				return;
 			case OclPackage.OCL_INVARIANT__KLASS:
 				setKlass((EFClass)newValue);
+				return;
+			case OclPackage.OCL_INVARIANT__EXPRESSION:
+				setExpression((OclExpression)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -219,6 +284,9 @@ public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant 
 			case OclPackage.OCL_INVARIANT__KLASS:
 				setKlass((EFClass)null);
 				return;
+			case OclPackage.OCL_INVARIANT__EXPRESSION:
+				setExpression((OclExpression)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -235,6 +303,8 @@ public class OclInvariantImpl extends OclConstraintImpl implements OclInvariant 
 				return contextVariable != null;
 			case OclPackage.OCL_INVARIANT__KLASS:
 				return klass != null;
+			case OclPackage.OCL_INVARIANT__EXPRESSION:
+				return expression != null;
 		}
 		return super.eIsSet(featureID);
 	}

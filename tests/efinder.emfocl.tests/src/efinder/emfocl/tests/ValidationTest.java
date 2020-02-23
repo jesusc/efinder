@@ -19,6 +19,7 @@ import efinder.core.IModelFinder.Result;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.emfocl.runner.EFinderRunner;
 import efinder.usemv.UseMvFinder;
+import efinder.usemv.UseMvResult.UnsupportedTranslation;
 
 @RunWith(Parameterized.class)
 public class ValidationTest extends AbstractEmfOclTest {
@@ -76,10 +77,12 @@ public class ValidationTest extends AbstractEmfOclTest {
 				withFinder(finder);
 		
 		Result result = runner.find();
-		
+		System.out.println("Result: " + result);
 		// Save to debug, possibly use a flag
 		if (result.isSat()) {
 			saveModel("outputs/" + data.getWitnessAsFileOutput(), result.getWitness().getResource());
+		} else if (result instanceof UnsupportedTranslation) {
+			System.out.println(((UnsupportedTranslation) result).getUseErrors());
 		}
 		
 		if (data.oracle != null ) {

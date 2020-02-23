@@ -22,15 +22,6 @@ public interface OclFactory extends EFactory {
 	OclFactory eINSTANCE = efinder.ir.ocl.impl.OclFactoryImpl.init();
 
 	/**
-	 * Returns a new object of class '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Constraint</em>'.
-	 * @generated
-	 */
-	OclConstraint createOclConstraint();
-
-	/**
 	 * Returns a new object of class '<em>Invariant</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

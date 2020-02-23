@@ -3,6 +3,7 @@ package efinder.core.ir;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -17,6 +18,7 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ImmutableMap;
 
 import efinder.ir.BagTypeRef;
+import efinder.ir.DefinedOperationRef;
 import efinder.ir.EFClass;
 import efinder.ir.EFEnum;
 import efinder.ir.EFEnumLiteral;
@@ -27,12 +29,14 @@ import efinder.ir.EFType;
 import efinder.ir.EfinderFactory;
 import efinder.ir.MetaTypeRef;
 import efinder.ir.MetamodelFeatureRef;
+import efinder.ir.OperationFeatureRef;
 import efinder.ir.OrderedSetTypeRef;
 import efinder.ir.Parameter;
 import efinder.ir.SequenceTypeRef;
 import efinder.ir.SetTypeRef;
 import efinder.ir.Specification;
 import efinder.ir.TypeRef;
+import efinder.ir.VariableDeclaration;
 import efinder.ir.ocl.BagLiteralExp;
 import efinder.ir.ocl.BooleanLiteralExp;
 import efinder.ir.ocl.CollectionCallExp;
@@ -44,7 +48,6 @@ import efinder.ir.ocl.Iterator;
 import efinder.ir.ocl.IteratorExp;
 import efinder.ir.ocl.LetExp;
 import efinder.ir.ocl.ModelElement;
-import efinder.ir.ocl.OclConstraint;
 import efinder.ir.ocl.OclDerivedProperty;
 import efinder.ir.ocl.OclExpression;
 import efinder.ir.ocl.OclFactory;
@@ -63,7 +66,6 @@ import efinder.ir.ocl.StringLiteralExp;
 import efinder.ir.ocl.TupleLiteralExp;
 import efinder.ir.ocl.UnsupportedExp;
 import efinder.ir.ocl.VarExp;
-import efinder.ir.VariableDeclaration;
 
 public class IRBuilder {
 
@@ -85,13 +87,6 @@ public class IRBuilder {
 		return pt;
 	}
 	
-	@NonNull
-	public static OclConstraint newConstraint(@NonNull OclExpression expr) {
-		OclConstraint constraint = OclFactory.eINSTANCE.createOclConstraint();
-		constraint.setExpression(expr);
-		return constraint;
-	}
-
 	@NonNull
 	public static OclInvariant newInvariant(@NonNull OclExpression expr, String name) {
 		OclInvariant constraint = OclFactory.eINSTANCE.createOclInvariant();
@@ -215,6 +210,17 @@ public class IRBuilder {
 	}
 
 	@NonNull
+	public static IteratorExp newIteratorExp(@NonNull String name, @NonNull OclExpression source, Iterator iterator, @NonNull Function<Iterator, OclExpression> bodyFunction) {
+		OclExpression body = bodyFunction.apply(iterator);
+		return newIteratorExp(name, source, Collections.singletonList(iterator), body);
+	}
+	
+	@NonNull
+	public static IteratorExp newIteratorExp(@NonNull String name, @NonNull OclExpression source, Iterator iterator, @NonNull OclExpression body) {
+		return newIteratorExp(name, source, Collections.singletonList(iterator), body);
+	}
+	
+	@NonNull
 	public static IteratorExp newIteratorExp(@NonNull String name, @NonNull OclExpression source, @NonNull List<? extends Iterator> iterators, @NonNull OclExpression body) {
 		IteratorExp call = OclFactory.eINSTANCE.createIteratorExp();
 		call.setName(name);
@@ -257,7 +263,7 @@ public class IRBuilder {
 	}
 
 	@NonNull
-	public static OclExpression newLetExp(@NonNull VariableDeclaration varDcl, @NonNull OclExpression init, @NonNull OclExpression in) {
+	public static LetExp newLetExp(@NonNull VariableDeclaration varDcl, @NonNull OclExpression init, @NonNull OclExpression in) {
 		LetExp letExp = OclFactory.eINSTANCE.createLetExp();
 		letExp.setVariable(varDcl);
 		letExp.setInit(init);
@@ -414,6 +420,13 @@ public class IRBuilder {
 		exp.setDescription(description);
 		exp.setReason(reason);
 		return exp;
+	}
+
+	@NonNull
+	public static OperationFeatureRef newDefinedOperationRef(@NonNull OclOperation operation) {
+		DefinedOperationRef ref = EfinderFactory.eINSTANCE.createDefinedOperationRef();
+		ref.setOperation(operation);
+		return ref;
 	}
 
 }

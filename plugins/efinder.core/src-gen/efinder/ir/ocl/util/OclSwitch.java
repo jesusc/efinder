@@ -73,13 +73,6 @@ public class OclSwitch<T> extends Switch<T> {
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case OclPackage.OCL_CONSTRAINT: {
-				OclConstraint oclConstraint = (OclConstraint)theEObject;
-				T result = caseOclConstraint(oclConstraint);
-				if (result == null) result = caseConstraint(oclConstraint);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
 			case OclPackage.WITH_CONTEXT_VARIABLE: {
 				WithContextVariable withContextVariable = (WithContextVariable)theEObject;
 				T result = caseWithContextVariable(withContextVariable);
@@ -89,9 +82,8 @@ public class OclSwitch<T> extends Switch<T> {
 			case OclPackage.OCL_INVARIANT: {
 				OclInvariant oclInvariant = (OclInvariant)theEObject;
 				T result = caseOclInvariant(oclInvariant);
-				if (result == null) result = caseOclConstraint(oclInvariant);
-				if (result == null) result = caseWithContextVariable(oclInvariant);
 				if (result == null) result = caseConstraint(oclInvariant);
+				if (result == null) result = caseWithContextVariable(oclInvariant);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -367,21 +359,6 @@ public class OclSwitch<T> extends Switch<T> {
 			}
 			default: return defaultCase(theEObject);
 		}
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Constraint</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOclConstraint(OclConstraint object) {
-		return null;
 	}
 
 	/**

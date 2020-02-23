@@ -60,52 +60,6 @@ public interface OclPackage extends EPackage {
 	OclPackage eINSTANCE = efinder.ir.ocl.impl.OclPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link efinder.ir.ocl.impl.OclConstraintImpl <em>Constraint</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see efinder.ir.ocl.impl.OclConstraintImpl
-	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclConstraint()
-	 * @generated
-	 */
-	int OCL_CONSTRAINT = 0;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT__NAME = EfinderPackage.CONSTRAINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT__EXPRESSION = EfinderPackage.CONSTRAINT_FEATURE_COUNT + 0;
-
-	/**
-	 * The number of structural features of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT_FEATURE_COUNT = EfinderPackage.CONSTRAINT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of operations of the '<em>Constraint</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_CONSTRAINT_OPERATION_COUNT = EfinderPackage.CONSTRAINT_OPERATION_COUNT + 0;
-
-	/**
 	 * The meta object id for the '{@link efinder.ir.ocl.impl.WithContextVariableImpl <em>With Context Variable</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -113,7 +67,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getWithContextVariable()
 	 * @generated
 	 */
-	int WITH_CONTEXT_VARIABLE = 1;
+	int WITH_CONTEXT_VARIABLE = 0;
 
 	/**
 	 * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
@@ -150,7 +104,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclInvariant()
 	 * @generated
 	 */
-	int OCL_INVARIANT = 2;
+	int OCL_INVARIANT = 1;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -159,16 +113,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_INVARIANT__NAME = OCL_CONSTRAINT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int OCL_INVARIANT__EXPRESSION = OCL_CONSTRAINT__EXPRESSION;
+	int OCL_INVARIANT__NAME = EfinderPackage.CONSTRAINT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Context Variable</b></em>' containment reference.
@@ -177,7 +122,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_INVARIANT__CONTEXT_VARIABLE = OCL_CONSTRAINT_FEATURE_COUNT + 0;
+	int OCL_INVARIANT__CONTEXT_VARIABLE = EfinderPackage.CONSTRAINT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Klass</b></em>' reference.
@@ -186,7 +131,16 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_INVARIANT__KLASS = OCL_CONSTRAINT_FEATURE_COUNT + 1;
+	int OCL_INVARIANT__KLASS = EfinderPackage.CONSTRAINT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_INVARIANT__EXPRESSION = EfinderPackage.CONSTRAINT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Invariant</em>' class.
@@ -195,7 +149,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_INVARIANT_FEATURE_COUNT = OCL_CONSTRAINT_FEATURE_COUNT + 2;
+	int OCL_INVARIANT_FEATURE_COUNT = EfinderPackage.CONSTRAINT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Invariant</em>' class.
@@ -204,7 +158,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_INVARIANT_OPERATION_COUNT = OCL_CONSTRAINT_OPERATION_COUNT + 0;
+	int OCL_INVARIANT_OPERATION_COUNT = EfinderPackage.CONSTRAINT_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link efinder.ir.ocl.impl.OclDerivedPropertyImpl <em>Derived Property</em>}' class.
@@ -214,7 +168,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclDerivedProperty()
 	 * @generated
 	 */
-	int OCL_DERIVED_PROPERTY = 3;
+	int OCL_DERIVED_PROPERTY = 2;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -287,7 +241,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclOperation()
 	 * @generated
 	 */
-	int OCL_OPERATION = 4;
+	int OCL_OPERATION = 3;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -369,7 +323,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclExpression()
 	 * @generated
 	 */
-	int OCL_EXPRESSION = 5;
+	int OCL_EXPRESSION = 4;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_EXPRESSION__TYPE = 0;
 
 	/**
 	 * The number of structural features of the '<em>Expression</em>' class.
@@ -378,7 +341,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OCL_EXPRESSION_FEATURE_COUNT = 0;
+	int OCL_EXPRESSION_FEATURE_COUNT = 1;
 
 	/**
 	 * The number of operations of the '<em>Expression</em>' class.
@@ -397,7 +360,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getModelElement()
 	 * @generated
 	 */
-	int MODEL_ELEMENT = 6;
+	int MODEL_ELEMENT = 5;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -406,7 +369,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__TYPE = OCL_EXPRESSION_FEATURE_COUNT + 0;
+	int MODEL_ELEMENT__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Model Element</em>' class.
@@ -415,7 +378,7 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 1;
+	int MODEL_ELEMENT_FEATURE_COUNT = OCL_EXPRESSION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>Model Element</em>' class.
@@ -434,7 +397,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getCallExp()
 	 * @generated
 	 */
-	int CALL_EXP = 7;
+	int CALL_EXP = 6;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CALL_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -471,7 +443,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getAbstractOperationCallExp()
 	 * @generated
 	 */
-	int ABSTRACT_OPERATION_CALL_EXP = 8;
+	int ABSTRACT_OPERATION_CALL_EXP = 7;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ABSTRACT_OPERATION_CALL_EXP__TYPE = CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -517,7 +498,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOperationCallExp()
 	 * @generated
 	 */
-	int OPERATION_CALL_EXP = 9;
+	int OPERATION_CALL_EXP = 8;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATION_CALL_EXP__TYPE = ABSTRACT_OPERATION_CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -581,7 +571,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getPropertyCallExp()
 	 * @generated
 	 */
-	int PROPERTY_CALL_EXP = 10;
+	int PROPERTY_CALL_EXP = 9;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_CALL_EXP__TYPE = CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -636,7 +635,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getCollectionCallExp()
 	 * @generated
 	 */
-	int COLLECTION_CALL_EXP = 11;
+	int COLLECTION_CALL_EXP = 10;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_CALL_EXP__TYPE = ABSTRACT_OPERATION_CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -691,7 +699,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getLoopExp()
 	 * @generated
 	 */
-	int LOOP_EXP = 12;
+	int LOOP_EXP = 11;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOOP_EXP__TYPE = CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -746,7 +763,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIteratorExp()
 	 * @generated
 	 */
-	int ITERATOR_EXP = 13;
+	int ITERATOR_EXP = 12;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATOR_EXP__TYPE = LOOP_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -810,7 +836,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIterateExp()
 	 * @generated
 	 */
-	int ITERATE_EXP = 14;
+	int ITERATE_EXP = 13;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ITERATE_EXP__TYPE = LOOP_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -883,7 +918,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIterator()
 	 * @generated
 	 */
-	int ITERATOR = 15;
+	int ITERATOR = 14;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -929,7 +964,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIfExp()
 	 * @generated
 	 */
-	int IF_EXP = 16;
+	int IF_EXP = 15;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IF_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' containment reference.
@@ -984,7 +1028,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getLetExp()
 	 * @generated
 	 */
-	int LET_EXP = 17;
+	int LET_EXP = 16;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LET_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' containment reference.
@@ -1039,7 +1092,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOperatorCallExp()
 	 * @generated
 	 */
-	int OPERATOR_CALL_EXP = 18;
+	int OPERATOR_CALL_EXP = 17;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OPERATOR_CALL_EXP__TYPE = CALL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' containment reference.
@@ -1094,7 +1156,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getVarExp()
 	 * @generated
 	 */
-	int VAR_EXP = 19;
+	int VAR_EXP = 18;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VAR_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Variable</b></em>' reference.
@@ -1131,7 +1202,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getLiteralExp()
 	 * @generated
 	 */
-	int LITERAL_EXP = 20;
+	int LITERAL_EXP = 19;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Literal Exp</em>' class.
@@ -1159,7 +1239,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getBooleanLiteralExp()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXP = 21;
+	int BOOLEAN_LITERAL_EXP = 20;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1196,7 +1285,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getStringLiteralExp()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXP = 22;
+	int STRING_LITERAL_EXP = 21;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1233,7 +1331,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getIntegerLiteralExp()
 	 * @generated
 	 */
-	int INTEGER_LITERAL_EXP = 23;
+	int INTEGER_LITERAL_EXP = 22;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INTEGER_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1270,7 +1377,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getRealLiteralExp()
 	 * @generated
 	 */
-	int REAL_LITERAL_EXP = 24;
+	int REAL_LITERAL_EXP = 23;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int REAL_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1307,7 +1423,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclUndefined()
 	 * @generated
 	 */
-	int OCL_UNDEFINED = 25;
+	int OCL_UNDEFINED = 24;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_UNDEFINED__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Undefined</em>' class.
@@ -1335,7 +1460,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclInvalid()
 	 * @generated
 	 */
-	int OCL_INVALID = 26;
+	int OCL_INVALID = 25;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OCL_INVALID__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The number of structural features of the '<em>Invalid</em>' class.
@@ -1363,16 +1497,25 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getTupleLiteralExp()
 	 * @generated
 	 */
-	int TUPLE_LITERAL_EXP = 27;
+	int TUPLE_LITERAL_EXP = 26;
 
 	/**
-	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_LITERAL_EXP__TYPE = LITERAL_EXP_FEATURE_COUNT + 0;
+	int TUPLE_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Tuple Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE_LITERAL_EXP__TUPLE_TYPE = LITERAL_EXP_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1409,7 +1552,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getTuplePart()
 	 * @generated
 	 */
-	int TUPLE_PART = 28;
+	int TUPLE_PART = 27;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1455,7 +1598,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getEnumLiteralExp()
 	 * @generated
 	 */
-	int ENUM_LITERAL_EXP = 29;
+	int ENUM_LITERAL_EXP = 28;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ENUM_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Enum </b></em>' containment reference.
@@ -1501,7 +1653,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getCollectionLiteralExp()
 	 * @generated
 	 */
-	int COLLECTION_LITERAL_EXP = 30;
+	int COLLECTION_LITERAL_EXP = 29;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECTION_LITERAL_EXP__TYPE = LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1538,7 +1699,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getSetLiteralExp()
 	 * @generated
 	 */
-	int SET_LITERAL_EXP = 31;
+	int SET_LITERAL_EXP = 30;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SET_LITERAL_EXP__TYPE = COLLECTION_LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1575,7 +1745,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOrderedSetLiteralExp()
 	 * @generated
 	 */
-	int ORDERED_SET_LITERAL_EXP = 32;
+	int ORDERED_SET_LITERAL_EXP = 31;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ORDERED_SET_LITERAL_EXP__TYPE = COLLECTION_LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1612,7 +1791,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getSequenceLiteralExp()
 	 * @generated
 	 */
-	int SEQUENCE_LITERAL_EXP = 33;
+	int SEQUENCE_LITERAL_EXP = 32;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_LITERAL_EXP__TYPE = COLLECTION_LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1649,7 +1837,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getBagLiteralExp()
 	 * @generated
 	 */
-	int BAG_LITERAL_EXP = 34;
+	int BAG_LITERAL_EXP = 33;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BAG_LITERAL_EXP__TYPE = COLLECTION_LITERAL_EXP__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Parts</b></em>' containment reference list.
@@ -1686,7 +1883,16 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getUnsupportedExp()
 	 * @generated
 	 */
-	int UNSUPPORTED_EXP = 35;
+	int UNSUPPORTED_EXP = 34;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNSUPPORTED_EXP__TYPE = OCL_EXPRESSION__TYPE;
 
 	/**
 	 * The feature id for the '<em><b>Reason</b></em>' attribute.
@@ -1732,7 +1938,7 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclAnyLibElement()
 	 * @generated
 	 */
-	int OCL_ANY_LIB_ELEMENT = 36;
+	int OCL_ANY_LIB_ELEMENT = 35;
 
 	/**
 	 * The number of structural features of the '<em>Any Lib Element</em>' class.
@@ -1760,29 +1966,8 @@ public interface OclPackage extends EPackage {
 	 * @see efinder.ir.ocl.impl.OclPackageImpl#getOperatorKind()
 	 * @generated
 	 */
-	int OPERATOR_KIND = 37;
+	int OPERATOR_KIND = 36;
 
-
-	/**
-	 * Returns the meta object for class '{@link efinder.ir.ocl.OclConstraint <em>Constraint</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Constraint</em>'.
-	 * @see efinder.ir.ocl.OclConstraint
-	 * @generated
-	 */
-	EClass getOclConstraint();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.OclConstraint#getExpression <em>Expression</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Expression</em>'.
-	 * @see efinder.ir.ocl.OclConstraint#getExpression()
-	 * @see #getOclConstraint()
-	 * @generated
-	 */
-	EReference getOclConstraint_Expression();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.WithContextVariable <em>With Context Variable</em>}'.
@@ -1825,6 +2010,17 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOclInvariant_Klass();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.OclInvariant#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Expression</em>'.
+	 * @see efinder.ir.ocl.OclInvariant#getExpression()
+	 * @see #getOclInvariant()
+	 * @generated
+	 */
+	EReference getOclInvariant_Expression();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.OclDerivedProperty <em>Derived Property</em>}'.
@@ -1879,6 +2075,17 @@ public interface OclPackage extends EPackage {
 	EClass getOclExpression();
 
 	/**
+	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.OclExpression#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Type</em>'.
+	 * @see efinder.ir.ocl.OclExpression#getType()
+	 * @see #getOclExpression()
+	 * @generated
+	 */
+	EReference getOclExpression_Type();
+
+	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.ModelElement <em>Model Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1887,17 +2094,6 @@ public interface OclPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getModelElement();
-
-	/**
-	 * Returns the meta object for the containment reference '{@link efinder.ir.ocl.ModelElement#getType <em>Type</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Type</em>'.
-	 * @see efinder.ir.ocl.ModelElement#getType()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EReference getModelElement_Type();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.ocl.CallExp <em>Call Exp</em>}'.
@@ -2385,15 +2581,15 @@ public interface OclPackage extends EPackage {
 	EClass getTupleLiteralExp();
 
 	/**
-	 * Returns the meta object for the reference '{@link efinder.ir.ocl.TupleLiteralExp#getType <em>Type</em>}'.
+	 * Returns the meta object for the reference '{@link efinder.ir.ocl.TupleLiteralExp#getTupleType <em>Tuple Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Type</em>'.
-	 * @see efinder.ir.ocl.TupleLiteralExp#getType()
+	 * @return the meta object for the reference '<em>Tuple Type</em>'.
+	 * @see efinder.ir.ocl.TupleLiteralExp#getTupleType()
 	 * @see #getTupleLiteralExp()
 	 * @generated
 	 */
-	EReference getTupleLiteralExp_Type();
+	EReference getTupleLiteralExp_TupleType();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link efinder.ir.ocl.TupleLiteralExp#getParts <em>Parts</em>}'.
@@ -2607,24 +2803,6 @@ public interface OclPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link efinder.ir.ocl.impl.OclConstraintImpl <em>Constraint</em>}' class.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see efinder.ir.ocl.impl.OclConstraintImpl
-		 * @see efinder.ir.ocl.impl.OclPackageImpl#getOclConstraint()
-		 * @generated
-		 */
-		EClass OCL_CONSTRAINT = eINSTANCE.getOclConstraint();
-
-		/**
-		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference OCL_CONSTRAINT__EXPRESSION = eINSTANCE.getOclConstraint_Expression();
-
-		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.WithContextVariableImpl <em>With Context Variable</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2659,6 +2837,14 @@ public interface OclPackage extends EPackage {
 		 * @generated
 		 */
 		EReference OCL_INVARIANT__KLASS = eINSTANCE.getOclInvariant_Klass();
+
+		/**
+		 * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_INVARIANT__EXPRESSION = eINSTANCE.getOclInvariant_Expression();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.OclDerivedPropertyImpl <em>Derived Property</em>}' class.
@@ -2707,6 +2893,14 @@ public interface OclPackage extends EPackage {
 		EClass OCL_EXPRESSION = eINSTANCE.getOclExpression();
 
 		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OCL_EXPRESSION__TYPE = eINSTANCE.getOclExpression_Type();
+
+		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.ModelElementImpl <em>Model Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2715,14 +2909,6 @@ public interface OclPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference MODEL_ELEMENT__TYPE = eINSTANCE.getModelElement_Type();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.ocl.impl.CallExpImpl <em>Call Exp</em>}' class.
@@ -3135,12 +3321,12 @@ public interface OclPackage extends EPackage {
 		EClass TUPLE_LITERAL_EXP = eINSTANCE.getTupleLiteralExp();
 
 		/**
-		 * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+		 * The meta object literal for the '<em><b>Tuple Type</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TUPLE_LITERAL_EXP__TYPE = eINSTANCE.getTupleLiteralExp_Type();
+		EReference TUPLE_LITERAL_EXP__TUPLE_TYPE = eINSTANCE.getTupleLiteralExp_TupleType();
 
 		/**
 		 * The meta object literal for the '<em><b>Parts</b></em>' containment reference list feature.

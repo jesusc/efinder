@@ -4,15 +4,16 @@ package efinder.ir.ocl.impl;
 
 import efinder.ir.EFEnumLiteral;
 import efinder.ir.MetaTypeRef;
+
 import efinder.ir.ocl.EnumLiteralExp;
 import efinder.ir.ocl.OclPackage;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**

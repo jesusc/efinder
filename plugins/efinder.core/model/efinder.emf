@@ -152,18 +152,15 @@ class OrderedSetTypeRef extends CollectionTypeRef { }
 	prefix="efinder_ocl")
 package ocl {
 
-	class OclConstraint extends Constraint {
-		val OclExpression[1] expression;				
-	}
-	
 	abstract class WithContextVariable {
 		// This should probably have EFType as in DerivedProperty...
 		// Not sure if this should be optional, to be used in global contexts
 		val VariableDeclaration[1] contextVariable;	
 	}
 	
-	class OclInvariant extends OclConstraint, WithContextVariable {
-		ref EFClass[1] klass;		
+	class OclInvariant extends Constraint, WithContextVariable {
+		ref EFClass[1] klass;	
+		val OclExpression[1] expression;	
 	}
 
 	class OclDerivedProperty extends DerivedProperty, WithContextVariable {
@@ -175,11 +172,11 @@ package ocl {
 	}
 	
 	abstract class OclExpression {
-		
+		// Ideally [1]
+		val TypeRef[0..1] type;		
 	}
 	
 	class ModelElement extends OclExpression {
-		val TypeRef[1] type;		
 	}
 	
 	abstract class CallExp extends OclExpression {
@@ -295,7 +292,7 @@ package ocl {
 	}
 	
 	class TupleLiteralExp extends LiteralExp {
-	    ref EFTupleType[1] type;
+	    ref EFTupleType[1] tupleType;
 		val TuplePart[*] parts;
 	}
 	
