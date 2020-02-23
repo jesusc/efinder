@@ -41,6 +41,7 @@ import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.footprint.IFootprint;
 import efinder.core.footprint.IRFootprintedModel;
 import efinder.core.management.EMFModel;
+import efinder.usemv.UseMvResult.Unsupported;
 import efinder.usemv.UseMvResult.UnsupportedTranslation;
 import efinder.usemv.ir.BoundsCompiler;
 import efinder.usemv.ir.UseFeatureChecker;
@@ -188,6 +189,8 @@ public class UseMvFinder implements IModelFinder {
 			kodkod = doFind(inputUseSpecification, metamodelBounds);
 		} catch (InvalidUseTranslation e) {
 			return e.getResult();
+		} catch (UnsupportedFeatureNotDetected e) {
+			return e.getResult();
 		}
 
 		UseMvResult r;
@@ -203,7 +206,7 @@ public class UseMvFinder implements IModelFinder {
 
 	
 	@Nullable
-	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidUseTranslation {
+	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidUseTranslation, UnsupportedFeatureNotDetected {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		PrintWriter fLogWriter = new PrintWriter(output);		
 		MModel model = USECompiler.compileSpecification(inputUseSpecification, "<generated>", fLogWriter, new ModelFactory());       
@@ -272,6 +275,12 @@ public class UseMvFinder implements IModelFinder {
         if ( useOutput.contains("Cannot transform invariant") ) {
         	// This will end-up into a NOT_SUPPORTED_BY_USE
         	// return new Pair<Outcome, Boolean>(Outcome.UNSATISFIABLE, false);
+        	if (useOutput.contains("is recursive")) {
+    			Report report = new Report();
+        		report.addUnsupported(useOutput, null, Report.Action.STOP, "recursive-operation");
+    			throw new UnsupportedFeatureNotDetected(new UseMvResult.Unsupported(report));
+        	}
+        		
         	throw new InvalidUseTranslation(new UnsupportedTranslation(useOutput));
         }
     	
@@ -409,4 +418,17 @@ public class UseMvFinder implements IModelFinder {
 			return result;
 		}
 	}
+	
+	private static class UnsupportedFeatureNotDetected extends Exception {		
+		private static final long serialVersionUID = 6690365179442013481L;
+		private Unsupported result;
+		
+		public UnsupportedFeatureNotDetected(Unsupported uf) {
+			this.result = uf;
+		}
+		
+		public Unsupported getResult() {
+			return result;
+		}
+	}	
 }

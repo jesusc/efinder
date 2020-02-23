@@ -6,7 +6,6 @@ import efinder.core.IModelFinder.Result;
 import efinder.core.IModelFinder.Status;
 import efinder.core.errors.Report;
 import efinder.core.management.EMFModel;
-import efinder.usemv.UseMvFinder.KodkodResult;
 
 public abstract class UseMvResult implements Result {
 

@@ -7,16 +7,21 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jdt.annotation.NonNull;
 
+import com.google.common.collect.ImmutableCollection;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.ImmutableTable;
 
 import efinder.core.errors.Report;
 import efinder.core.footprint.IRFootprintedModel;
 import efinder.ir.Constraint;
 import efinder.ir.DerivedProperty;
+import efinder.ir.EFPrimitiveType;
 import efinder.ir.EFTupleType;
 import efinder.ir.MetaTypeRef;
 import efinder.ir.Operation;
+import efinder.ir.TypeRef;
 import efinder.ir.ocl.CollectionCallExp;
 import efinder.ir.ocl.IterateExp;
 import efinder.ir.ocl.OclDerivedProperty;
@@ -85,8 +90,12 @@ public class UseFeatureChecker {
 		}
 	}
 
-	private static ImmutableMap<String, String> unsupportedOperations = ImmutableMap.<String, String>builder()
+	private static ImmutableMultimap<String, String> unsupportedOperations = ImmutableMultimap.<String, String>builder()
 			.put("String", "matches")
+			.put("String", "size")
+			.put("String", "at")
+			.put("String", "toUpper")
+			.put("String", "toLower")
 			.put("OclAny", "oclType")
 			.build();
 	
@@ -94,8 +103,22 @@ public class UseFeatureChecker {
 	// in a previous phase. Actually, the operation names are disjunct across types so, this is not very bad
 	private static Set<String> unsupportedOperationsSet = new HashSet<>(unsupportedOperations.values());			
 			
-	private void outOperationCallExp(OperationCallExp obj, Report input) {		
+	private void outOperationCallExp(OperationCallExp obj, Report input) {
 		String name = obj.getName();
+
+		TypeRef type = obj.getSource().getType();
+		if (type != null && type instanceof MetaTypeRef) {
+			MetaTypeRef ref = (MetaTypeRef) type;
+			if (ref.getType() instanceof EFPrimitiveType) {
+				String ptype = ((EFPrimitiveType) ref.getType()).getName();
+				ImmutableCollection<String> elems = unsupportedOperations.get(ptype);
+				if (elems != null && elems.contains(name)) {
+					input.addUnsupported("Unsupported operation " + name, obj, Report.Action.STOP, name);						
+					return;
+				}
+			}
+		}
+		
 		if (unsupportedOperationsSet.contains(name)) {
 			input.addUnsupported("Unsupported operation " + name, obj, Report.Action.STOP, name);
 		}
