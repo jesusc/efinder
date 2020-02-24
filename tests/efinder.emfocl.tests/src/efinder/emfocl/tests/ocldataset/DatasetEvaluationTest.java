@@ -34,9 +34,12 @@ import efinder.emfocl.tests.ocldataset.Dataset.Mode;
  */
 public class DatasetEvaluationTest {
 
+	
 	public static Set<String> invalidCases = getInvalidCases();	
 	private static Set<String> getInvalidCases() {
 		Set<String> invalids = new HashSet<String>();
+		if (true)
+			return invalids;
 		// This invariant is wrong because SelectionDivergence is type, not an enumerate
 		//    invariant mustDefineTriggerIfComingFromDivergence: if self.incoming->collect(1_ : statesml::Edge[1] | 1_.source)->=(statesml::SelectionDivergence)
 		invalids.add("edonjakupi/model-engineering/Lab 1/Group16_Lab1/model/statesml.ecore");
@@ -59,6 +62,7 @@ public class DatasetEvaluationTest {
 		
 		return invalids;
 	}
+	
 
 	
 	@Test
@@ -76,10 +80,10 @@ public class DatasetEvaluationTest {
 	private void doTest(@NonNull String metadataFile, @NonNull String repoDir, String results) throws FileNotFoundException, IOException, ParseException {
 		Predicate<String> predicate = (f) -> true;
 		// Uncomment and replace with the proper path if you want to test a single file
-		//Predicate<String> onlyOneFile = (f) -> f.contains("M2TiiLEnvDev/TuringProject/model/projetTuring.ecore");
+		//Predicate<String> onlyOneFile = (f) -> f.contains("kchristi-MrAleborg/ProjetIDM_StateMachine/StateMachine/metaModels/StateMachine.ecore");
 		//predicate = onlyOneFile;
 
-		Mode evaluationMode = Mode.COMPLETE_FILE;
+		Mode evaluationMode = Mode.PER_INVARIANT;
 		Dataset dataset = load(metadataFile, repoDir, predicate);		
 		Stats stats = dataset.evaluate(evaluationMode);
 		stats.printTo(System.out);
@@ -110,7 +114,7 @@ public class DatasetEvaluationTest {
 				String hash = hashFile(repos + File.separator + s);
 				if ( hash != null ) {
 					if ( hashToFile.containsKey(hash) ) {
-						Logger.log("Duplicated: " + s);
+						Logger.log("Duplicated: " + s + " - " + hashToFile.get(hash));
 						continue;
 					}
 					hashToFile.put(hash, s);

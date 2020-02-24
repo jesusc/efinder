@@ -37,6 +37,7 @@ import efinder.core.errors.UnsupportedTranslationException;
 import efinder.core.footprint.FootprintComputation;
 import efinder.core.footprint.IFootprint;
 import efinder.core.transform.TupleToClassTransform;
+import efinder.core.transform.UnfoldRecursionTransform;
 import efinder.emfocl.PivotOclCompiler;
 import efinder.emfocl.TypeError;
 import efinder.ir.Constraint;
@@ -90,6 +91,7 @@ public class Dataset {
 			
 			new efinder.emfocl.use.EMFOCL2UseFixer().transform(ir);
 			new TupleToClassTransform().transform(ir);
+			new UnfoldRecursionTransform().transform(ir);
 			
 			if (mode == Mode.COMPLETE_FILE) {
 				Result result = doFind(ir);

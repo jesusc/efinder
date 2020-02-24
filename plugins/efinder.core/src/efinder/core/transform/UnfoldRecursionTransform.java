@@ -231,6 +231,7 @@ public class UnfoldRecursionTransform implements IDialectAdaptation {
 			
 			for (final OperationCallExp s : sites) {
 				s.setName(newName);
+				s.setFeature(IRBuilder.newDefinedOperationRef(copy));
 			}
 			
 			for (final OperationCallExp s : originalSites) {		
