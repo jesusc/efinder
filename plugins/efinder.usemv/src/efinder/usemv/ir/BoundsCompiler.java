@@ -16,28 +16,25 @@ import efinder.core.EFinderModel;
 import efinder.core.IBoundsProvider;
 import efinder.core.IBoundsProvider.Interval;
 import efinder.core.IBoundsProvider.RealInterval;
+import efinder.core.footprint.IRFootprintedModel;
+import efinder.ir.EFClass;
 import efinder.ir.EFMetamodel;
 import efinder.ir.EFPackage;
 
 
 public class BoundsCompiler {
 
-	private @NonNull EFinderModel model;
+	private @NonNull IRFootprintedModel model;
 	private @NonNull UseMapping mapping;
 
-	public BoundsCompiler(@NonNull EFinderModel model, @NonNull UseMapping mapping) {
+	public BoundsCompiler(@NonNull IRFootprintedModel model, @NonNull UseMapping mapping) {
 		this.model = model;
 		this.mapping = mapping;
 	}
 	
 	public String toProperties(@NonNull IBoundsProvider scopeProvider) {
 		StringWriter writer = new StringWriter();
-		for (EFMetamodel m : model.getSpecification().getMetamodels()) {
-			for (EFPackage pkg : m.getRoots()) {
-				customGenPropertiesFiles(scopeProvider, pkg.getPkg(), writer);	
-			}
-		}
-		
+		customGenPropertiesFiles(scopeProvider, writer);
 		genDataTypes(scopeProvider, writer);
 		
 		return writer.toString();
@@ -60,16 +57,17 @@ public class BoundsCompiler {
 		writer.write("Integer_max = 10\n");
 	}
 
-	protected void customGenPropertiesFiles(IBoundsProvider boundsProvider, EPackage metamodel, StringWriter writer) {		
+	protected void customGenPropertiesFiles(IBoundsProvider boundsProvider, StringWriter writer) {		
 		try {
 			List<EReference> references = new ArrayList<EReference>();
 			int index      = 0;
 			int lowerBound = 0;
 			int upperBound = 0;
-			
-			for (EClassifier classifier : metamodel.getEClassifiers()) {
+					
+			for (EFClass efc : model.getAllClasses()) {
+				EClass classifier = efc.getKlass();
 				// Bounds for non-abstract classes
-				if ( classifier instanceof EClass && ! ((EClass) classifier).isAbstract() ) {
+				if ( ! classifier.isAbstract() ) {
 					Interval interval = boundsProvider.getScope((EClass) classifier);
 					if ( interval == null ) {
 						throw new IllegalStateException();
@@ -85,29 +83,24 @@ public class BoundsCompiler {
 				}
 
 				// Bound of attributes, including abstract classes
-				if (classifier instanceof EClass) {
-					for (EAttribute feature : ((EClass)classifier).getEAttributes()) {
-						// writer.write(classifier.getName() + "_" + feature.getName() + "_min = 0\n");   // 0 (value changed 03-01-2016, before it was -1)
-						
-						if (feature.getEAttributeType().getName().toLowerCase().contains("double")) {
-							RealInterval realInterval = boundsProvider.getRealInterval();		
-							double min = realInterval.getMin();
-							double max = realInterval.getMax();
-							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_min = " + -1 + "\n");   // 0 (value changed 03-01-2016, before it was -1)
-							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_max = " + 1 + "\n");  // unbound
-						} else {
-							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_min = -1\n");   // 0 (value changed 03-01-2016, before it was -1)
-							writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_max = -1\n");  // unbound
-						}
-						
-						
+				for (EAttribute feature : model.getAttributes(classifier)) {
+					// writer.write(classifier.getName() + "_" + feature.getName() + "_min = 0\n");   // 0 (value changed 03-01-2016, before it was -1)
+					
+					if (feature.getEAttributeType().getName().toLowerCase().contains("double")) {
+						RealInterval realInterval = boundsProvider.getRealInterval();		
+						double min = realInterval.getMin();
+						double max = realInterval.getMax();
+						writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_min = " + -1 + "\n");   // 0 (value changed 03-01-2016, before it was -1)
+						writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_max = " + 1 + "\n");  // unbound
+					} else {
+						writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_min = -1\n");   // 0 (value changed 03-01-2016, before it was -1)
+						writer.write(mapping.toUseTypeName(classifier) + "_" + feature.getName() + "_max = -1\n");  // unbound
 					}
-					for (EReference ref : ((EClass)classifier).getEReferences()) 
-						if (!references.contains(ref.getEOpposite()))
-							references.add(ref);				
-				}			
+				}
 
-				
+				for (EReference ref : model.getReferences(classifier)) 
+					if (!references.contains(ref.getEOpposite()))
+						references.add(ref);				
 			}
 			
 			// Bound of references ----------------------------------------------------------	

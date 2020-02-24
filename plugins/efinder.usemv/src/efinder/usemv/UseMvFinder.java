@@ -95,7 +95,7 @@ public class UseMvFinder implements IModelFinder {
 			return new UseMvResult.Unsupported(report);
 		}
 		
-		BoundsCompiler bounds = new BoundsCompiler(ir, compiler.getMapping());
+		BoundsCompiler bounds = new BoundsCompiler(footprintedModel, compiler.getMapping());
 		if (partialModel != null) {
 			// partialModel.getAdaptedBounds(scopeProvider);
 		}
