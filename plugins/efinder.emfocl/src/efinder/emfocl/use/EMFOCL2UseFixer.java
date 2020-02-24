@@ -98,11 +98,14 @@ public class EMFOCL2UseFixer extends AbstractIRVisitor<Void, Void> implements ID
 		}
 		
 		// Pattern: collection = single-value
-		if (o.getSource().getType() instanceof CollectionTypeRef && !(o.getArgument() instanceof CollectionTypeRef)) {
-			// These refers to ill-typed programs which are considered valid by EMF/OCL
-			// The result would always be false
-			BooleanLiteralExp replacement = IRBuilder.newBooleanExp(false);
-			EcoreUtil.replace(o, replacement);	
+		if (o.getArgument() != null) {
+			if ((o.getSource().getType() instanceof CollectionTypeRef && !(o.getArgument().getType() instanceof CollectionTypeRef)) ||
+				(!(o.getSource().getType() instanceof CollectionTypeRef)) && o.getArgument().getType() instanceof CollectionTypeRef) {
+				// These refers to ill-typed programs which are considered valid by EMF/OCL
+				// The result would always be false
+				BooleanLiteralExp replacement = IRBuilder.newBooleanExp(false);
+				EcoreUtil.replace(o, replacement);	
+			}
 		}
 		
 	}
