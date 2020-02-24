@@ -95,7 +95,9 @@ public class UseFeatureChecker {
 			.put("String", "size")
 			.put("String", "at")
 			.put("String", "toUpper")
+			.put("String", "toUpperCase")
 			.put("String", "toLower")
+			.put("String", "substring")
 			.put("OclAny", "oclType")
 			.build();
 	
