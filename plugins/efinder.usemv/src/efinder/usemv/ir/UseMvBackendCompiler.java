@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -154,6 +155,7 @@ public class UseMvBackendCompiler {
 			{
 				text.append("operations\n");
 				appendOclContainer(c, containers, text);
+				appendOclContents(c, text);
 				for (OclOperation op : classOperations) {
 					String type = toUseType(op.getType());						
 					text.append("  " + op.getName() + "(");
@@ -212,7 +214,7 @@ public class UseMvBackendCompiler {
 		EcoreMetamodel mm = toEcoreMetamodel(ir.getSpecification());		
 		return new UseModel(text.toString(), mapping, mm);
 	}		
-	
+		
 	private void addNullableConstraints(StringBuilder text, Collection<? extends EAttribute> nonUndefined) {
 		for (EAttribute att : nonUndefined) {
 			String className = mapping.toUseTypeName(att.getEContainingClass());
@@ -403,6 +405,33 @@ public class UseMvBackendCompiler {
 		text.append("  oclContainer() : OclAny = ").
 			append(body).
 			append("\n");
+	}
+
+	private void appendOclContents(EClass c, StringBuilder text) {
+		String body;
+		List<? extends EReference> refs = ir.getAllReferences(c).stream().filter(r -> r.isContainment()).collect(Collectors.toList());
+		if (refs.isEmpty()) {
+			body = "Set { }";
+		} else {
+			body = toContentsCollection(refs.get(0));
+			for (int i = 1; i< refs.size(); i++) { 
+				body += "->union(" + toContentsCollection(refs.get(i)) + ")";
+			}
+			body += "->asSet()";
+		}
+		
+		text.append("  oclContents() : Set(OclAny) = ").
+			append(body).
+			append("\n");
+		
+	}
+
+	private String toContentsCollection(EReference r) {
+		if (r.isMany()) {
+			return "self." + mapping.toUsePropertyName(r);
+		} else {
+			return "Set { self." + mapping.toUsePropertyName(r) + " }";
+		}
 	}
 
 }

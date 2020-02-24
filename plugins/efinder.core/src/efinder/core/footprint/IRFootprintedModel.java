@@ -61,6 +61,11 @@ public class IRFootprintedModel {
 		return c.getEReferences().stream().filter(footprint::hasFeature).collect(Collectors.toList());
 	}
 	
+	@NonNull
+	public List<? extends EReference> getAllReferences(EClass c) {
+		return c.getEAllReferences().stream().filter(footprint::hasFeature).collect(Collectors.toList());
+	}
+
 	public List<? extends EClass> getSupertypes(@NonNull EClass c) {
 		return c.getESuperTypes().stream().filter(footprint::hasClass).collect(Collectors.toList());
 	}
