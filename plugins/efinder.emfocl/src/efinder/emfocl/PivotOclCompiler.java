@@ -70,6 +70,7 @@ import org.eclipse.ocl.pivot.TupleLiteralPart;
 import org.eclipse.ocl.pivot.TupleType;
 import org.eclipse.ocl.pivot.Type;
 import org.eclipse.ocl.pivot.TypeExp;
+import org.eclipse.ocl.pivot.UnlimitedNaturalLiteralExp;
 import org.eclipse.ocl.pivot.Variable;
 import org.eclipse.ocl.pivot.VariableExp;
 import org.eclipse.ocl.pivot.VoidType;
@@ -861,6 +862,12 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 		@Override
 		public OclExpression visitIntegerLiteralExp(@NonNull IntegerLiteralExp object) {
 			return IRBuilder.newIntegerExp(object.getIntegerSymbol());
+		}
+		
+		@Override
+		public OclExpression visitUnlimitedNaturalLiteralExp(@NonNull UnlimitedNaturalLiteralExp object) {
+			// TODO: Maybe check if the value is too large?
+			return IRBuilder.newIntegerExp(object.getUnlimitedNaturalSymbol());
 		}
 		
 		@Override
