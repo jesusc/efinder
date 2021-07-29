@@ -2,7 +2,6 @@ package efinder.emfocl.use;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jdt.annotation.NonNull;
-
 import efinder.core.EFinderModel;
 import efinder.core.IDialectAdaptation;
 import efinder.core.ir.IRBuilder;
