@@ -34,10 +34,4 @@ tests/efinder.emfocl.tests/outputs/
 # End of https://www.gitignore.io/api/java
 
 *~
-features/efinder.feature.core/target/
-features/efinder.feature.emfocl/target/
-releng/efinder.updatesite/target/
-
-bundles/efinder.core/target/
-bundles/efinder.emfocl/target/
-bundles/efinder.usemv/target/
+target
