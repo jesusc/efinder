@@ -9,7 +9,7 @@ Bundle-ClassPath: .,
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Automatic-Module-Name: efinder.core
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: efinder.core,
  efinder.core.errors,
  efinder.core.footprint,

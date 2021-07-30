@@ -12,14 +12,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javax.xml.bind.DatatypeConverter;
-
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import efinder.emfocl.tests.ocldataset.Dataset.Mode;
@@ -63,8 +62,8 @@ public class DatasetEvaluationTest {
 		return invalids;
 	}
 	
-
-	
+	// This is not done in regular integration mode, so ignore and uncomment on-demand
+	@Ignore
 	@Test
 	public void testEvaluation() throws FileNotFoundException, IOException, ParseException, Exception {
 		String where = System.getenv("OCL_DATASET");		
@@ -147,7 +146,8 @@ public class DatasetEvaluationTest {
 		 byte[] contents = Files.readAllBytes(new File(file).getAbsoluteFile().toPath());		 
 		 md.update(contents);		 
 		 byte[] digest = md.digest();		 
-		 String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();		         	
+		 // String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();		         	
+		 String myHash = String.format("%02X", digest);
 		 return myHash;
 		} catch ( Exception e ) {
 			e.printStackTrace();
