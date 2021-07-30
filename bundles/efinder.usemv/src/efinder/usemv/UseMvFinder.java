@@ -133,7 +133,7 @@ public class UseMvFinder implements IModelFinder {
 	}
 		
 	@VisibleForTesting
-	/* pp */ @NonNull UseMvFinder withPartialModel(IUseInputPartialModel partialModel) {
+	public @NonNull UseMvFinder withPartialModel(IUseInputPartialModel partialModel) {
 		this.partialModel = partialModel;
 		return this;
 	}
@@ -181,7 +181,7 @@ public class UseMvFinder implements IModelFinder {
 	}
 	
 	@VisibleForTesting
-	/* pp */ UseMvResult doFind(@NonNull EFinderModel ir, UseModel useModel, @NonNull StringReader metamodelBounds) {
+	public UseMvResult doFind(@NonNull EFinderModel ir, UseModel useModel, @NonNull StringReader metamodelBounds) {
 		ByteArrayInputStream inputUseSpecification = new ByteArrayInputStream(useModel.getText().getBytes());
 
 		KodkodResult kodkod;
@@ -205,8 +205,9 @@ public class UseMvFinder implements IModelFinder {
 	}
 
 	
+	@VisibleForTesting
 	@Nullable
-	/* pp */ KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidUseTranslation, UnsupportedFeatureNotDetected {
+	public KodkodResult doFind(ByteArrayInputStream inputUseSpecification, @NonNull StringReader metamodelBounds) throws InvalidUseTranslation, UnsupportedFeatureNotDetected {
 		ByteArrayOutputStream output = new ByteArrayOutputStream();
 		PrintWriter fLogWriter = new PrintWriter(output);		
 		MModel model = USECompiler.compileSpecification(inputUseSpecification, "<generated>", fLogWriter, new ModelFactory());       

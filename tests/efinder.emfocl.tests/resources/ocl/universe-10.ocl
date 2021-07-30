@@ -1,6 +1,6 @@
 -- Test multiple packages
-import 'platform:/resource/efinder.core.tests/resources/metamodels/universe.ecore'
-import 'platform:/resource/efinder.core.tests/resources/metamodels/people.ecore'
+import '../metamodels/universe.ecore'
+import '../metamodels/people.ecore'
 
 package people
 

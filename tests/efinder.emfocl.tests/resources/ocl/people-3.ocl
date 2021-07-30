@@ -1,5 +1,5 @@
 -- Test monovalued references
-import 'platform:/resource/efinder.core.tests/resources/metamodels/people.ecore'
+import '../metamodels/people.ecore'
 
 package people
 

@@ -1,5 +1,6 @@
 -- Test inheritance is properly handled 
-import 'platform:/resource/efinder.core.tests/resources/metamodels/shapes.ecore'
+-- import 'platform:/resource/efinder.core.tests/resources/metamodels/shapes.ecore'
+import '../metamodels/shapes.ecore'
 
 package shapes
 
