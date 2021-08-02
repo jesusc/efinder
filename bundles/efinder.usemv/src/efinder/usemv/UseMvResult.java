@@ -1,13 +1,65 @@
 package efinder.usemv;
 
+import java.util.Iterator;
+import java.util.function.Supplier;
+
 import org.eclipse.jdt.annotation.NonNull;
 
+import com.google.common.base.Preconditions;
+
 import efinder.core.IModelFinder.Result;
+import efinder.core.IModelFinder.ScrollingResult;
 import efinder.core.IModelFinder.Status;
 import efinder.core.errors.Report;
 import efinder.core.management.EMFModel;
+import efinder.usemv.UseMvFinder.KodkodResult;
 
 public abstract class UseMvResult implements Result {
+
+	public static class Scrolling extends UseMvResult implements ScrollingResult {
+
+		private KodkodResult result;
+		private Supplier<EMFModel> modelSupplier;
+
+		public Scrolling(KodkodResult kodkod, Supplier<EMFModel> modelSupplier) {
+			this.result = kodkod;
+			this.modelSupplier = modelSupplier;
+		}
+
+		@Override
+		public @NonNull Status getStatus() {
+			if (result.isSatisfiable()) {
+				return Status.SAT;
+			}
+			
+			return Status.UNSAT;
+		}
+		
+		@Override
+		public @NonNull EMFModel getWitness() {
+			Preconditions.checkState(result.isSatisfiable());
+			return modelSupplier.get();
+		}
+
+		@Override
+		public Iterator<EMFModel> iterator() {
+			return new Iterator<EMFModel>() {
+				@Override
+				public boolean hasNext() {
+					return result.isSatisfiable();
+				}
+
+				@Override
+				public EMFModel next() {
+					EMFModel r = getWitness();
+					result.nextSolution();
+					return r;
+				}				
+			};
+		}
+
+	}
+
 
 	public static class SAT extends UseMvResult {
 		

@@ -45,6 +45,10 @@ public interface IModelFinder {
 		}
 
 	}
+	
+	public static interface ScrollingResult extends Result, Iterable<EMFModel> {
+
+	}
 
 	public static enum Status {
 		SAT,

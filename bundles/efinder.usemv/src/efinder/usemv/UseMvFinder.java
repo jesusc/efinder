@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.Collections;
+import java.util.function.Supplier;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
@@ -148,6 +149,7 @@ public class UseMvFinder implements IModelFinder {
 
 		}
 		
+		@Override
 		public Solution getSolution() {
 			return solution;
 		}
@@ -161,6 +163,7 @@ public class UseMvFinder implements IModelFinder {
 			super(session);
 		}
 		
+		@Override
 		public Solution getSolution() {
 			return solution;
 		}		
@@ -168,11 +171,13 @@ public class UseMvFinder implements IModelFinder {
 		@Override
 		protected void unsatisfiable() {
 			finished = true;
+			super.unsatisfiable();
 		}
 		
 		@Override
 		protected void trivially_unsatisfiable() {
 			finished = true;
+			super.trivially_unsatisfiable();
 		}
 		
 		public boolean isFinished() {
@@ -193,8 +198,12 @@ public class UseMvFinder implements IModelFinder {
 			return e.getResult();
 		}
 
+		Supplier<EMFModel> emfModelSupplier = () -> useModel.toEMF(fSession.system().state());
+		
 		UseMvResult r;
-		if (kodkod != null && kodkod.isSatisfiable()) {			
+		if (kodkod != null && kodkod.isScrolling()) {
+			r = new UseMvResult.Scrolling(kodkod, emfModelSupplier);
+		} else if (kodkod != null && kodkod.isSatisfiable()) {			
 			EMFModel witness = useModel.toEMF(fSession.system().state());
 			r = new UseMvResult.SAT(witness);
 		} else {
@@ -239,7 +248,6 @@ public class UseMvFinder implements IModelFinder {
 			// modelValidator = new UseScrollingAllKodkodModelValidator(fSession);
 			modelValidator = new InternallScrollingMV(fSession);
 		}
-
 
 		if (partialModel != null) {
 			partialModel.makeUseObjects(fSession);
@@ -335,38 +343,43 @@ public class UseMvFinder implements IModelFinder {
 		System.out.println("=> After kodkod");
 		UseUtils.printModel(system);
 		
-		Solution solution = ((InternalSolutionGetter) modelValidator).getSolution();
-		if (solution == null) {
-			// Kodkod couldn't find a solution.
-			// An example is when the bounds are less that what it is required by the constraint
-			return null;
-		}
-		
-		//this.result = result;
-		Outcome outcome = solution.outcome();
-		System.out.println(outcome);
-		if ( outcome == null )
-			return null;
-
-		/*
-		if ( ok && (outcome == Outcome.SATISFIABLE || outcome == Outcome.TRIVIALLY_SATISFIABLE) && (mode == FindingMode.SCROLL || mode == FindingMode.SCROLL_ALL) ) {
-			this.scrollingValidator = (InternallScrollingMV) modelValidator;
-		} 
-		*/
-
-		return new KodkodResult(outcome, ok);
+		return new KodkodResult((InternalSolutionGetter) modelValidator, ok);
 	}
 
 	/* pp */ static class KodkodResult {
-		private Outcome outcome;
 		private boolean satisfyAllInvariants;
+		private InternalSolutionGetter modelValidator;
+		@Nullable
+		private Solution solution;
 
-		public KodkodResult(Outcome outcome, boolean satisfyAllInvariants) {
-			this.outcome = outcome;
+		public KodkodResult(InternalSolutionGetter modelValidator, boolean satisfyAllInvariants) {
+			this.modelValidator = modelValidator;
 			this.satisfyAllInvariants = satisfyAllInvariants;
+			this.solution = modelValidator.getSolution();
+		}
+		
+		public boolean isScrolling() {
+			return modelValidator instanceof UseScrollingKodkodModelValidator;
+		}
+		
+		public boolean nextSolution() {
+			UseScrollingKodkodModelValidator scrolling = (UseScrollingKodkodModelValidator) modelValidator;
+			scrolling.nextSolution();
+			return ! ((InternallScrollingMV) scrolling).isFinished();
 		}
 		
 		public boolean isSatisfiable() {
+			Solution solution = ((InternalSolutionGetter) modelValidator).getSolution();
+			if (solution == null) {
+				// Kodkod couldn't find a solution.
+				// An example is when the bounds are less that what it is required by the constraint
+				return false;
+			}
+			
+			Outcome outcome = solution.outcome();
+			if ( outcome == null )
+				return false;
+
 			return satisfyAllInvariants && 
 					outcome == Outcome.SATISFIABLE ||
 					outcome == Outcome.TRIVIALLY_SATISFIABLE;
