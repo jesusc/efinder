@@ -1,0 +1,7 @@
+pom.xml
+.mvn
+features/
+releng/
+tasks/
+bundles/
+tests/
