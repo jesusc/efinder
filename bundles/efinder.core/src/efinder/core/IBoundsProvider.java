@@ -1,6 +1,9 @@
 package efinder.core;
 
+import java.util.HashMap;
+
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -88,8 +91,44 @@ public interface IBoundsProvider {
 		@Override
 		public boolean incrementScope() {
 			return false;
-		}
-		
+		}	
 	}
 	
+	public static class PerElement implements IBoundsProvider {
+
+        private HashMap<EClassifier, Interval> bounds = new HashMap<>();
+
+        public void addBound(EClassifier c, int min, int max) {
+                this.bounds.put(c, new Interval(min, max));
+        }
+        
+        @Override
+        public Interval getScope(EClass klass) {
+        	Interval interval = getBounds(klass);
+        	if ( interval != null ) {
+        		return interval;
+            }
+            return new Interval(1, 5);
+        }
+
+        private Interval getBounds(EClass klass) {
+        	return bounds.get(klass);
+        }
+
+        @Override
+        public Interval getScope(EReference feature) {
+        	return new Interval(1, 10);
+        }
+
+        @Override
+        public int getDefaultMaxScope() {
+        	return 5;
+        }
+
+        @Override
+        public boolean incrementScope() {
+        	return false;
+        }
+	}
+        
 }
