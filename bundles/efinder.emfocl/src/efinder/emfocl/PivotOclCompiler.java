@@ -546,7 +546,7 @@ public class PivotOclCompiler implements DialectToIRCompiler {
 				
 				// 4. Create the invariant object
 				OclInvariant invariant = IRBuilder.newInvariant(irExpr, object.getName());
-				specification.getConstaints().add(invariant);
+				specification.getConstraints().add(invariant);
 				invariant.setKlass(efc);
 				invariant.setContextVariable(varDcl);
 			} else {

@@ -166,14 +166,14 @@ public class Dataset {
 			} else {
 				List<EFinderModel> models = new ArrayList<>();
 				Specification spec = ir.getSpecification();
-				for (Constraint constraint : spec.getConstaints()) {					
+				for (Constraint constraint : spec.getConstraints()) {					
 				    Copier copier = new Copier();
 				    Specification newSpec = (Specification) copier.copy(spec);
 				    copier.copyReferences();
 				    
 					Constraint target = (Constraint) copier.get(constraint);
-					newSpec.getConstaints().removeIf(c -> c != target);
-					Preconditions.checkState(newSpec.getConstaints().size() == 1);
+					newSpec.getConstraints().removeIf(c -> c != target);
+					Preconditions.checkState(newSpec.getConstraints().size() == 1);
 					
 					
 					EFinderModel oneInvariantModel = new EFinderModel(newSpec);

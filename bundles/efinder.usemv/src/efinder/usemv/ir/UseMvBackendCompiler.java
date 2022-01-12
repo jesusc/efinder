@@ -281,7 +281,7 @@ public class UseMvBackendCompiler {
 
 	@NonNull
 	private String toInvariantName(@NonNull Specification specification, @NonNull OclInvariant invariant) {
-		int idx = specification.getConstaints().indexOf(invariant);
+		int idx = specification.getConstraints().indexOf(invariant);
 		return invariant.getKlass().getKlass().getName() + "_" + idx;
 	}
 	
