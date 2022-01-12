@@ -57,6 +57,8 @@ public class UseMvFinder implements IModelFinder {
 		SCROLL,
 		SCROLL_ALL
 	}
+
+	private static final boolean DEBUG = true;
 	
 	/** Default scope provider just uses (0, 5) intervals */
 	private IBoundsProvider scopeProvider = IBoundsProvider.FIXED;
@@ -307,7 +309,8 @@ public class UseMvFinder implements IModelFinder {
 		}
 		// end-of-configure
 
-		UseUtils.printModel(system);		
+		if (DEBUG) 
+			UseUtils.printModel(system);		
 		
 		// Log.setDebug(true);
 
@@ -338,10 +341,10 @@ public class UseMvFinder implements IModelFinder {
 		
 		// check whether the result satisfies all invariants
 		boolean     ok = result.check(fLogWriter, true, true, true, Collections.<String>emptyList());
-		System.out.println(ok);
-		
-		System.out.println("=> After kodkod");
-		UseUtils.printModel(system);
+		// System.out.println(ok);		
+		// System.out.println("=> After kodkod");
+		if (DEBUG) 
+			UseUtils.printModel(system);
 		
 		return new KodkodResult((InternalSolutionGetter) modelValidator, ok);
 	}

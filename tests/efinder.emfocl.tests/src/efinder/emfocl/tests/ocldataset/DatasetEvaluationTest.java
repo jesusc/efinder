@@ -83,75 +83,11 @@ public class DatasetEvaluationTest {
 		//predicate = onlyOneFile;
 
 		Mode evaluationMode = Mode.PER_INVARIANT;
-		Dataset dataset = load(metadataFile, repoDir, predicate);		
-		Stats stats = dataset.evaluate(evaluationMode);
+		Dataset dataset = Dataset.load(metadataFile, repoDir, predicate, invalidCases);		
+		Stats stats = new Stats();
+		dataset.evaluate(evaluationMode, stats);
 		stats.printTo(System.out);
 	}
 	
 	
-	private Dataset load(@NonNull String metaJson, @NonNull String repos, @Nullable Predicate<String> filter) throws FileNotFoundException, IOException, ParseException {
-		Dataset dataset = new Dataset();
-		
-		JSONParser parser = new JSONParser();        
-        Object obj = parser.parse(new FileReader(metaJson));
-        JSONObject root = (JSONObject) obj;
-        
-        JSONObject files = (JSONObject) root.get("oclas");
-        Map<String, String> hashToFile = new HashMap<>();
-        
-        for (Object key: files.keySet()) {
-        	JSONArray elements = (JSONArray) files.get(key);
-
-        	// Each element is a reference to an Ecore or an OCL file
-        	for (Object object : elements) {
-				String s = (String) object;				
-				if ( filter != null && ! filter.test(s) )
-					continue;
-				
-				Logger.log("Adding: " + s);
-				
-				String hash = hashFile(repos + File.separator + s);
-				if ( hash != null ) {
-					if ( hashToFile.containsKey(hash) ) {
-						Logger.log("Duplicated: " + s + " - " + hashToFile.get(hash));
-						continue;
-					}
-					hashToFile.put(hash, s);
-				}
-				
-				if ( invalidCases.contains(s) ) {
-					continue;
-				}
-								
-				if ( s.endsWith(".ocl")) {
-					dataset.addOclFile(repos + File.separator + s);
-				}
-				else if ( s.endsWith(".ecore") ) {
-					dataset.addEcoreFile(repos + File.separator + s);
-				} else {
-					throw new RuntimeException("Cannot handle: " + s);
-				}
-        	}
-        }
-        
-        return dataset;
-	}
-	
-	/** 
-	 * Computes the hash of file. This is used here to use only unique files, per content.
-	 */
-	private String hashFile(String file) {
-		try {
-		 MessageDigest md = MessageDigest.getInstance("MD5");
-		 byte[] contents = Files.readAllBytes(new File(file).getAbsoluteFile().toPath());		 
-		 md.update(contents);		 
-		 byte[] digest = md.digest();		 
-		 // String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();		         	
-		 String myHash = String.format("%02X", digest);
-		 return myHash;
-		} catch ( Exception e ) {
-			e.printStackTrace();
-			return null;
-		}
-	}
 }

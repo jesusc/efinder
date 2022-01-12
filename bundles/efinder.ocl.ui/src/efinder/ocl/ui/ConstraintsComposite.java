@@ -11,6 +11,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -272,33 +273,6 @@ public class ConstraintsComposite extends Composite implements IConstraintsConfi
 		txtOclModel.setText(doc.eResource().getURI().toString());
 		tableViewer.setInput(new OclDocumentData(doc));
 		tableViewer.refresh();
-	}
-
-	private void extractBounds(PackageDeclarationCS pkg, IBoundsProvider.PerElement provider) {
-		String text = pkg.toString();
-		BufferedReader reader = new BufferedReader(new StringReader(text));
-		reader.lines().filter(l -> l.contains("@bounds")).forEach(l -> extractBounds(l, provider));
-	}
-
-	private void extractBounds(String l, IBoundsProvider.PerElement provider) {
-		Pattern regexp = Pattern.compile("bounds\\s+(\\w+)\\s+([0-9]+)\\.\\.([0-9]+)");
-		Matcher matcher = regexp.matcher(l);
-		if (matcher.find()) {
-			String className = matcher.group(1);
-			int min = Integer.parseInt(matcher.group(2));
-			int max = Integer.parseInt(matcher.group(3));
-
-			// TODO: Finish this
-			/*
-			 * EClassifier klass = packages.stream(). filter(p ->
-			 * p.getEClassifier(className) != null). map(p -> p.getEClassifier(className)).
-			 * findFirst().orElseThrow(() -> new RuntimeException("Cannot find : " +
-			 * className));
-			 * 
-			 * 
-			 * provider.addBound(klass, min, max);
-			 */
-		}
 	}
 
 	//

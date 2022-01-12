@@ -1,10 +1,20 @@
 package efinder.emfocl.tests.ocldataset;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Predicate;
 
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -26,6 +36,10 @@ import org.eclipse.ocl.pivot.resource.CSResource;
 import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.xtext.completeocl.utilities.CompleteOCLCSResource;
 import org.eclipse.ocl.xtext.completeoclcs.CompleteOCLDocumentCS;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import com.google.common.base.Preconditions;
 
@@ -54,12 +68,64 @@ public class Dataset {
 		PER_INVARIANT
 	}
 	
-	public void addOclFile(@NonNull String filename) {
+	private void addOclFile(@NonNull String filename) {
 		files.add(new OclDatasetFile(filename));
 	}
 
-	public void addEcoreFile(@NonNull String filename) {
+	private void addEcoreFile(@NonNull String filename) {
 		files.add(new EcoreDatasetFile(filename));
+	}
+	
+	public static Dataset load(@NonNull String metaJson, @NonNull String repos) throws FileNotFoundException, IOException, ParseException {
+		return load(metaJson, repos, (_s) -> true, Collections.emptySet());
+	}
+	
+	public static Dataset load(@NonNull String metaJson, @NonNull String repos, @Nullable Predicate<String> filter, @NonNull Set<String> invalidCases) throws FileNotFoundException, IOException, ParseException {
+		Dataset dataset = new Dataset();
+		
+		JSONParser parser = new JSONParser();        
+        Object obj = parser.parse(new FileReader(metaJson));
+        JSONObject root = (JSONObject) obj;
+        
+        JSONObject files = (JSONObject) root.get("oclas");
+        Map<String, String> hashToFile = new HashMap<>();
+        
+        for (Object key: files.keySet()) {
+        	JSONArray elements = (JSONArray) files.get(key);
+
+        	// Each element is a reference to an Ecore or an OCL file
+        	for (Object object : elements) {
+				String s = (String) object;				
+				if ( filter != null && ! filter.test(s) )
+					continue;
+				
+				Logger.log("Adding: " + s);
+				
+				String hash = hashFile(repos + File.separator + s);
+				if ( hash != null ) {
+					if ( hashToFile.containsKey(hash) ) {
+						Logger.log("Duplicated: " + s + " - " + hashToFile.get(hash));
+						continue;
+					}
+					hashToFile.put(hash, s);
+				}
+				
+				if ( invalidCases.contains(s) ) {
+					continue;
+				}
+								
+				if ( s.endsWith(".ocl")) {
+					dataset.addOclFile(repos + File.separator + s);
+				}
+				else if ( s.endsWith(".ecore") ) {
+					dataset.addEcoreFile(repos + File.separator + s);
+				} else {
+					throw new RuntimeException("Cannot handle: " + s);
+				}
+        	}
+        }
+        
+        return dataset;
 	}
 	
 	private abstract class DatasetFile {
@@ -69,9 +135,9 @@ public class Dataset {
 			this.filename = filename;
 		}
 
-		protected abstract void evaluate(@NonNull Stats stats, @NonNull Mode mode);
+		protected abstract void evaluate(@NonNull ExecutionRecord stats, @NonNull Mode mode);
 
-		protected void processPivot(Stats stats, Model pivot, @Nullable ResourceSet rs, @NonNull Mode mode) {
+		protected List<EFinderModel> processPivot(ExecutionRecord stats, Model pivot, @Nullable ResourceSet rs, @NonNull Mode mode) {
 			PivotOclCompiler compiler = rs == null ?
 					new PivotOclCompiler(pivot) :
 					new PivotOclCompiler(pivot, rs).withPackages(rs.getResources());
@@ -84,8 +150,8 @@ public class Dataset {
 				// A trick to count this in the stats properly
 				Report report = new Report();
 				report.addUnsupported(e.getMessage(), null, Report.Action.STOP, e.getReason());
-				stats.processed(filename, new UseMvResult.Unsupported(report));
-				return;
+				stats.processed(filename, new UseMvResult.Unsupported(report), null);
+				return Collections.emptyList();
 			}
 			
 			
@@ -95,8 +161,10 @@ public class Dataset {
 			
 			if (mode == Mode.COMPLETE_FILE) {
 				Result result = doFind(ir);
-				stats.processed(filename, result);
+				stats.processed(filename, result, ir);
+				return Collections.singletonList(ir);
 			} else {
+				List<EFinderModel> models = new ArrayList<>();
 				Specification spec = ir.getSpecification();
 				for (Constraint constraint : spec.getConstaints()) {					
 				    Copier copier = new Copier();
@@ -110,8 +178,10 @@ public class Dataset {
 					
 					EFinderModel oneInvariantModel = new EFinderModel(newSpec);
 					Result result = doFind(oneInvariantModel);
-					stats.processed(filename + "#" + target.getName(), result);					
+					stats.processed(filename + "#" + target.getName(), result, oneInvariantModel);					
+					models.add(oneInvariantModel);
 				}	
+				return models;
 			}		
 		}
 
@@ -132,7 +202,7 @@ public class Dataset {
 		}
 
 		@Override
-		protected void evaluate(@NonNull Stats stats, @NonNull Mode mode) {
+		protected void evaluate(@NonNull ExecutionRecord stats, @NonNull Mode mode) {
 			Logger.log("Processing " + filename);
 			//ASResource as = oclToAs(URI.createFileURI(path));
 			CompleteOCLDocumentCS doc = loadCompleteDoc(URI.createFileURI(filename));
@@ -161,7 +231,7 @@ public class Dataset {
 		}
 
 		@Override
-		protected void evaluate(@NonNull Stats stats, @NonNull Mode mode) {
+		protected void evaluate(@NonNull ExecutionRecord stats, @NonNull Mode mode) {
 			Logger.log("Processing " + filename);
 			
 			ResourceSet rs = new ResourceSetImpl();
@@ -235,9 +305,8 @@ public class Dataset {
 	    }
 	}
 
-	public Stats evaluate(@NonNull Mode mode) {
-		Stats stats = new Stats();
-		stats.setTotalFi(files.size());
+	public void evaluate(@NonNull Mode mode, ExecutionRecord stats) {
+		stats.setExpectedFiles(files.size());
 		for (DatasetFile datasetFile : files) {
 			try {
 				datasetFile.evaluate(stats, mode);
@@ -252,8 +321,24 @@ public class Dataset {
 				stats.unknownFailure(datasetFile.filename);	
 			}
 		}
-		
-		return stats;
 	}
 	
+	/** 
+	 * Computes the hash of file. This is used here to use only unique files, per content.
+	 */
+	private static String hashFile(String file) {
+		try {
+		 MessageDigest md = MessageDigest.getInstance("MD5");
+		 byte[] contents = Files.readAllBytes(new File(file).getAbsoluteFile().toPath());		 
+		 md.update(contents);		 
+		 byte[] digest = md.digest();		 
+		 // String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();		         	
+		 String myHash = String.format("%02X", digest);
+		 return myHash;
+		} catch ( Exception e ) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

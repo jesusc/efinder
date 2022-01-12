@@ -129,8 +129,13 @@ public class ActionSupport {
 
 	@NonNull
 	private EFinderRunner getFinder(@Nullable EMFModel partialModel, boolean useScrolling) {
+		CompleteOCLDocumentCS doc = configuration.getDocument().getDoc();
+		Model pivot = (Model) doc.getPivot();
+
+		IBoundsProvider provider = getBounds(doc);
+		
 		UseMvFinder finder = new UseMvFinder()
-				.withBoundsProvider(IBoundsProvider.FIXED);
+				.withBoundsProvider(provider);
 
 		if (useScrolling) 
 			finder.withMode(FindingMode.SCROLL);
@@ -138,13 +143,22 @@ public class ActionSupport {
 		if (partialModel != null)
 			finder.withPartialModel(partialModel);
 		
-		CompleteOCLDocumentCS doc = configuration.getDocument().getDoc();
-		Model pivot = (Model) doc.getPivot();
 		
 		EFinderRunner runner = EFinderRunner.
 				withOclModel(pivot).
 				withFinder(finder);
 		return runner;
+	}
+
+	private IBoundsProvider getBounds(CompleteOCLDocumentCS doc) {
+		IBoundsProvider provider;
+		CommentBasedBoundsProvider commentedBounds = new CommentBasedBoundsProvider(doc);
+		if (commentedBounds.hasBounds()) {
+			provider = commentedBounds;
+		} else {
+			provider = IBoundsProvider.FIXED;
+		}
+		return provider;
 	}
 
 }

@@ -8,11 +8,12 @@ import java.util.Map.Entry;
 
 import org.eclipse.jdt.annotation.NonNull;
 
+import efinder.core.EFinderModel;
 import efinder.core.IModelFinder.Result;
 import efinder.core.errors.Report;
 import efinder.usemv.UseMvResult;
 
-public class Stats {
+public class Stats implements ExecutionRecord {
 
 	private int totalFiles;
 	// Failures
@@ -27,7 +28,8 @@ public class Stats {
 	
 	List<String> unknownFailure = new ArrayList<>();
 	
-	public void processed(@NonNull String filename, Result result) {
+	@Override
+	public void processed(@NonNull String filename, Result result, EFinderModel ir) {
 		switch(result.getStatus()) {
 		case SAT:
 		case UNSAT:
@@ -48,15 +50,17 @@ public class Stats {
 		
 	}
 
+	@Override
 	public void unknownFailure(@NonNull String filename) {
 		unknownFailure.add(filename);
 	}
 
+	@Override
 	public void doNotValidate(@NonNull String filename) {
 		doNotValidate.add(filename);
 	}
 
-	public void setTotalFi(int size) {
+	public void setExpectedFiles(int size) {
 		totalFiles = size;
 	}
 
@@ -146,10 +150,12 @@ public class Stats {
 		return unknownFailure.size() + doNotValidate.size() + loadErrors.size() + totalTypeErrors();
 	}
 
+	@Override
 	public void loadError(@NonNull String filename) {
 		loadErrors.add(filename);
 	}
 
+	@Override
 	public void typeError(@NonNull String filename, String reason) {
 		typeErrors.computeIfAbsent(reason, (k) -> new ArrayList<>());
 		typeErrors.get(reason).add(filename);

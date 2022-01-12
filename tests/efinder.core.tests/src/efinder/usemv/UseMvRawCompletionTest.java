@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.tzi.use.api.UseApiException;
 import org.tzi.use.api.UseSystemApi;
 import org.tzi.use.main.Session;
+import org.tzi.use.uml.sys.MSystemState;
 
 import efinder.core.management.EMFModel;
 import efinder.core.utils.ResourceUtils;
@@ -31,6 +32,7 @@ public class UseMvRawCompletionTest {
 			"class Person\n" + 
 			"attributes\n" + 
 			"  name:String\n" + 
+			"  age:Integer\n" + 
 			"end\n" + 
 			"class Global\n" + 
 			"end\n" +
@@ -64,11 +66,9 @@ public class UseMvRawCompletionTest {
 	@Test
 	public void testCompletionWorking() throws Exception {
 		model +=" context g : Global inv global1:\n"
-			  + "		Person.allInstances()->size() = 1";
-
-				
-				//" context p : Person inv age:\n"
-				//+ "		p.age = 15";
+			  + "		Person.allInstances()->size() = 1"
+			  + " context p : Person inv age:\n"
+			  + "		p.age = 15";
 				//+ "		p.age = 18 implies p.alive = true";
 
 		toFile("/tmp/test.use", model);
@@ -79,6 +79,9 @@ public class UseMvRawCompletionTest {
 				withPartialModel(partialModel);
 		
 		finder.doFind(new ByteArrayInputStream(model.getBytes()), new StringReader(properties));
+	
+		MSystemState state = partialModel.session.system().state();
+		
 	}
 	
 	private void toFile(String fileName, String contents) throws IOException {
@@ -91,8 +94,14 @@ public class UseMvRawCompletionTest {
 
 	public static class TestPartialInputModel implements IUseInputPartialModel {
 
+		protected Session session;
+
 		@Override
 		public void makeUseObjects(Session fSession) {
+			if (this.session != null)
+				throw new IllegalStateException("Test method must be called only once");
+			this.session = fSession;
+			
 			/**
 			 * !create gg : Global
 			 * !create p1 : Person
