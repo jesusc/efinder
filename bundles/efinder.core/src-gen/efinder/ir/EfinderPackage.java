@@ -76,13 +76,13 @@ public interface EfinderPackage extends EPackage {
 	int SPECIFICATION__METAMODELS = 0;
 
 	/**
-	 * The feature id for the '<em><b>Constaints</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SPECIFICATION__CONSTAINTS = 1;
+	int SPECIFICATION__CONSTRAINTS = 1;
 
 	/**
 	 * The feature id for the '<em><b>Temporary</b></em>' containment reference list.
@@ -1454,15 +1454,15 @@ public interface EfinderPackage extends EPackage {
 	EReference getSpecification_Metamodels();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getConstaints <em>Constaints</em>}'.
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getConstraints <em>Constraints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Constaints</em>'.
-	 * @see efinder.ir.Specification#getConstaints()
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see efinder.ir.Specification#getConstraints()
 	 * @see #getSpecification()
 	 * @generated
 	 */
-	EReference getSpecification_Constaints();
+	EReference getSpecification_Constraints();
 
 	/**
 	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getTemporary <em>Temporary</em>}'.
@@ -2188,12 +2188,12 @@ public interface EfinderPackage extends EPackage {
 		EReference SPECIFICATION__METAMODELS = eINSTANCE.getSpecification_Metamodels();
 
 		/**
-		 * The meta object literal for the '<em><b>Constaints</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference SPECIFICATION__CONSTAINTS = eINSTANCE.getSpecification_Constaints();
+		EReference SPECIFICATION__CONSTRAINTS = eINSTANCE.getSpecification_Constraints();
 
 		/**
 		 * The meta object literal for the '<em><b>Temporary</b></em>' containment reference list feature.

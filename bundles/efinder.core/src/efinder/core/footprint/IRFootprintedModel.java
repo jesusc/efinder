@@ -106,7 +106,7 @@ public class IRFootprintedModel {
 
 	@NonNull
 	public List<? extends Constraint> getConstraints() {
-		return getSpecification().getConstaints();
+		return getSpecification().getConstraints();
 	}
 
 	@NonNull

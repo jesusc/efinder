@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getMetamodels <em>Metamodels</em>}</li>
- *   <li>{@link efinder.ir.impl.SpecificationImpl#getConstaints <em>Constaints</em>}</li>
+ *   <li>{@link efinder.ir.impl.SpecificationImpl#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getTemporary <em>Temporary</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getProperties <em>Properties</em>}</li>
  *   <li>{@link efinder.ir.impl.SpecificationImpl#getOperations <em>Operations</em>}</li>
@@ -57,14 +57,14 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	protected EList<EFMetamodel> metamodels;
 
 	/**
-	 * The cached value of the '{@link #getConstaints() <em>Constaints</em>}' containment reference list.
+	 * The cached value of the '{@link #getConstraints() <em>Constraints</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getConstaints()
+	 * @see #getConstraints()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Constraint> constaints;
+	protected EList<Constraint> constraints;
 
 	/**
 	 * The cached value of the '{@link #getTemporary() <em>Temporary</em>}' containment reference list.
@@ -154,11 +154,11 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	 * @generated
 	 */
 	@Override
-	public EList<Constraint> getConstaints() {
-		if (constaints == null) {
-			constaints = new EObjectContainmentEList<Constraint>(Constraint.class, this, EfinderPackage.SPECIFICATION__CONSTAINTS);
+	public EList<Constraint> getConstraints() {
+		if (constraints == null) {
+			constraints = new EObjectContainmentEList<Constraint>(Constraint.class, this, EfinderPackage.SPECIFICATION__CONSTRAINTS);
 		}
-		return constaints;
+		return constraints;
 	}
 
 	/**
@@ -236,8 +236,8 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 		switch (featureID) {
 			case EfinderPackage.SPECIFICATION__METAMODELS:
 				return ((InternalEList<?>)getMetamodels()).basicRemove(otherEnd, msgs);
-			case EfinderPackage.SPECIFICATION__CONSTAINTS:
-				return ((InternalEList<?>)getConstaints()).basicRemove(otherEnd, msgs);
+			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
+				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
 				return ((InternalEList<?>)getTemporary()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
@@ -262,8 +262,8 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 		switch (featureID) {
 			case EfinderPackage.SPECIFICATION__METAMODELS:
 				return getMetamodels();
-			case EfinderPackage.SPECIFICATION__CONSTAINTS:
-				return getConstaints();
+			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
+				return getConstraints();
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
 				return getTemporary();
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
@@ -291,9 +291,9 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				getMetamodels().clear();
 				getMetamodels().addAll((Collection<? extends EFMetamodel>)newValue);
 				return;
-			case EfinderPackage.SPECIFICATION__CONSTAINTS:
-				getConstaints().clear();
-				getConstaints().addAll((Collection<? extends Constraint>)newValue);
+			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
+				getConstraints().clear();
+				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
 				getTemporary().clear();
@@ -330,8 +330,8 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 			case EfinderPackage.SPECIFICATION__METAMODELS:
 				getMetamodels().clear();
 				return;
-			case EfinderPackage.SPECIFICATION__CONSTAINTS:
-				getConstaints().clear();
+			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
+				getConstraints().clear();
 				return;
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
 				getTemporary().clear();
@@ -362,8 +362,8 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 		switch (featureID) {
 			case EfinderPackage.SPECIFICATION__METAMODELS:
 				return metamodels != null && !metamodels.isEmpty();
-			case EfinderPackage.SPECIFICATION__CONSTAINTS:
-				return constaints != null && !constaints.isEmpty();
+			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
+				return constraints != null && !constraints.isEmpty();
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
 				return temporary != null && !temporary.isEmpty();
 			case EfinderPackage.SPECIFICATION__PROPERTIES:

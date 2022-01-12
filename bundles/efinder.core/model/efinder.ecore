@@ -4,7 +4,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Specification">
     <eStructuralFeatures xsi:type="ecore:EReference" name="metamodels" upperBound="-1"
         eType="#//EFMetamodel" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="constaints" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//Constraint" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="temporary" upperBound="-1"
         eType="#//EFClass" containment="true"/>

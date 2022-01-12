@@ -5,7 +5,7 @@ package ir;
 
 class Specification {
 	val EFMetamodel[*] metamodels;
-	val Constraint[*] constaints;
+	val Constraint[*] constraints;
 
 	val EFClass[*] temporary;
 	

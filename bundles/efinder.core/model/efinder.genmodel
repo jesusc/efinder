@@ -9,7 +9,7 @@
       ecorePackage="efinder.ecore#/">
     <genClasses ecoreClass="efinder.ecore#//Specification">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/metamodels"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/constaints"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/constraints"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/temporary"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/properties"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/operations"/>

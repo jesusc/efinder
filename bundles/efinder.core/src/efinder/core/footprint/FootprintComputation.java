@@ -39,7 +39,7 @@ public class FootprintComputation {
 	public IFootprint compute(@NonNull EFinderModel model) {
 		MutableFootprint footprint = new IFootprint.MutableFootprint();
 		
-		for (Constraint constraint : model.getSpecification().getConstaints()) {
+		for (Constraint constraint : model.getSpecification().getConstraints()) {
 			OclInvariant oclConstraint = (OclInvariant) constraint;
 			visitElement(oclConstraint, footprint); 
 		}

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link efinder.ir.Specification#getMetamodels <em>Metamodels</em>}</li>
- *   <li>{@link efinder.ir.Specification#getConstaints <em>Constaints</em>}</li>
+ *   <li>{@link efinder.ir.Specification#getConstraints <em>Constraints</em>}</li>
  *   <li>{@link efinder.ir.Specification#getTemporary <em>Temporary</em>}</li>
  *   <li>{@link efinder.ir.Specification#getProperties <em>Properties</em>}</li>
  *   <li>{@link efinder.ir.Specification#getOperations <em>Operations</em>}</li>
@@ -42,16 +42,16 @@ public interface Specification extends EObject {
 	EList<EFMetamodel> getMetamodels();
 
 	/**
-	 * Returns the value of the '<em><b>Constaints</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Constraints</b></em>' containment reference list.
 	 * The list contents are of type {@link efinder.ir.Constraint}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Constaints</em>' containment reference list.
-	 * @see efinder.ir.EfinderPackage#getSpecification_Constaints()
+	 * @return the value of the '<em>Constraints</em>' containment reference list.
+	 * @see efinder.ir.EfinderPackage#getSpecification_Constraints()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Constraint> getConstaints();
+	EList<Constraint> getConstraints();
 
 	/**
 	 * Returns the value of the '<em><b>Temporary</b></em>' containment reference list.

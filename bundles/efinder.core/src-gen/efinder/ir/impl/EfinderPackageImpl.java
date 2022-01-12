@@ -388,7 +388,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 	 * @generated
 	 */
 	@Override
-	public EReference getSpecification_Constaints() {
+	public EReference getSpecification_Constraints() {
 		return (EReference)specificationEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -1073,7 +1073,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		// Create classes and their features
 		specificationEClass = createEClass(SPECIFICATION);
 		createEReference(specificationEClass, SPECIFICATION__METAMODELS);
-		createEReference(specificationEClass, SPECIFICATION__CONSTAINTS);
+		createEReference(specificationEClass, SPECIFICATION__CONSTRAINTS);
 		createEReference(specificationEClass, SPECIFICATION__TEMPORARY);
 		createEReference(specificationEClass, SPECIFICATION__PROPERTIES);
 		createEReference(specificationEClass, SPECIFICATION__OPERATIONS);
@@ -1235,7 +1235,7 @@ public class EfinderPackageImpl extends EPackageImpl implements EfinderPackage {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(specificationEClass, Specification.class, "Specification", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSpecification_Metamodels(), this.getEFMetamodel(), null, "metamodels", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSpecification_Constaints(), this.getConstraint(), null, "constaints", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSpecification_Constraints(), this.getConstraint(), null, "constraints", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_Temporary(), this.getEFClass(), null, "temporary", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_Properties(), this.getDerivedProperty(), null, "properties", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSpecification_Operations(), this.getOperation(), null, "operations", null, 0, -1, Specification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
