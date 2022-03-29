@@ -1,5 +1,9 @@
 package efinder.core;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -8,6 +12,8 @@ import org.eclipse.jdt.annotation.NonNull;
 
 import com.google.common.collect.ImmutableMap;
 
+import efinder.ir.EFMetamodel;
+import efinder.ir.EFPackage;
 import efinder.ir.Specification;
 
 /**
@@ -41,6 +47,17 @@ public class EFinderModel {
 	@NonNull
 	public Specification getSpecification() {
 		return specification;
+	}
+
+	@NonNull
+	public Collection<Resource> getMetamodelResources() {
+		Set<Resource> resources = new HashSet<>();
+		for (EFMetamodel m: getSpecification().getMetamodels()) {
+			for (EFPackage r : m.getRoots()) {
+				resources.add(r.getPkg().eResource());
+			}
+		}
+		return resources;
 	}
 	
 }
