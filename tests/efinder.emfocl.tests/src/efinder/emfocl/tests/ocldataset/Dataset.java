@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -333,8 +334,7 @@ public class Dataset {
 		 md.update(contents);		 
 		 byte[] digest = md.digest();		 
 		 // String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();		         	
-		 String myHash = String.format("%02X", digest);
-		 return myHash;
+		 return Base64.getEncoder().encodeToString(digest);
 		} catch ( Exception e ) {
 			e.printStackTrace();
 			return null;
