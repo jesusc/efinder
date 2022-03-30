@@ -43,7 +43,7 @@ public class IRFootprintedModel {
 	public List<? extends EFClass> getAllClasses() {
 		Specification spec = model.getSpecification();		
 		return Stream.concat(
-				spec.getTemporary().stream(), 
+				spec.getTemporary().getClasses().stream(), 
 				spec.getMetamodels().stream()
 					.flatMap(m -> m.getRoots().stream())
 					.flatMap(p -> p.getClasses().stream())

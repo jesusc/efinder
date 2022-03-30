@@ -77,6 +77,7 @@ public class IRBuilder {
 	@NonNull
 	public static Specification newSpecification() {
 		Specification spec = EfinderFactory.eINSTANCE.createSpecification();
+		spec.setTemporary(EfinderFactory.eINSTANCE.createTemporary());
 		return spec;
 	}
 

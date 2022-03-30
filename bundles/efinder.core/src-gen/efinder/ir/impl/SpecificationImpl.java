@@ -4,7 +4,6 @@ package efinder.ir.impl;
 
 import efinder.ir.Constraint;
 import efinder.ir.DerivedProperty;
-import efinder.ir.EFClass;
 import efinder.ir.EFMetamodel;
 import efinder.ir.EFPrimitiveType;
 import efinder.ir.EFTupleType;
@@ -12,8 +11,10 @@ import efinder.ir.EfinderPackage;
 import efinder.ir.Operation;
 import efinder.ir.Specification;
 
+import efinder.ir.Temporary;
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -67,14 +69,14 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	protected EList<Constraint> constraints;
 
 	/**
-	 * The cached value of the '{@link #getTemporary() <em>Temporary</em>}' containment reference list.
+	 * The cached value of the '{@link #getTemporary() <em>Temporary</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTemporary()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<EFClass> temporary;
+	protected Temporary temporary;
 
 	/**
 	 * The cached value of the '{@link #getProperties() <em>Properties</em>}' containment reference list.
@@ -167,11 +169,43 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 	 * @generated
 	 */
 	@Override
-	public EList<EFClass> getTemporary() {
-		if (temporary == null) {
-			temporary = new EObjectContainmentEList<EFClass>(EFClass.class, this, EfinderPackage.SPECIFICATION__TEMPORARY);
-		}
+	public Temporary getTemporary() {
 		return temporary;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetTemporary(Temporary newTemporary, NotificationChain msgs) {
+		Temporary oldTemporary = temporary;
+		temporary = newTemporary;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, EfinderPackage.SPECIFICATION__TEMPORARY, oldTemporary, newTemporary);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void setTemporary(Temporary newTemporary) {
+		if (newTemporary != temporary) {
+			NotificationChain msgs = null;
+			if (temporary != null)
+				msgs = ((InternalEObject)temporary).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - EfinderPackage.SPECIFICATION__TEMPORARY, null, msgs);
+			if (newTemporary != null)
+				msgs = ((InternalEObject)newTemporary).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - EfinderPackage.SPECIFICATION__TEMPORARY, null, msgs);
+			msgs = basicSetTemporary(newTemporary, msgs);
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, EfinderPackage.SPECIFICATION__TEMPORARY, newTemporary, newTemporary));
 	}
 
 	/**
@@ -239,7 +273,7 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
 				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
-				return ((InternalEList<?>)getTemporary()).basicRemove(otherEnd, msgs);
+				return basicSetTemporary(null, msgs);
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				return ((InternalEList<?>)getProperties()).basicRemove(otherEnd, msgs);
 			case EfinderPackage.SPECIFICATION__OPERATIONS:
@@ -296,8 +330,7 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				getConstraints().addAll((Collection<? extends Constraint>)newValue);
 				return;
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
-				getTemporary().clear();
-				getTemporary().addAll((Collection<? extends EFClass>)newValue);
+				setTemporary((Temporary)newValue);
 				return;
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				getProperties().clear();
@@ -334,7 +367,7 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 				getConstraints().clear();
 				return;
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
-				getTemporary().clear();
+				setTemporary((Temporary)null);
 				return;
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				getProperties().clear();
@@ -365,7 +398,7 @@ public class SpecificationImpl extends MinimalEObjectImpl.Container implements S
 			case EfinderPackage.SPECIFICATION__CONSTRAINTS:
 				return constraints != null && !constraints.isEmpty();
 			case EfinderPackage.SPECIFICATION__TEMPORARY:
-				return temporary != null && !temporary.isEmpty();
+				return temporary != null;
 			case EfinderPackage.SPECIFICATION__PROPERTIES:
 				return properties != null && !properties.isEmpty();
 			case EfinderPackage.SPECIFICATION__OPERATIONS:

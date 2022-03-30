@@ -16,6 +16,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/primitiveTypes"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Specification/tupleTypes"/>
     </genClasses>
+    <genClasses ecoreClass="efinder.ecore#//Temporary">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference efinder.ecore#//Temporary/classes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference efinder.ecore#//Temporary/dangling"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="efinder.ecore#//Constraint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute efinder.ecore#//Constraint/name"/>
     </genClasses>

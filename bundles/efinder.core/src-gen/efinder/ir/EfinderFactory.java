@@ -31,6 +31,15 @@ public interface EfinderFactory extends EFactory {
 	Specification createSpecification();
 
 	/**
+	 * Returns a new object of class '<em>Temporary</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Temporary</em>'.
+	 * @generated
+	 */
+	Temporary createTemporary();
+
+	/**
 	 * Returns a new object of class '<em>Builtin Operation Ref</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

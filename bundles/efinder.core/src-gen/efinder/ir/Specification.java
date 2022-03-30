@@ -54,16 +54,26 @@ public interface Specification extends EObject {
 	EList<Constraint> getConstraints();
 
 	/**
-	 * Returns the value of the '<em><b>Temporary</b></em>' containment reference list.
-	 * The list contents are of type {@link efinder.ir.EFClass}.
+	 * Returns the value of the '<em><b>Temporary</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Temporary</em>' containment reference list.
+	 * @return the value of the '<em>Temporary</em>' containment reference.
+	 * @see #setTemporary(Temporary)
 	 * @see efinder.ir.EfinderPackage#getSpecification_Temporary()
-	 * @model containment="true"
+	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	EList<EFClass> getTemporary();
+	Temporary getTemporary();
+
+	/**
+	 * Sets the value of the '{@link efinder.ir.Specification#getTemporary <em>Temporary</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Temporary</em>' containment reference.
+	 * @see #getTemporary()
+	 * @generated
+	 */
+	void setTemporary(Temporary value);
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list.

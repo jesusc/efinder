@@ -72,6 +72,10 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 				return createSpecificationAdapter();
 			}
 			@Override
+			public Adapter caseTemporary(Temporary object) {
+				return createTemporaryAdapter();
+			}
+			@Override
 			public Adapter caseConstraint(Constraint object) {
 				return createConstraintAdapter();
 			}
@@ -234,6 +238,20 @@ public class EfinderAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createSpecificationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link efinder.ir.Temporary <em>Temporary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see efinder.ir.Temporary
+	 * @generated
+	 */
+	public Adapter createTemporaryAdapter() {
 		return null;
 	}
 

@@ -7,13 +7,19 @@ class Specification {
 	val EFMetamodel[*] metamodels;
 	val Constraint[*] constraints;
 
-	val EFClass[*] temporary;
+	val Temporary[1] temporary;
 	
 	val DerivedProperty[*] properties;
 	val Operation[*] operations;
 	
 	val EFPrimitiveType[*] primitiveTypes;
 	val EFTupleType[*] tupleTypes;
+}
+
+class Temporary {
+	val EFClass[*] classes;
+	// Points to objects created ad-hoc (e.g., EClass) that needs to be contained somewhere to have a proper model
+	val EObject[*] dangling;
 }
 
 abstract class Constraint {
@@ -101,7 +107,7 @@ abstract class EFType {
 }
 
 class EFClass extends EFType {
-	ref ecore.EClass[1] klass;	
+	ref ecore.EClass[1] klass;
 }
 
 class EFPrimitiveType extends EFType {

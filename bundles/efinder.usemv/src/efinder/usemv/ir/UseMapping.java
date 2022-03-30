@@ -53,8 +53,8 @@ public class UseMapping {
 	public UseMapping(IRFootprintedModel ir) {
 		List<? extends EFMetamodel> metamodels = ir.getSpecification().getMetamodels();
 		mapMetamodels(metamodels);
-		ir.getSpecification().getTemporary().forEach(c -> eclassifier2use.put(c.getKlass(), UseReservedWords.toUseName(c.getKlass().getName())));
-		ir.getSpecification().getTemporary().forEach(c -> temporaryClassNames.add(UseReservedWords.toUseName(c.getKlass().getName())));
+		ir.getSpecification().getTemporary().getClasses().forEach(c -> eclassifier2use.put(c.getKlass(), UseReservedWords.toUseName(c.getKlass().getName())));
+		ir.getSpecification().getTemporary().getClasses().forEach(c -> temporaryClassNames.add(UseReservedWords.toUseName(c.getKlass().getName())));
 		this.modelName = UseReservedWords.toUseName(metamodels.get(0).getRoots().get(0).getPkg().getName());
 	}
 

@@ -85,7 +85,7 @@ public interface EfinderPackage extends EPackage {
 	int SPECIFICATION__CONSTRAINTS = 1;
 
 	/**
-	 * The feature id for the '<em><b>Temporary</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Temporary</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -148,6 +148,52 @@ public interface EfinderPackage extends EPackage {
 	int SPECIFICATION_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link efinder.ir.impl.TemporaryImpl <em>Temporary</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see efinder.ir.impl.TemporaryImpl
+	 * @see efinder.ir.impl.EfinderPackageImpl#getTemporary()
+	 * @generated
+	 */
+	int TEMPORARY = 1;
+
+	/**
+	 * The feature id for the '<em><b>Classes</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY__CLASSES = 0;
+
+	/**
+	 * The feature id for the '<em><b>Dangling</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY__DANGLING = 1;
+
+	/**
+	 * The number of structural features of the '<em>Temporary</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Temporary</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEMPORARY_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link efinder.ir.impl.ConstraintImpl <em>Constraint</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -155,7 +201,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getConstraint()
 	 * @generated
 	 */
-	int CONSTRAINT = 1;
+	int CONSTRAINT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -192,7 +238,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTypedElement()
 	 * @generated
 	 */
-	int TYPED_ELEMENT = 2;
+	int TYPED_ELEMENT = 3;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -229,7 +275,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getAbstractFunction()
 	 * @generated
 	 */
-	int ABSTRACT_FUNCTION = 3;
+	int ABSTRACT_FUNCTION = 4;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -284,7 +330,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getDerivedProperty()
 	 * @generated
 	 */
-	int DERIVED_PROPERTY = 4;
+	int DERIVED_PROPERTY = 5;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -339,7 +385,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOperation()
 	 * @generated
 	 */
-	int OPERATION = 5;
+	int OPERATION = 6;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -403,7 +449,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getFeatureRef()
 	 * @generated
 	 */
-	int FEATURE_REF = 6;
+	int FEATURE_REF = 7;
 
 	/**
 	 * The number of structural features of the '<em>Feature Ref</em>' class.
@@ -431,7 +477,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOperationFeatureRef()
 	 * @generated
 	 */
-	int OPERATION_FEATURE_REF = 7;
+	int OPERATION_FEATURE_REF = 8;
 
 	/**
 	 * The number of structural features of the '<em>Operation Feature Ref</em>' class.
@@ -459,7 +505,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBuiltinOperationRef()
 	 * @generated
 	 */
-	int BUILTIN_OPERATION_REF = 8;
+	int BUILTIN_OPERATION_REF = 9;
 
 	/**
 	 * The number of structural features of the '<em>Builtin Operation Ref</em>' class.
@@ -487,7 +533,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getDefinedOperationRef()
 	 * @generated
 	 */
-	int DEFINED_OPERATION_REF = 9;
+	int DEFINED_OPERATION_REF = 10;
 
 	/**
 	 * The feature id for the '<em><b>Operation</b></em>' reference.
@@ -524,7 +570,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getPropertyFeatureRef()
 	 * @generated
 	 */
-	int PROPERTY_FEATURE_REF = 10;
+	int PROPERTY_FEATURE_REF = 11;
 
 	/**
 	 * The number of structural features of the '<em>Property Feature Ref</em>' class.
@@ -552,7 +598,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTupleFieldRef()
 	 * @generated
 	 */
-	int TUPLE_FIELD_REF = 11;
+	int TUPLE_FIELD_REF = 12;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -598,7 +644,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getDerivedPropertyRef()
 	 * @generated
 	 */
-	int DERIVED_PROPERTY_REF = 12;
+	int DERIVED_PROPERTY_REF = 13;
 
 	/**
 	 * The feature id for the '<em><b>Property</b></em>' reference.
@@ -635,7 +681,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBuiltinPropertyRef()
 	 * @generated
 	 */
-	int BUILTIN_PROPERTY_REF = 13;
+	int BUILTIN_PROPERTY_REF = 14;
 
 	/**
 	 * The number of structural features of the '<em>Builtin Property Ref</em>' class.
@@ -663,7 +709,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetamodelFeatureRef()
 	 * @generated
 	 */
-	int METAMODEL_FEATURE_REF = 14;
+	int METAMODEL_FEATURE_REF = 15;
 
 	/**
 	 * The feature id for the '<em><b>Feature</b></em>' reference.
@@ -700,7 +746,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getVariableDeclaration()
 	 * @generated
 	 */
-	int VARIABLE_DECLARATION = 15;
+	int VARIABLE_DECLARATION = 16;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -746,7 +792,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getParameter()
 	 * @generated
 	 */
-	int PARAMETER = 16;
+	int PARAMETER = 17;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -792,7 +838,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFMetamodel()
 	 * @generated
 	 */
-	int EF_METAMODEL = 17;
+	int EF_METAMODEL = 18;
 
 	/**
 	 * The feature id for the '<em><b>Roots</b></em>' containment reference list.
@@ -829,7 +875,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPackage()
 	 * @generated
 	 */
-	int EF_PACKAGE = 18;
+	int EF_PACKAGE = 19;
 
 	/**
 	 * The feature id for the '<em><b>Pkg</b></em>' reference.
@@ -884,7 +930,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFType()
 	 * @generated
 	 */
-	int EF_TYPE = 19;
+	int EF_TYPE = 20;
 
 	/**
 	 * The number of structural features of the '<em>EF Type</em>' class.
@@ -912,7 +958,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFClass()
 	 * @generated
 	 */
-	int EF_CLASS = 20;
+	int EF_CLASS = 21;
 
 	/**
 	 * The feature id for the '<em><b>Klass</b></em>' reference.
@@ -949,7 +995,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFPrimitiveType()
 	 * @generated
 	 */
-	int EF_PRIMITIVE_TYPE = 21;
+	int EF_PRIMITIVE_TYPE = 22;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -986,7 +1032,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnum()
 	 * @generated
 	 */
-	int EF_ENUM = 22;
+	int EF_ENUM = 23;
 
 	/**
 	 * The feature id for the '<em><b>Enum </b></em>' reference.
@@ -1032,7 +1078,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFEnumLiteral()
 	 * @generated
 	 */
-	int EF_ENUM_LITERAL = 23;
+	int EF_ENUM_LITERAL = 24;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1069,7 +1115,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getEFTupleType()
 	 * @generated
 	 */
-	int EF_TUPLE_TYPE = 24;
+	int EF_TUPLE_TYPE = 25;
 
 	/**
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
@@ -1115,7 +1161,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTupleTypeElement()
 	 * @generated
 	 */
-	int TUPLE_TYPE_ELEMENT = 25;
+	int TUPLE_TYPE_ELEMENT = 26;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1161,7 +1207,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getTypeRef()
 	 * @generated
 	 */
-	int TYPE_REF = 26;
+	int TYPE_REF = 27;
 
 	/**
 	 * The number of structural features of the '<em>Type Ref</em>' class.
@@ -1189,7 +1235,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getMetaTypeRef()
 	 * @generated
 	 */
-	int META_TYPE_REF = 27;
+	int META_TYPE_REF = 28;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' reference.
@@ -1226,7 +1272,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getInvalidTypeRef()
 	 * @generated
 	 */
-	int INVALID_TYPE_REF = 28;
+	int INVALID_TYPE_REF = 29;
 
 	/**
 	 * The number of structural features of the '<em>Invalid Type Ref</em>' class.
@@ -1254,7 +1300,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getCollectionTypeRef()
 	 * @generated
 	 */
-	int COLLECTION_TYPE_REF = 29;
+	int COLLECTION_TYPE_REF = 30;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1291,7 +1337,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSetTypeRef()
 	 * @generated
 	 */
-	int SET_TYPE_REF = 30;
+	int SET_TYPE_REF = 31;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1328,7 +1374,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getSequenceTypeRef()
 	 * @generated
 	 */
-	int SEQUENCE_TYPE_REF = 31;
+	int SEQUENCE_TYPE_REF = 32;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1365,7 +1411,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getBagTypeRef()
 	 * @generated
 	 */
-	int BAG_TYPE_REF = 32;
+	int BAG_TYPE_REF = 33;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1402,7 +1448,7 @@ public interface EfinderPackage extends EPackage {
 	 * @see efinder.ir.impl.EfinderPackageImpl#getOrderedSetTypeRef()
 	 * @generated
 	 */
-	int ORDERED_SET_TYPE_REF = 33;
+	int ORDERED_SET_TYPE_REF = 34;
 
 	/**
 	 * The feature id for the '<em><b>Contained Type</b></em>' containment reference.
@@ -1465,10 +1511,10 @@ public interface EfinderPackage extends EPackage {
 	EReference getSpecification_Constraints();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link efinder.ir.Specification#getTemporary <em>Temporary</em>}'.
+	 * Returns the meta object for the containment reference '{@link efinder.ir.Specification#getTemporary <em>Temporary</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Temporary</em>'.
+	 * @return the meta object for the containment reference '<em>Temporary</em>'.
 	 * @see efinder.ir.Specification#getTemporary()
 	 * @see #getSpecification()
 	 * @generated
@@ -1518,6 +1564,38 @@ public interface EfinderPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getSpecification_TupleTypes();
+
+	/**
+	 * Returns the meta object for class '{@link efinder.ir.Temporary <em>Temporary</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Temporary</em>'.
+	 * @see efinder.ir.Temporary
+	 * @generated
+	 */
+	EClass getTemporary();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.Temporary#getClasses <em>Classes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Classes</em>'.
+	 * @see efinder.ir.Temporary#getClasses()
+	 * @see #getTemporary()
+	 * @generated
+	 */
+	EReference getTemporary_Classes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link efinder.ir.Temporary#getDangling <em>Dangling</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Dangling</em>'.
+	 * @see efinder.ir.Temporary#getDangling()
+	 * @see #getTemporary()
+	 * @generated
+	 */
+	EReference getTemporary_Dangling();
 
 	/**
 	 * Returns the meta object for class '{@link efinder.ir.Constraint <em>Constraint</em>}'.
@@ -2196,7 +2274,7 @@ public interface EfinderPackage extends EPackage {
 		EReference SPECIFICATION__CONSTRAINTS = eINSTANCE.getSpecification_Constraints();
 
 		/**
-		 * The meta object literal for the '<em><b>Temporary</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Temporary</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
@@ -2234,6 +2312,32 @@ public interface EfinderPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SPECIFICATION__TUPLE_TYPES = eINSTANCE.getSpecification_TupleTypes();
+
+		/**
+		 * The meta object literal for the '{@link efinder.ir.impl.TemporaryImpl <em>Temporary</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see efinder.ir.impl.TemporaryImpl
+		 * @see efinder.ir.impl.EfinderPackageImpl#getTemporary()
+		 * @generated
+		 */
+		EClass TEMPORARY = eINSTANCE.getTemporary();
+
+		/**
+		 * The meta object literal for the '<em><b>Classes</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPORARY__CLASSES = eINSTANCE.getTemporary_Classes();
+
+		/**
+		 * The meta object literal for the '<em><b>Dangling</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEMPORARY__DANGLING = eINSTANCE.getTemporary_Dangling();
 
 		/**
 		 * The meta object literal for the '{@link efinder.ir.impl.ConstraintImpl <em>Constraint</em>}' class.

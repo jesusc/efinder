@@ -56,7 +56,8 @@ public class TupleToClassTransform implements IDialectAdaptation {
 			
 			EFClass efc = IRBuilder.newClass(c);
 			classes.put(tt, efc);
-			model.getSpecification().getTemporary().add(efc);
+			model.getSpecification().getTemporary().getClasses().add(efc);
+			model.getSpecification().getTemporary().getDangling().add(c);
 		}
 				
 		model.getSpecification().eAllContents().forEachRemaining(o -> {

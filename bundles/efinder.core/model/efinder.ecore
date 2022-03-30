@@ -6,8 +6,8 @@
         eType="#//EFMetamodel" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
         eType="#//Constraint" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="temporary" upperBound="-1"
-        eType="#//EFClass" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="temporary" lowerBound="1"
+        eType="#//Temporary" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
         eType="#//DerivedProperty" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
@@ -16,6 +16,12 @@
         eType="#//EFPrimitiveType" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="tupleTypes" upperBound="-1"
         eType="#//EFTupleType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Temporary">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="classes" upperBound="-1"
+        eType="#//EFClass" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dangling" upperBound="-1"
+        eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Constraint" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

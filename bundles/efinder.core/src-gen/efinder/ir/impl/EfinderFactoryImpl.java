@@ -57,6 +57,7 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case EfinderPackage.SPECIFICATION: return createSpecification();
+			case EfinderPackage.TEMPORARY: return createTemporary();
 			case EfinderPackage.BUILTIN_OPERATION_REF: return createBuiltinOperationRef();
 			case EfinderPackage.DEFINED_OPERATION_REF: return createDefinedOperationRef();
 			case EfinderPackage.TUPLE_FIELD_REF: return createTupleFieldRef();
@@ -93,6 +94,17 @@ public class EfinderFactoryImpl extends EFactoryImpl implements EfinderFactory {
 	public Specification createSpecification() {
 		SpecificationImpl specification = new SpecificationImpl();
 		return specification;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Temporary createTemporary() {
+		TemporaryImpl temporary = new TemporaryImpl();
+		return temporary;
 	}
 
 	/**
