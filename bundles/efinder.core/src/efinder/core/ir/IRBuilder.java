@@ -172,6 +172,22 @@ public class IRBuilder {
 
 	// Expressions
 	
+	public static OperatorKind getOperator(String op) {
+		switch (op) {
+		case "+":
+			return OperatorKind.PLUS;
+		case "-":
+			return OperatorKind.MINUS;
+		case "=":
+			return OperatorKind.EQUAL;
+		case "/":
+			return OperatorKind.DIV;
+		case "*":
+			return OperatorKind.MUL;
+		}
+		throw new IllegalArgumentException("Operator " + op + " not supported.");
+	}
+	
 	@NonNull
 	public static OperatorCallExp newOperatorCallExp(OperatorKind operator, @NonNull OclExpression source, @NonNull OclExpression arg) {
 		return newOperatorCallExp(operator, source, Collections.singletonList(arg));
