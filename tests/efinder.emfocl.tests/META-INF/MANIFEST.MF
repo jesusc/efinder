@@ -10,7 +10,6 @@ Require-Bundle: efinder.core.tests;bundle-version="1.0.0",
  org.junit,
  org.eclipse.emf.ecore,
  org.eclipse.ocl.xtext.completeocl,
- org.slf4j.api;bundle-version="1.7.2",
  efinder.emfocl,
  efinder.usemv
 Bundle-ClassPath: lib/snakeyaml-1.25.jar,
