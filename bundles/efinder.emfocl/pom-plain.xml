@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>io.github.models-lab.efinder.emfocl</artifactId>
+	<name>EFinder integration with Eclipse OCL</name>
+
+	<parent>
+		<groupId>io.github.models-lab.efinder</groupId>
+		<artifactId>efinder-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+		<relativePath>../../pom-plain.xml</relativePath>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.eclipse.jdt</groupId>
+			<artifactId>org.eclipse.jdt.annotation</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.emf</groupId>
+			<artifactId>org.eclipse.emf.ecore</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>io.github.models-lab.efinder</groupId>
+			<artifactId>io.github.models-lab.efinder.core</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
+		<!-- Eclipse dependencies -->
+		<dependency>
+			<groupId>org.eclipse.p2.repo</groupId>   <!-- matches id of the repo
+			above -->
+			<artifactId>org.eclipse.ocl.ecore</artifactId>
+			<version>3.18.0.v20221201-0557</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.eclipse.p2.repo</groupId>   <!-- matches id of the repo
+			above -->
+			<artifactId>org.eclipse.ocl.pivot</artifactId>
+			<version>1.18.0.v20221201-0557</version>
+		</dependency>
+	</dependencies>
+
+	<!-- https://github.com/OpenNTF/p2-layout-provider -->
+
+	<pluginRepositories>
+		<!-- the plugin is hosted in OpenNTF's Maven repository -->
+		<pluginRepository>
+			<id>artifactory.openntf.org</id>
+			<name>artifactory.openntf.org</name>
+			<url>https://artifactory.openntf.org/openntf</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<repositories>
+		<repository>
+			<id>org.eclipse.p2.repo</id>   <!-- defines the groupId to be used
+			below -->
+			<url>http://download.eclipse.org/releases/2023-09</url>
+			<layout>p2</layout>
+		</repository>
+	</repositories>
+
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.openntf.maven</groupId>
+				<artifactId>p2-layout-resolver</artifactId>
+				<version>1.7.0</version>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
